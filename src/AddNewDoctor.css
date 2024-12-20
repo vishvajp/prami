@@ -1,0 +1,86 @@
+.addnewdoctor-modal .ant-modal-content {
+left: 42%;
+width: 800px!important;
+height: auto;
+padding: 10px !important;
+background-color: rgb(192, 190, 190) !important;
+
+}
+
+.addnewdoctor-head {
+    background-color: red;
+    color: yellow;
+    font-size: larger;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .addnewdoctor-2nd-col label{
+    margin-left: 15px;
+    margin-bottom: 3px;
+    color: red;
+    font-weight: 500;
+  }
+
+  .addnewdoctor-1st-col label{
+    margin-left: 15px;
+    margin-bottom: 3px;
+    color: red;
+    font-weight: 500;
+  }
+
+  .addnewdoctor-1st-col input{
+    border: none;
+    height: 30px;
+    border-radius: 7px;
+    box-shadow: 0px 2px 2px gray;
+    padding: 0px 0px 0px 10px;
+  }
+
+  .addnewdoctor-2nd-col-input{
+    border: none;
+    height: 30px;
+    border-radius: 7px;
+    box-shadow: 0px 2px 2px gray;
+    padding: 0px 0px 0px 10px;
+  }
+  .addnewdoctor-2nd-col-checkinput{
+    width: 15px;
+    height: 15px;
+  }
+
+  .addnewdoctor-1st-col{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .addnewdoctor-2nd-col{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .addnewdoctor-cancel {
+    color: red;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px 15px;
+    box-shadow: 0px 2px 2px #8a8989;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  
+  .addnewdoctor-add {
+    color: white;
+    border: 2px solid red;
+    border-radius: 5px;
+    background-color: red;
+    padding: 5px 15px;
+    box-shadow: 0px 2px 2px #545454;
+    font-weight: 600;
+  }

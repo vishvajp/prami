@@ -1,0 +1,245 @@
+.medicalhistory-2nddiv-plus {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: green;
+}
+.medicalhistory-main-div {
+  background: gainsboro;
+  margin: 0px 10px;
+  height: auto;
+  padding: 20px;
+  border-radius: 7px;
+}
+
+.medicalhistory-2nd-div {
+  background: #d7d3d35e;
+  margin: 0px 50px;
+  gap: 5px;
+  justify-content: center;
+  border-radius: 0px 0px 7px 7px;
+  padding: 8px;
+  align-items: center;
+}
+.medicalhistory-input-label {
+  margin-left: 10px;
+  color: red;
+  font-weight: 500;
+}
+
+.medicalhistory-visit-input {
+  width: 308px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+#templates {
+  width: 300px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.medicalhistory-3rd-div span {
+  color: black;
+  background-color: white;
+  padding: 5px 10px;
+  font-size: small;
+  border-radius: 7px;
+}
+
+.medicalhistory-3rd-div span:hover {
+  cursor: pointer !important;
+}
+
+.medicalhistory-nex-button {
+  border: none;
+  color: white;
+  background-color: green;
+  border-radius: 7px;
+  padding: 10px 21px;
+  box-shadow: 0px 2px 3px rgb(185, 185, 185);
+  font-weight: 600;
+}
+
+.medicalhistory-back-button{
+  border: none;
+  color: white;
+  background-color: red;
+  border-radius: 7px;
+  padding: 10px 21px;
+  box-shadow: 0px 2px 3px rgb(185, 185, 185);
+  font-weight: 600;
+}
+
+.meidcalhistory-submit-button{
+  border: none;
+  color: white;
+  background-color: red;
+  border-radius: 7px;
+  padding: 10px 21px;
+  box-shadow: 0px 2px 3px rgb(185, 185, 185);
+  font-weight: 600;
+}
+
+.medichistory-header-icons-div {
+  margin-left: 521px;
+}
+
+.medichistory-lable {
+  margin-left: 10px;
+  color: red;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.medicalhistory-last-input {
+  border: none;
+  width: 100%;
+  height: 120px;
+  box-shadow: 0px 1px 5px gray;
+  border-radius: 5px;
+}
+
+.medicalhistory-yes-no-input {
+  background-color: white;
+  width: 25%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0px 1px 5px gray;
+  margin-right: 10px;
+}
+
+.medicalhistory-big-radio-input {
+  background-color: white;
+  width: 52%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0px 1px 5px gray;
+  margin-right: 10px;
+}
+
+.medicalhistory-radio-input {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.medicalhistory-title-div {
+  background-color: gray;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+
+/* 2nd page */
+.medicalhistroy-2nd-page-textarea{
+  
+    box-shadow: 0px 1px 5px gray;
+    border-radius: 5px;
+width: 100%;
+
+}
+
+.medicalhistory-2nd-page-duration{
+  background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    box-shadow: 0px 1px 5px gray;
+    margin-right: 10px;
+}
+
+
+/* 3rd page */
+
+.medicalhistory-3rd-page-label{
+  display: flex;
+  align-items: center;
+
+  color: red;
+  font-weight: 500;
+ 
+}
+
+.medicalhistory-3rd-page-title{
+  background-color: white;
+  padding: 5px 10px;
+  font-weight: 600;
+  border-radius: 8px;
+
+
+}
+
+.medicalhistory-3rd-page-1st-col-title{
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+
+  color: red;
+  font-weight: 500
+
+}
+
+.medicalhistory-3rd-page-1st-col{
+  border-right: 2px solid black;
+}
+
+
+.medicalhistory-5th-page-textarea{
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+ 
+    padding-left: 10px;
+
+}
+
+
+@media only screen and (max-width: 1440px) {
+  .medicalhistory-visit-input {
+    width: 250px;
+  }
+  .medichistory-header-icons-div {
+    margin-left: 460px;
+  }
+
+  #templates {
+    width: 250px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .medichistory-header-icons-div {
+    margin-left: 350px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .medicalhistory-visit-input {
+    width: 194px !important;
+  }
+
+  #templates {
+    width: 194px !important;
+  }
+
+  .medicalhistory-visitreason-div {
+    margin-right: 10px !important;
+  }
+
+  .medicalhistory-master-div {
+    margin-left: 10px !important;
+  }
+  .medichistory-header-icons-div {
+    margin-left: 46px;
+  }
+}

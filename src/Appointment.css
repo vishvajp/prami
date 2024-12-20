@@ -1,0 +1,208 @@
+.appointment-servicelist {
+  margin: 10px;
+  /* height: 100vh; */
+
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid gainsboro;
+  box-shadow: 2px 2px 2px gainsboro;
+  background-color: rgba(225, 225, 225, 0.5);
+}
+.appointment-table-part {
+  margin: 10px;
+  /* height: 100vh; */
+  /* background-color: gainsboro; */
+  border-radius: 5px;
+  padding: 0px 10px 10px 10px;
+  border: 1px solid gainsboro;
+  box-shadow: 2px 2px 2px gainsboro;
+  background-color: rgba(225, 225, 225, 0.5);
+}
+.appointment-servicelist-text {
+  display: inline-block;
+  color: red;
+  font-weight: 500;
+  margin-left: 10px;
+  
+}
+.appointment-appointmentlist-text {
+  width: 127px;
+  background-color: gray;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.appointment-appointmentlist-text:hover{
+  cursor: pointer;
+}
+
+.appointment-span {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.appointment-span:hover{
+  cursor: pointer;
+}
+
+.appointment-1st-div {
+  gap: 10px;
+  margin-left: 2px;
+}
+
+
+.appointment-1stdiv-input {
+
+  width: 350px;
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.appointment-1stdiv-register {
+  background-color: white;
+  /* height: 27px; */
+  padding:9px;
+  border-radius: 5px;
+  border: 2px solid red;
+  color: red;
+  font-weight: 600;
+}
+
+.appointment-1stdiv-register:hover {
+  cursor: pointer;
+}
+
+#hospital,
+#date,
+#doctors {
+  
+  width: 100%;
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.appointment-2div-walk {
+  background-color: red;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.appointment-2div-walk:hover{
+  cursor: pointer;
+}
+
+.appointmnet-search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 0px 3px !important;
+  z-index: 2;
+  color: red;
+  background-color: rgb(204, 204, 204);
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  border-radius: 5px;
+  /* border-radius: 5px 0px 0px 5px; */
+}
+
+.appointment-search-input {
+  width: 300px !important;
+  border: none !important;
+
+  padding-left: 30px !important;
+ 
+  margin-right: 40px;
+  z-index: 0 !important;
+}
+
+
+.appointment-search-bar {
+  width: auto;
+  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  border-radius: 5px;
+
+  height: 30px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  background-color: #fff;
+  margin: 15px 0px 15px 0px;
+}
+
+.appointment-appointmnet-text-abovetable {
+  color: red;
+  font-size: large;
+  font-weight: 600;
+  background-color: white;
+  padding: 5px 15px;
+  border-radius: 0px 0px 10px 10px;
+}
+.appintment-date-input {
+  width: 100%;
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding: 0px 10px 0px 10px ;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+    background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appointment-date-booking{
+  width: 308px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding: 0px 10px 0px 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  background-color: white;
+  display: flex
+;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+  .appointment-1stdiv-input {
+    width: 265px !important;
+  }
+
+  .appintment-date-input {
+    width: 190px !important;
+  }
+
+  #hospital {
+    width: 190px;
+  }
+
+  #doctors {
+    width: 190px;
+  }
+}
+
+
+@media screen and (max-width: 1366px) {
+  .appointment-date-booking {
+      width: 200px;
+  }
+}

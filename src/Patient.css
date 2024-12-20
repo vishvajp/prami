@@ -1,0 +1,81 @@
+.paitent-date-input {
+  width: 100%;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding: 0px 10px 0px 10px ;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#patient-doctor {
+ 
+  width: 100%s;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+
+.patient-hearder-div {
+  background: #d7d3d35e;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-right: 0px;
+}
+
+.patient-table-div {
+  padding: 10px;
+  background: #d7d3d35e;
+  border-radius: 5px;
+  margin: 10px 0px 0px 11px;
+}
+
+.patient-table-search-input{
+  height: 30px;
+  border: none;
+  box-shadow: 0px 0px 2px gray;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  margin-right: 20px;
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .paitent-date-input {
+    width: 100%;
+  }
+
+  #patient-doctor {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .paitent-date-input {
+    width: 100%;
+  }
+
+  #patient-doctor {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .paitent-date-input {
+    width: 100% !important;
+  }
+
+  #patient-doctor {
+    width: 100% !important;
+  }
+}

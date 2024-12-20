@@ -1,0 +1,50 @@
+.pharmacy-table-delete-icon {
+  color: red;
+  border: 1px solid;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+.pharmacy-table-star-icon {
+  height: 18px;
+  width: 20px;
+  color: gold;
+  margin-left: 5px;
+}
+
+.pharmacyTable-header-div{
+  width: 0.8px;
+  /* color: white; */
+  background-color: rgb(163, 163, 163);
+  height: 29px;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  z-index: 5;
+}
+
+.pharmacyTable-content-div{
+  width: 0.8px;
+  /* color: white; */
+  background-color: rgb(163, 163, 163);
+  height: 40px;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  z-index: 5;
+}
+
+.pharmacy-table-last-child{
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.pharmacy-table-edit-icon{
+  height: 25px;
+  width: 25px;
+  padding: 2px;
+  margin-left: 5px;
+}

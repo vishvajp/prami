@@ -1,0 +1,114 @@
+.pastrecords-header-div {
+  background-color: rgb(159, 159, 159);
+  border-radius: 30px;
+  /* display: flex; */
+  align-items: center;
+  margin: 10px 5px 0px 5px;
+  /* padding: 5px; */
+}
+
+.pastrecords-header-name {
+  color: red;
+  font-size: larger;
+  font-weight: 500;
+}
+
+.pastrecords-header-age {
+  font-size: small;
+  font-weight: 500;
+}
+
+.pastrecords-phone-id {
+  font-weight: 600;
+}
+
+.pastrecods-header-icons {
+  width: 35px;
+  height: 35px;
+  border: 2px solid gray;
+  border-radius: 50%;
+  padding: 5px;
+  color: red;
+}
+
+.pastrecords-timer {
+  color: red;
+  font-size: larger;
+  font-weight: 600;
+}
+.pastrecords-header-icons-div {
+  margin-left: 521px;
+}
+
+.pastrecords-2nd-div {
+  background-color: rgba(225, 225, 225, 0.5);
+  margin: 0px 50px;
+  gap: 5px;
+  justify-content: center;
+  border-radius: 0px 0px 7px 7px;
+  padding: 8px;
+}
+
+.pastrecords-2nd-div:hover{
+  cursor: pointer;
+}
+
+.pastrecords-2nd-div span {
+  color: white;
+  background-color: gray;
+  padding: 5px 10px;
+  font-size: small;
+  border-radius: 7px;
+}
+
+.pastrecords-main-div {
+  background: #d7d3d35e;
+  margin: 10px 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+}
+
+.pastrecords-main-div-notes {
+  width: 120px;
+  height: 120px;
+  border: 2px solid gray;
+  border-radius: 50%;
+  padding: 20px;
+  background-color: white;
+}
+.pastrecords-date{
+  font-weight: 600;
+}
+@media only screen and (max-width: 1440px) {
+  .pastrecords-monica {
+    align-items: center;
+    width: 185px;
+  }
+
+  .pastrecord-contact-patient {
+    width: 108px;
+  }
+
+  .pastrecords-header-icons-div {
+    margin-left: 400px;
+  }
+}
+@media screen and (max-width:1366px) {
+  .pastrecords-header-icons-div {
+    margin-left: 290px;
+    margin-right: 18px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .pastrecords-header-icons-div {
+    margin-left: 0px !important;
+  }
+
+  .pastrecords-2nd-div span {
+    align-items: center;
+  }
+}

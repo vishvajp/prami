@@ -1,0 +1,85 @@
+.table-bg {
+  margin: 25px 20px 0px 20px;
+  background: #d7d3d35e;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.patienttable-header-col {
+  background: #fc0000 !important;
+  color: white !important;
+ 
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.patienttable-header-col:nth-child(1) {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.patienttable-header-col:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-right: 0px solid #6d6363;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.patienttable-body-row {
+
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.patienttable-body-row:nth-child(1) {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+.patienttable-body-row:last-child {
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.patienttable-body-row-container {
+  border-width: 0px;
+  border-bottom-width: 4px;
+  border-color: #e9e5e5;;
+}
+
+.patienttable-head-container {
+  border-width: 0px;
+  border-bottom-width: 4px;
+  border-color:  #e9e5e5;;
+}
+
+.patienttable-header-div{
+  width: 1px;
+  /* color: white; */
+  background-color: rgb(163, 163, 163);
+  height: 90%;
+  position: absolute;
+  right: 0;
+  top: 4px;
+
+}
+
+.patienttable-start-button{
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: medium;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 5px;
+
+}

@@ -1,0 +1,355 @@
+.payment-header {
+  background-color: white;
+  padding: 5px 20px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.payment-modal .ant-modal-content {
+  padding: 0px 10px 10px 10px !important;
+  margin-top: -55px;
+}
+
+.payment-payment-text {
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: gainsboro;
+  border-radius: 5px;
+}
+.payment-payment-text:hover {
+  cursor: pointer;
+}
+
+.payment-billing-text {
+  padding: 5px 20px;
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+}
+.payment-billing-text:hover {
+  cursor: pointer;
+}
+.payment-patient-input {
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.payment-patient-select {
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-main-div {
+  background-color: rgb(237 233 233);
+  margin: 25px 5px 5px 5px;
+  border-radius: 5px;
+}
+
+.payment-payment-div {
+  background-color: gainsboro;
+  margin: 0px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.payment-today-billing-text {
+  padding: 10px 0px;
+  font-weight: 600;
+}
+.payment-package-div {
+  background-color: white;
+  padding: 5px;
+  border-radius: 0px 0px 5px 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.payment-select-field {
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-clearall-button {
+  border: none;
+  color: green;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5rem;
+  font-weight: 500;
+}
+.payment-inside-div {
+  margin: 0px 10px;
+  background-color: gainsboro;
+  border-radius: 5px;
+}
+.payment-small-input {
+  width: 70px;
+  border-radius: 5px;
+
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.payment-small-input-qty {
+  width: 55px;
+  border-radius: 5px;
+
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-too-small-letf-input {
+  width: 49px;
+  border-radius: 5px 0px 0px 5px;
+
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.payment-too-small-right-input {
+  width: 49px;
+  border-radius: 0px 5px 5px 0px;
+  margin-left: 5px;
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-too-small-whole-div {
+  border-radius: 5px;
+  background-color: green;
+  z-index: 5;
+}
+.payment-treatment-label-div {
+  width: 200px;
+  border-radius: 5px;
+
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-treatment-input {
+  border-radius: 5px;
+
+  border: none;
+  height: 35px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.payment-treatment-text {
+  width: 240px;
+}
+.payment-cost-text {
+  width: 103px;
+}
+.payment-qty-text {
+  width: 110px;
+}
+.payment-discount-text {
+  width: 137px;
+}
+.payment-cgst-text {
+  width: 130px;
+}
+.payment-sgst-text {
+  width: 93px;
+}
+.payment-total-text {
+  width: 140px;
+}
+.payment-recieved-text {
+  width: 90px;
+}
+.payment-balance-text {
+  width: 140px;
+}
+
+.payment-input-whole-div {
+  background-color: rgb(237 233 233);
+  padding: 10px 10px 10px 10px;
+}
+
+.payment-plus-icon {
+  background-color: green;
+  color: white;
+  width: 23px;
+  height: 23px;
+  border-radius: 5px;
+}
+
+.payment-delete-icon {
+  width: 21px;
+  height: 23px;
+  background-color: #ef4f6b;
+  border-radius: 5px;
+  color: white;
+  margin-left: 3px;
+}
+
+.payment-choosefrom-text {
+  margin-right: -51.5px;
+  font-size: x-small;
+  background-color: green;
+  padding: 8px 4px 3px 3px;
+  margin-top: -5px;
+  z-index: 0;
+  border-radius: 0px 0px 5px 5px;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.payment-date-text {
+  padding: 0px 17px;
+  color: green;
+  text-decoration: underline;
+  margin: 0px;
+}
+
+.payment-total-div {
+  margin: 0px 10px;
+  background-color: gainsboro;
+  border-radius: 0px 0px 5px 5px;
+  padding: 10px 45px;
+  gap: 15px;
+}
+
+.payment-send-checkbox-div {
+  padding: 0px 15px;
+  background-color: gainsboro;
+  border-radius: 5px;
+}
+
+.payment-submit-print-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+.payment-cancel-button {
+  background-color: rgb(255, 255, 255);
+  color: white;
+
+  border-radius: 5px;
+  padding: 5px 15px;
+  color: red;
+  font-weight: 500;
+  border: red 2px solid;
+}
+
+.payment-back-button {
+  width: 30px;
+  height: 30px;
+  color: red;
+  background-color: white;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.payment-back-button:hover {
+  cursor: pointer;
+}
+
+@media screen and (width: 1366px) {
+  .payment-treatment-text {
+    width: 225px;
+  }
+  .payment-cost-text {
+    width: 78px;
+  }
+  .payment-qty-text {
+    width: 100px;
+  }
+  .payment-discount-text {
+    width: 115px;
+  }
+  .payment-cgst-text {
+    width: 120px;
+  }
+  .payment-sgst-text {
+    width: 74px;
+  }
+  .payment-total-text {
+    width: 120px;
+  }
+  .payment-recieved-text {
+    width: 78px;
+  }
+  .payment-balance-text {
+    width: 120px;
+  }
+  .payment-choosefrom-text {
+    margin-right: -63px;
+  }
+}
+
+/* Payment details */
+
+.invoice-top-div {
+  background-color: rgba(225, 225, 225, 0.5);
+  margin: 0px;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.invoice-top-div-select {
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.invoice-title {
+  margin-top: 0;
+
+  padding: 13px 30px;
+  color: red;
+  font-size: large;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.invoice-top-div-lable {
+  padding-left: 10px;
+  color: red;
+  font-weight: 500;
+}
+.invoice-table-div {
+  padding: 10px;
+  background-color: rgba(225, 225, 225, 0.5);
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.invoice-export-button {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 7px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.invoice-payment-history-main-div {
+  background-color: rgb(237 233 233);
+  margin-top: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}

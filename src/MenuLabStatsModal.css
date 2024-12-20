@@ -1,0 +1,54 @@
+.menulabstatsmodal-modal .ant-modal-content{
+width: 100% !important;
+left: 65%; 
+
+}
+
+.menulabstatsmodal-modal-label{
+    margin-left: 5px;
+    color: red;
+    font-weight: 500;
+}
+
+.menulabstatsmodal-input{
+    border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+
+}
+
+.menulabstatsmodal-update-button{
+    
+        border: none;
+        color: white;
+        background-color: green;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0px 1px 5px gray;
+    
+}
+
+.menulabstatsmodal-cancel-icon-div{
+    padding: 0px 9px 3px 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: red;
+    color: white;
+    border-radius: 21px 0px 0px 21px;
+}
+
+.menulabstatsmodal-cancel-icon-div:hover{
+    cursor: pointer;
+}
+
+
+
+.menulabstatsmodal-cancel-icon{
+    width: 19px;
+    height: 19px;
+
+}

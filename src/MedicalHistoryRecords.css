@@ -1,0 +1,56 @@
+.medicalhistory-records-para{
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px gray;
+    width: 100%;
+    background-color: white;
+    min-height: 30px;
+    padding: 5px;
+}
+
+.table-body-row-medicalHistory-record{
+    position: relative;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+}
+
+.table-head-row-medicalHistory-record{
+    background-color:  #535050!important;
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+.table-head-row-medicalHistory-last-record-td{
+    background-color:  #535050!important;
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+}
+
+
+.table-head-row-top-left-medicalHistory-record{
+    background: #fc0000 !important;
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+
+.table-1st-td-medicalHistory-record{
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    position: relative;
+    height: 100%;
+    color: red !important;
+    font-weight: bold;
+}

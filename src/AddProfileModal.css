@@ -1,0 +1,87 @@
+.addprofile-header{
+    background-color: red;
+    color: yellow;
+    margin: 0px 5px 0px 5px;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: 500;
+    padding: 10px;
+}
+.addprofile-additional-para{
+width: fit-content;
+background-color: red;
+color: white;
+font-size: smaller;
+    padding: 2px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px gray;
+}
+
+.addprofile-plus-icon{
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.addprofile-input-select{
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    box-shadow: 0px 1px 5px gray;
+}
+
+.addprofile-label{
+    margin-top: 10px;
+    color: red;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.addprofile-modal .ant-modal-content{
+    width: 800px !important;
+    margin-left: 180px;
+}
+
+.addprofile-1stdiv-cancelspan {
+    position: absolute;
+    right: -35px;
+
+    background-color: red;
+    /* color: red; */
+    width: 35px;
+    height: 30px;
+    border-radius: 0px 20px 20px 0px;
+    top: 20px;
+    
+  }
+
+  .addprofile-1stdiv-cancelspan:hover {
+    cursor: pointer;
+  }
+  
+  .addprofile-1st-div-cancel {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    color: red;
+    border-radius: 50%;
+    margin-top: 2px;
+    margin-left: 4px;
+  }
+  .addprofile-submit-button{
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px gray;
+    padding: 5px 15px;
+  }
+
+  .addprofile-cancel-button{
+    color: red;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px gray;
+    padding: 5px 15px;
+  }

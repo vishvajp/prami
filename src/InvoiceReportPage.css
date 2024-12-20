@@ -1,0 +1,20 @@
+.invoice-first-col-input p{
+    background-color: white;
+    width: fit-content;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+.invoice-first-col-label p{
+color: red;
+margin-bottom: 20px;
+font-weight: 500;
+}
+.invoice-print-button{
+    color: white;
+    background-color: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px gray;
+}

@@ -1,0 +1,152 @@
+.labTestPatient-table-more-detail-div{
+    height: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center !important;
+  
+    position: relative;
+    top: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 0px 20px;
+}
+
+.labTestPatient-table-more-detail-div{
+    cursor: pointer;
+}
+
+
+.labTestPatientTable-refresh-icons-container {
+    height: 36.3px !important;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.labTestPatientTable-search{
+    border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.labTestPatientTable-main-div{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+.labTestLabTable-upload-button{
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 0px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.labTestLabTable-upload-button:hover{
+    cursor: pointer;
+}
+
+.labtestpatient-morebutton-page-delete-icon{
+    color: red;
+    width: 25px;
+    height: 25px;
+}
+
+.labtest-patient-morebutton-page-label{
+    color: red;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.labtest-patient-morebutton-page-Id-span{
+    color: white;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 7px;
+}
+
+.labtest-patient-morebutton-page-name-span{
+   
+    font-weight: 400;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 2px gray;
+}
+
+.labtest-patient-morebutton-page-mob-div{
+    background-color: white;
+    padding:3px 10px;
+  
+    box-shadow: 0px 0px 2px gray;
+    border-radius: 7px;
+}
+
+.labtest-patient-morebutton-91-span{
+    
+    background-color: gainsboro;
+    border-radius: 7px;
+    padding: 2px;
+    margin-right: 8px;
+
+}
+
+.labtest-patient-morebutton-page-row-div{
+    background-color: rgba(225, 225, 225, 0.5);
+    margin: 7px;
+    padding: 10px 5px;
+    border-radius: 10px;
+}
+
+.labtest-patient-morebutton-table-main-div{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+.labtest-patient-morebutton-total-div{
+    background-color: red;
+    padding: 5px 15px;
+    border-radius: 7px;
+    gap: 50px;
+    margin-top: 10px;
+}
+
+.labtest-patient-morebutton-total-text-span{
+    color: yellow;
+    font-size: medium;
+}
+
+.labtest-patient-morebutton-print-button{
+    color: red;
+    border: none;
+    background-color: white;
+    padding: 0px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+
+}
+
+.labTestPatient-table-more-detail-title{
+    padding: 0px 10px;
+    color: red;
+    font-size: large;
+    text-decoration: underline;
+    font-weight: 500;
+}

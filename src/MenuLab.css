@@ -1,0 +1,134 @@
+.menu-lab-main-div {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(225, 225, 225, 0.5);
+  border-radius: 5px;
+}
+
+.menu-lab-first-col {
+  background-color: rgb(207, 207, 207);
+  border-radius: 19px;
+  margin: 0px 15px 0px 0px;
+  padding: 40px 20px 20px 20px;
+}
+
+.menu-lab-second-col {
+  background-color: rgb(207, 207, 207);
+  border-radius: 22px;
+}
+
+.menu-lab-heading {
+  color: black;
+  background-color: gainsboro;
+  padding: 5px 10px;
+
+  border-radius: 7px;
+}
+
+.menu-lab-heading:hover {
+  cursor: pointer;
+}
+
+.menu-lab-label {
+  margin-left: 10px;
+  color: red;
+  font-weight: 500;
+}
+
+.meulab-input {
+  width: 100%;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.menulab-delete-button {
+  border: none;
+  color: white;
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px gray;
+}
+.menulab-add-button {
+  border: none;
+  color: white;
+  background-color: green;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px gray;
+}
+
+.menulab-2nd-col-tabletitle {
+  margin-top: 10px;
+  color: red;
+  font-weight: 600;
+}
+
+.menulab-submit-button-div {
+  height: 100%;
+
+  margin-bottom: 10px;
+}
+
+.menulab-testStats-maindiv {
+  margin: 10px;
+  padding: 10px;
+  background: #d7d3d35e;
+}
+
+/* test stats */
+
+.teststats-search-input {
+  border: none;
+  width: 91%;
+  padding: 0px 10px;
+  height: 30px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.teststats-main-div {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px gray;
+  width: 64%;
+  margin-left: 5px;
+}
+
+.teststats-top-row {
+  margin: 15px 10px;
+}
+
+.teststats-labname-text {
+  color: red;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.teststats-edit-icon {
+  width: 22px;
+  height: 19px;
+}
+
+.teststats-edit-icon:hover{
+  cursor: pointer;
+}
+
+.teststats-delete-icon {
+  width: 22px;
+  height: 19px;
+  color: red;
+}
+
+.teststats-export-button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px gray;
+}

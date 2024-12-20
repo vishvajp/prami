@@ -1,0 +1,299 @@
+.doctor-detail-container {
+  margin: 10px;
+  height: auto;
+  background-color: gainsboro;
+  border-radius: 5px;
+  padding: 5px;
+}
+.docdetail-2col {
+  /* margin-left: 70px; */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0px 15px;
+}
+
+.docdetail-1col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0px 20px;
+}
+
+.docdetail-input-label {
+  margin-left: 10px;
+  color: red;
+  font-weight: 500;
+}
+.docdetail-input {
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+.doctor-detail-text {
+  margin-right: -90px;
+  margin-bottom: 0;
+  font-size: larger;
+  color: red;
+  text-decoration: underline;
+  text-align: end;
+  font-weight: 500;
+}
+
+.docdetail-penicl-icon {
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 3px;
+  margin-top: 32px;
+  margin-left: -23px;
+}
+
+.docdetail-cancel-icon {
+  width: 34px;
+  height: 30px;
+  color: white;
+  background-color: red;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 17px 0px 0px 17px;
+  position: absolute;
+    right: 11px;
+}
+
+.docdetail-cancel-icon :hover{
+  cursor: pointer;
+}
+
+.docdetail-docimg-pencil {
+  background-color: rgb(152, 152, 152);
+  padding: 5px 5px 3px 3px;
+  border-radius: 0px 0px 5px 5px;
+  margin-right: 53px;
+  margin-top: -5px;
+}
+
+.docdetail-medical-registration {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  gap: 5px;
+  padding: 0px 7px;
+  /* margin-right: 5px; */
+  /* height: 30px; */
+
+}
+.docdetail-gender-registration {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  margin-right: 5px;
+  height: 30px;
+
+}
+
+.doctordetail-days-div {
+  padding: 0px 10px;
+}
+
+.doctor-detail-bottom-time-input{
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+    width: 50px;
+}
+
+.doctor-detail-bottom-minute-dropdown{
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+@media screen and (max-width:1366px) {
+  .doctordetail-days-div {
+    padding: 0px 10px;
+  };
+}
+
+.doctordetail-time-div {
+  padding: 0px 10px;
+  /* margin-top:50px !important */
+}
+
+.docdetail-vertical-line {
+  width: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 22px;
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: #b3b3b3;
+}
+
+.docdetail-days {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.docdetail-days-vertical-line {
+  width: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 47px;
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: #b3b3b3;
+}
+
+.docdetail-timeup-arrow {
+  color: white;
+  background-color: red;
+  width: 20px;
+  height: 10px;
+  border-radius: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-bottom: -6px;
+}
+.docdetail-timedown-arrow {
+  color: white;
+  background-color: red;
+  width: 20px;
+  height: 10px;
+  border-radius: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top: -11px;
+}
+
+.docdetail-time {
+  background-color: rgb(239, 239, 239);
+  padding: 0px 2px;
+  border-radius: 10px;
+  font-size: small;
+  border: none; /* Remove default border */
+  width: 34px; /* Adjust width as needed */
+  text-align: center; /* Center text */
+}
+
+.docdetail-am-to {
+  font-size: small;
+}
+
+.docdetail-time-vertical-line {
+  width: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 76px;
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: #b3b3b3;
+}
+
+.docdetail-save-button {
+  margin-top: 10px;
+  background-color: red;
+  color: white;
+  padding: 3px 14px;
+  border: none;
+  border-radius: 4px;
+}
+
+.docdetail-col1 {
+  padding: 54px 10px 0px 10px;
+}
+
+.docdetail-rs {
+  position: absolute;
+  /* right: 10px; */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 0px 3px !important;
+  z-index: 2;
+  margin-left: 10px;
+  /* border-radius: 5px 0px 0px 5px; */
+}
+
+.docdetail-rs-input {
+  border: none !important;
+  height: 28px !important;
+  padding-left: 35px !important;
+  margin-right: 6px;
+  border-radius: 5px 5px 5px 5px !important;
+  z-index: 0 !important;
+}
+
+
+.docdetail-add-button {
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  margin-left: 12px;
+  font-size: x-small;
+}
+
+.docdetail-input-wrapper input {
+  width: 100%;
+  padding-right: 35px; /* Adjust padding to make room for the icon */
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  margin-right: 6px;
+}
+.docdetail-input-wrapper {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  /* padding: 5px; */
+  height: 30px;
+  /* width: 438px; */
+  /* margin-right: 10px; */
+  margin-right: 6px;
+  background-color: #fff;
+  position: relative;
+  /* width: 100%; */
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.doctor-detail-days-div{
+  background-color: white;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px;
+
+}
+
+.doctor-detail-days-col{
+  border-right: 2px solid gray;
+}
+
+.doctor-detail-days-col:last-of-type {
+  border-right: none;
+}
+
+.docdetail-time-input{
+  width: 100px;
+}
+
+.doctor-label-col{
+  padding: 0px !important;
+}
+
+.doctordet-label{
+  color: red;
+  font-weight: 500;
+}

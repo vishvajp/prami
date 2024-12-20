@@ -1,0 +1,73 @@
+.clinecs-header-div-input {
+  border: none;
+  height: 30px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+.clinic-title {
+ 
+  color: red;
+  text-decoration: underline;
+  font-size: large;
+  font-weight: 600;
+  padding: 0px 15px;
+}
+
+.clinecs-addclinecs-button {
+  background-color: red;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 10px 21px;
+  font-weight: 600;
+  box-shadow: 0px 2px 3px rgb(185, 185, 185);
+  margin-left: 150px;
+}
+
+.clinecs-table-div {
+  background: #d7d3d35e;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  
+}
+
+.clinec-search-container {
+  width: 500px;
+  background: #d7d3d35e;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px 2px 2px gray;
+  margin-left: 320px;
+}
+
+.clinec-search-container p {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+@media screen and (max-width:1440px){
+  .clinec-search-container{
+    margin-left: 363px;
+  }
+}
+
+@media screen and (max-width:1366px){
+  .clinec-search-container{
+    margin-left: 320px;
+  }
+.clinecs-addclinecs-button{
+  margin-left: 60px !important; 
+}
+}
+
+@media screen and (max-width:1024px){
+  .clinec-search-container{
+margin-left:60px;
+  }
+  .clinecs-addclinecs-button{
+    margin-left:70px
+  }
+}

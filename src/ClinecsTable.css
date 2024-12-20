@@ -1,0 +1,20 @@
+.clinicstable-header-div{
+    width: 1px;
+    /* color: white; */
+    background-color: rgb(163, 163, 163);
+    height: 86%;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    z-index: 0;
+  }
+
+  .clinicstable-trash-icon{
+    color: red;
+    width: 17px;
+    height: 17px;
+  }
+  .clinicstable-Edit-icon{
+    width: 17px;
+    height: 17px;
+  }

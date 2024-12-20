@@ -1,0 +1,58 @@
+.inventory-main-div{
+    background: #d7d3d35e;
+    border-radius: 5px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    padding: 10px;
+}
+
+.inventory-label{
+    margin-left: 10px;
+    color: red;
+    font-weight: 500;
+
+}
+
+.inventory-input{
+    border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+    width: 50%;
+}
+
+.inventory-submit-button{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.inventory-title{
+
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: #d7d3d35e;
+}
+
+.inventory-title:hover{
+    cursor: pointer;
+}
+
+.inventory-expense-table-excel-button{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.inventory-expense-detail-table-main-div{
+        padding: 20px;
+}

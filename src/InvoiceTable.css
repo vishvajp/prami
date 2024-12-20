@@ -1,0 +1,24 @@
+.invoicetable-header-div{
+    width: 0.8px;
+    /* color: white; */
+    background-color: rgb(163, 163, 163);
+    height: 52px;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    z-index: 5;
+    height: 83%;
+  }
+
+  .invoice-table-body-row-container{
+    
+    border-width: 0px;
+    border-bottom-width: 4px;
+    border-color: #d1d1d1;
+  }
+
+  .invoice-table-header-row-container{
+    border-width: 0px;
+    border-bottom-width: 4px;
+    border-color: #d1d1d1;
+  }

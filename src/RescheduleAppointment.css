@@ -1,0 +1,10 @@
+.reschedule-appointment-para{
+    height: 30px;
+    border-radius: 5px;
+    width: 100%;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 2px rgb(79, 79, 79);
+    margin-right: 5px;
+    padding: 5px;
+}

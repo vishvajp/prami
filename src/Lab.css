@@ -1,0 +1,89 @@
+.lab-title {
+
+  color: red;
+  text-decoration: underline;
+  font-size: large;
+  font-weight: 600;
+  margin-left: 15px;
+}
+.lab-search-container {
+  width: 500px;
+  background: #d7d3d35e;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  margin-left: 320px;
+}
+
+.lab-search-container p {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.lab-header-div-input {
+  border: none;
+  height: 30px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+
+.lab-addclinecs-button {
+  background-color: red;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 10px 21px;
+  font-weight: 600;
+  box-shadow: 0px 2px 2px gray; 
+  margin-left: 100px;
+}
+
+
+
+.lab-table-div {
+  background: #d7d3d35e;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+@media screen and (max-width: 1440px) {
+  .lab-search-container {
+      margin-left: 363px;
+  }
+  .lab-addclinecs-button{
+    margin-left: 170px ;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .lab-search-container {
+      margin-left: 320px !important
+  }
+
+  .lab-addclinecs-button{
+   
+      margin-left: 150px !important
+  
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .lab-search-container {
+      margin-left: 80px !important;
+  }
+
+  .lab-addclinecs-button{
+   
+      margin-left: 50px !important;
+  
+  }
+}
+
+
+
+
+
+

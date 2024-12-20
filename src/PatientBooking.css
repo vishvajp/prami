@@ -1,0 +1,340 @@
+.patientbooking-img-pencil {
+  position: relative;
+}
+
+.patientbooking-tipencil {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(18, 18, 18);
+  border-radius: 50%;
+  bottom: -10px;
+  left: 165px;
+  color: white;
+  border: 2px solid white;
+}
+
+.patientbooking-1stdiv-cancelspan {
+  position: absolute;
+  right: 0px;
+  background-color: red;
+  /* color: red; */
+  width: 35px;
+  height: 30px;
+  border-radius: 20px 0px 0px 20px;
+  top: 20px;
+}
+
+.patientbooking-1stdiv-cancelspan:hover {
+  cursor: pointer;
+}
+
+.patientbooking-1st-div-cancel {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  color: red;
+  border-radius: 50%;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.patientbooking-searchpatient-text {
+  font-size: large;
+  color: yellow;
+  margin-top: 10px;
+}
+
+.patientbooking-dot-text {
+  margin-top: -5px;
+  color: white;
+}
+
+.patientbooking-datetime-appointment {
+  color: yellow;
+  margin-top: 3px;
+  font-size: medium;
+}
+
+.patientbooking-date-text {
+  font-size: large;
+  font-weight: 700;
+  color: white;
+}
+.patientbookin-time-text {
+  color: white;
+  font-size: large;
+}
+
+.patientbooking-dr-text {
+  color: white;
+  font-size: large;
+  font-weight: 600;
+}
+
+.patientbooking-1st-col {
+  background-color: red;
+  border-radius: 5px;
+  margin: 0px 10px;
+  padding: 82px 0px;
+}
+
+.patientbooking-bookingappointment-text {
+  margin-bottom: 0;
+  background-color: white;
+  font-size: large;
+  font-weight: 500;
+  padding: 0px 60px;
+  border-radius: 0px 15px 15px 0px;
+  margin-left: -46px;
+  color: red;
+}
+
+.patientbooking-book-span {
+  font-size: x-large !important;
+  font-weight: 600;
+}
+
+.patientbooking-createevent-text {
+  font-size: larger;
+  padding: 4px 30px;
+  background-color: rgb(202, 202, 202);
+  border-radius: 5px;
+  text-decoration: underline;
+  color: red;
+  margin-left: 20rem;
+  box-shadow: 0px 2px 2px gray;
+}
+.patientbooking-2col-patient-input {
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(147, 147, 147);
+  background-color: white;
+}
+
+.patientbooking-input-checkbox {
+  width: 14px;
+  height: 15px;
+  margin-left: 3px;
+}
+
+.patientbooking-input-label {
+  margin-left: 5px;
+  color: red;
+  font-weight: 500;
+}
+
+.paitenbooking-date-input {
+  width: 282px;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(147, 147, 147);
+}
+
+#time {
+  height: 30px;
+  border-radius: 5px;
+  width: 85px;
+  padding-left: 10px;
+  border: none;
+  box-shadow: 0px 2px rgb(79, 79, 79);
+  margin-right: 5px;
+}
+
+#doctor,
+#appointment{
+  height: 30px;
+  border-radius: 5px;
+  width: 100%;
+background-color: white;
+  border: none;
+  box-shadow: 0px 2px rgb(79, 79, 79);
+  margin-right: 5px;
+}
+
+.patientbooking-referal-input {
+  height: 30px;
+  border-radius: 5px;
+  width: 48.5%;
+
+  border: none;
+  box-shadow: 0px 2px rgb(79, 79, 79);
+  margin-right: 5px;
+}
+.patientbooking-checkbox-input {
+  background-color: rgb(215, 215, 215);
+  /* display: inline-block !important; */
+  padding: 3px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px gray;
+}
+
+.patientbooking-addpatient-button {
+  color: red;
+  background-color: yellow;
+  border: none;
+  border-radius: 5px;
+  font-size: small;
+  font-weight: 600;
+  padding: 5px 10px;
+  box-shadow: 0px 2px 2px gray;
+}
+.patientbooking-bookappointment-button {
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  font-size: small;
+  margin-left: 39rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  box-shadow: 0px 2px 2px gray;
+}
+
+.patientBooking-date-input {
+  width: 308px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding: 0px 10px 0px 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.patientBooking-time-slot {
+  color: red;
+  background-color: white;
+  font-size: medium;
+  padding: 3px 10px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.patientBooking-time-slot:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.selected-slot {
+  background-color: #4caf50; /* Green background for selected slot */
+  color: white; /* White text for selected slot */
+  font-weight: bold;
+}
+@media screen and (max-width: 1440px) {
+  .patientbooking-createevent-text {
+    margin-left: 17rem;
+  }
+
+  #doctor,
+  #appointment {
+    width: 100%;
+  }
+  .patientbooking-bookappointment-button {
+    margin-left: 36rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .patientbooking-createevent-text {
+    margin-left: 16rem;
+  }
+  .paitenbooking-date-input {
+    width: 270px;
+  }
+  .patientbooking-bookappointment-button {
+    margin-left: 32rem;
+  }
+  .patientBooking-date-input {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .patientbooking-bookingappointment-text {
+    width: 412px !important;
+  }
+
+  .patientbooking-createevent-text {
+    margin-left: 30px !important;
+  }
+
+  .paitenbooking-date-input {
+    width: 115px !important;
+  }
+
+  #time {
+    width: 69px;
+  }
+  #doctor {
+    width: 268px !important;
+  }
+  #appointment {
+    width: 268px !important;
+  }
+
+  .patientbooking-bookappointment-button {
+    margin-left: 17rem !important;
+  }
+  .patientbooking-tipencil {
+    left: 104px;
+  }
+}
+
+/* Event Css */
+
+.event-top-title {
+  margin-bottom: 0;
+  background-color: white;
+  font-size: large;
+  font-weight: 500;
+  padding: 0px 60px;
+  border-radius: 0px 15px 15px 0px;
+  margin-left: -46px;
+  color: red;
+  width: fit-content;
+}
+
+.event-label {
+  margin-left: 5px;
+  color: red;
+  font-weight: 500;
+}
+
+.event-input {
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(147, 147, 147);
+  margin-bottom: 10px;
+}
+
+.event-cancel-button {
+  border: none;
+  color: red;
+  background-color: white;
+  padding: 5px 10px;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-right: 5px;
+  box-shadow: 0px 1px 5px gray;
+}
+.event-submit-button {
+  border: none;
+  color: white;
+  background-color: red;
+  padding: 5px 10px;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-right: 5px;
+  box-shadow: 0px 1px 5px gray;
+}

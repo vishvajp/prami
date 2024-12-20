@@ -1,0 +1,10 @@
+.patientTreatmentTable-header-div{
+    width: 1px;
+    /* color: white; */
+    background-color: rgb(163, 163, 163);
+    height: 92%;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    z-index: 0;
+  }

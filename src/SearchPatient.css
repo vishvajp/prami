@@ -1,0 +1,99 @@
+.ant-modal {
+  margin: 0px 80px !important;
+}
+
+.searchpatient-modal .ant-modal-content {
+  width: 500px !important;
+  height: auto;
+  padding: 10px !important;
+  background-color: rgb(192, 190, 190) !important;
+  left: 73%;
+}
+.ant-modal-close {
+  display: none;
+}
+
+.searchpatient-head {
+  background-color: red;
+  color: yellow;
+  font-size: larger;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.searchpatient-mobile-input {
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  height: 30px;
+  width: 332px;
+  margin-left: 10px;
+}
+
+.searchpatient-mobile-div {
+  border-radius: 5px;
+}
+.searchpatient-mobile-text {
+  margin-bottom: 0;
+  background-color: white;
+  border-radius: 5px 0px 0px 5px;
+  padding: 0px 10px 0px 10px;
+}
+
+.searchpatient-mobile-91 {
+  background-color: gray;
+  height: 21px;
+  /* margin-top: 2px; */
+  padding: 0px 10px;
+  border-radius: 6px;
+}
+
+.searchpatient-cancel {
+  color: red;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 15px;
+  box-shadow: 0px 2px 2px #8a8989;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.searchpatient-next {
+  color: white;
+  border: 2px solid red;
+  border-radius: 5px;
+  background-color: red;
+  padding: 5px 15px;
+  box-shadow: 0px 2px 2px #545454;
+  font-weight: 600;
+}
+
+.searchpatient-mobile-landline {
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px rgb(91, 90, 90);
+}
+
+.searchpatient-label {
+  color: red;
+  font-size: small;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.searchpatient-dont {
+  text-decoration: underline;
+  color: blue;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.searchpatient-center-div {
+  padding: 0px 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .searchpatient-modal .ant-modal-content {
+    left: 30%;
+  }
+}

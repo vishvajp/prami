@@ -1,0 +1,84 @@
+.pharmacy-search-icon-span {
+  color: gray;
+  background-color: white;
+
+  margin-left: -20px;
+}
+.pharmacy-1stdiv-text {
+  color: red;
+  font-size: large;
+  text-decoration: underline;
+ margin-left: 15px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.pharmacy-1st-search-input-div {
+  border: none;
+  border-radius: 7px;
+  height: 30px;
+  width: 100%;
+  box-shadow: 0px 2px 2px gainsboro;
+}
+
+.pharmacy-search-icon {
+  height: 30px;
+}
+
+.pharmacy-add-pharmacy-button {
+  background-color: red;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 10px 21px;
+}
+
+.pharmacy-3rd-col-yes {
+  padding: 5px 30px 5px 10px;
+  border-radius: 15px;
+  color: white;
+}
+.pharmacy-3rd-col-yes , .pharmacy-3rd-col-no:hover{
+  cursor: pointer;
+}
+.pharmacy-3rd-col-no {
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  margin-left: -25px;
+}
+
+.pharmacy-1st-div-span {
+  color: blue;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.pharmacy-1st-div {
+  background: #d7d3d35e;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.Pharmacy-search-div {
+  width: 470px;
+}
+.pharmacy-table-div{
+  margin: 10px;
+  padding:10px;
+  background: #d7d3d35e;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+
+}
+
+@media screen and (width:1440px) {
+  .Pharmacy-search-div {
+    width: 555px;
+  }
+}
+
+@media screen and (width:1024px) {
+  .Pharmacy-search-div {
+    width: 146px;
+  }
+}

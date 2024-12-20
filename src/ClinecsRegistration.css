@@ -1,0 +1,99 @@
+.clinecs-1stdiv-text {
+  color: red;
+  font-size: large;
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.clinic-main-div {
+  background-color: rgba(225, 225, 225, 0.5);
+  margin: 10px 30px 10px 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px gainsboro;
+}
+.clinecs-first-col {
+  padding: 20px;
+}
+.clinecs-first-col label {
+  margin-left: 15px;
+  margin-bottom: 3px;
+  color: red;
+  font-weight: 500;
+}
+.clinic-registration-date-input{
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding: 0px 10px 0px 10px ;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#location{
+  border: none;
+  height: 30px;
+  border-radius: 7px;
+  box-shadow: 0px 2px 2px gray;
+  padding: 0px 0px 0px 10px;
+}
+
+.clinecs-first-col input {
+  border: none;
+  height: 30px;
+  border-radius: 7px;
+  box-shadow: 0px 2px 2px gray;
+  padding: 0px 0px 0px 10px;
+}
+
+.clinecs-second-col {
+  padding: 20px;
+}
+
+.clinecs-second-col label {
+  margin-left: 15px;
+  margin-bottom: 3px;
+  color: red;
+  font-weight: 500;
+}
+
+.clinecs-second-col input {
+  border: none;
+  height: 30px;
+  border-radius: 7px;
+  box-shadow: 0px 2px 2px gray;
+  padding: 0px 0px 0px 10px;
+}
+
+.clinecs-submit-button {
+  border: none;
+  color: white;
+  background-color: gray;
+  padding: 6px 25px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 2px gray;
+}
+
+.clinecs-cancel-button {
+  border: none;
+  color: white;
+  background-color: red;
+  padding: 6px 25px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 2px gray;
+}
+
+.clinic-registration-submit-button{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px gray;
+  margin-bottom: 10px;
+}

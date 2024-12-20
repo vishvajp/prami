@@ -1,0 +1,81 @@
+.doctorfee-datepicker{
+    border: none;
+    height: 30px;
+    background-color: white;
+    width: 100%;
+    padding: 0px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px #797878;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+}
+
+.doctorfee-cash-recived-text{
+    color: red;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.doctorfee-totalcash-text-div{
+    background-color: red;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: larger;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.doctorfee-previous-text{
+    background-color: gainsboro;
+    height: fit-content;
+    border: 2px solid white;
+    padding: 0px 10px;
+    border-radius: 5px;
+    margin-right: -2px;
+}
+
+.doctorfee-previous-text:hover{
+    cursor: pointer;
+}
+.doctorfee-1-text{
+    background-color: red;
+    height: fit-content;
+    padding: 4px 8px;
+    /* display: block; */
+    color: white;
+    border: 3px solid white;
+    border-radius: 5px;
+}
+.doctorfee-next-text{
+    background-color: gainsboro;
+    height: fit-content;
+    border: 3px solid white;
+    padding: 0px 10px;
+    border-radius: 5px;
+    margin-left: -2px;
+}
+
+.doctorfee-next-text:hover{
+    cursor: pointer;
+}
+
+.docfee-total-amount-div{
+    background-color: gray;
+    width: fit-content;
+    color: white;
+    font-size: large;
+    font-weight: 500;
+    padding: 3px 15px;
+    border-radius: 5px;
+    margin-bottom: 0px;
+}
+
+.docfee-table-main-div{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: gainsboro;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px gray;
+}

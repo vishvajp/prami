@@ -1,0 +1,29 @@
+.image-marker__image {
+    width: 50%;
+    height: 50%;
+}
+
+.custom-marker-container {
+  
+    display: flex;
+    align-items: center;
+    margin-left: -76px;
+
+}
+
+.horizontal-line {
+    height: 2px;
+    background-color: black;
+    margin-right: 10px;
+    width: 50px;
+}
+
+.custom-marker {
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    z-index: 1;
+    white-space: nowrap;
+}

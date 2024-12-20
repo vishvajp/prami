@@ -1,0 +1,24 @@
+.patientfurthercare-adddoc-button {
+  font-size: small;
+  background-color: red;
+  border: none;
+  color: white;
+  border-radius: 7px;
+  padding: 10px 20px;
+
+  display: inline;
+
+  position: absolute;
+  right: 73px;
+}
+.patientfurthercare-2nd-div {
+  position: relative;
+}
+
+.patientfurthercare-2nd-div span {
+  color: white;
+  background-color: gray;
+  padding: 5px 10px;
+  font-size: small;
+  border-radius: 7px;
+}

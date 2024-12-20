@@ -1,0 +1,182 @@
+.patienttreatment-radio {
+  width: 15px;
+  height: 15px;
+  border: 2px solid white;
+  margin-right: 5px;
+}
+
+.patienttreatment-1stcol-smallinput {
+  width: 173px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+#patienttreatment {
+  
+  width: 150px;
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+#patientdesignation {
+ 
+  width: 100%;
+  border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.patienttreatment-1stcol-toosmallinput {
+  width: 173px;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+  gap: 5px;
+}
+
+.patienttreatment-day-week-month {
+  background-color: white;
+  height: 30px;
+  margin-top: 21px;
+  border-radius: 8px;
+  padding: 0px 3px 4px;
+  gap: 10px;
+}
+.patienttreatment-day-week-month span {
+  background-color: rgb(185, 185, 185);
+  padding: 1px 25px;
+  border-radius: 5px;
+}
+
+.patienttreatment-plusminus-div {
+  background-color: white;
+  padding: 4px 20px;
+  border-radius: 7px;
+}
+
+.patienttreatment-plus-minus {
+  color: red;
+  background-color: gainsboro;
+  width: 22px;
+  height: 22px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.patienttreatment-meal {
+  background-color: white;
+  /* height: 30px; */
+
+  border-radius: 8px;
+  padding: 3px 3px 4px;
+  gap: 10px;
+  width: 246px;
+  box-shadow: 0px 1px 5px rgb(147, 147, 147);
+}
+
+.patienttreatment-meal span {
+  background-color: rgb(185, 185, 185);
+  padding: 1px 25px;
+  border-radius: 5px;
+  font-size: small;
+}
+
+.patienttreatment-next-button {
+  border: none;
+  color: white;
+  background-color: green;
+  border-radius: 7px;
+  padding: 2px 15px;
+  margin-left: 33rem;
+}
+
+.patienttest-addtest-button {
+  color: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  background-color: rgb(180, 180, 180);
+  padding: 2px 10px;
+  margin-left: 33rem;
+}
+.patientTreatment-2nd-col {
+  background-color: rgb(207, 207, 207);
+  border-radius: 22px;
+
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+ 
+}
+.patientTreatment-next-prev-btn{
+  border: none;
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.patientTreatment-dosage-span{
+  color: red;
+  font-weight: 600;
+
+
+}
+
+.patient-treatment-days-label{
+  color: red;
+  font-weight: 600;
+  margin-left: 5px;
+ 
+
+}
+
+@media screen and (width: 1024px) {
+  .patienttreatment-plusminus-div {
+    padding: 4px 0px !important;
+  }
+
+  .patienttreatment-1stcol-smallinput {
+    width: 200px !important;
+  }
+  .patienttreatment-1stcol-toosmallinput {
+    width: 100px !important;
+  }
+  #patienttreatment {
+    width: 200px;
+  }
+
+  .patienttest-addtest-button {
+    /* margin-top: 100px !important; */
+    margin-left: 0px !important;
+  }
+
+  .patienttreatment-buttons {
+    margin-top: 105px !important;
+  }
+}
+
+@media screen and (width: 1440px) {
+  .patienttest-addtest-button {
+    margin-left: 22rem;
+  }
+
+}
+
+@media screen and (width: 1366px) {
+  .patienttest-addtest-button {
+    margin-left: 22rem;
+  }
+
+}

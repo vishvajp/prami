@@ -1,0 +1,156 @@
+.medic-his-parent-div {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.parameter-1st-container {
+  background-color: red;
+  border-radius: 5px;
+  padding: 16px 10px;
+}
+
+.medic-parameter-text {
+  font-size: larger;
+  color: red;
+  font-size: large;
+  font-weight: 600;
+}
+
+.parameter-1stdiv-cancelspan {
+  position: absolute;
+  right: -35px;
+  background-color: red;
+  width: 35px;
+  height: 30px;
+  border-radius: 0px 20px 20px 0px;
+}
+.parameter-1stdiv-cancelspan {
+  cursor: pointer;
+}
+
+.parameter-1st-div-cancel {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  color: #fa0707;
+  border-radius: 50%;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.medic-1col-container {
+  background-color: rgb(147, 147, 147, 0.5);
+  padding: 5px;
+  border-radius: 10px;
+  width: auto;
+}
+
+.medic-parameter-2nd-col-input {
+  width: 203px;
+  border-radius: 5px;
+  border: none;
+  height: 28px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(147, 147, 147);
+}
+
+.medic-parameter-double-input {
+  width: 94px;
+  border-radius: 5px;
+  border: none;
+  height: 28px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(147, 147, 147);
+}
+
+.parameter-2nd-row {
+  padding: 2px 50px;
+}
+
+.medic-2col-container {
+  background-color: rgb(147, 147, 147, 0.5);
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: auto;
+}
+
+.medic-parameter-2nd-row-input {
+  width: 290px;
+  border-radius: 5px;
+  border: none;
+  height: 28px;
+  padding-left: 10px;
+  box-shadow: 0px 2px rgb(79, 79, 79);
+}
+
+.parameter-cancel-button {
+  border: 2px solid red;
+  padding: 2px 25px;
+  font-size: large;
+  color: red;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px black;
+}
+
+.parameter-save-button {
+  border: 2px solid red;
+  padding: 2px 25px;
+  font-size: large;
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px black;
+}
+
+#blood {
+  height: 28px;
+  border-radius: 5px;
+  width: 256px;
+  padding-left: 10px;
+  border: none;
+  box-shadow: 0px 2px rgb(79, 79, 79);
+}
+
+
+@media screen and (width: 1440px) {
+  .parameter-2nd-col-input {
+    width: 230px;
+  }
+  .parameter-double-input {
+    width: 111px;
+  }
+  #blood {
+    width: 230px;
+  }
+  .parameter-2nd-row-input {
+    width: 344px;
+  }
+}
+@media screen and (width: 1366px){
+  .medic-parameter-2nd-col-input {
+    width: 192px;
+    
+}
+.medic-parameter-2nd-row-input {
+  width: 276px;
+ 
+}
+}
+
+@media screen and (width: 1024px) {
+  .parameter-2nd-col-input {
+    width: 100px !important;
+  }
+
+  #blood {
+    width: 100px !important;
+  }
+  .parameter-double-input {
+    width: 95px !important;
+  }
+  .parameter-2nd-row-input {
+    width: 204px !important;
+  }
+
+
+}
