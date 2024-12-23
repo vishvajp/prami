@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Pharmacy.css";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { PharmacyTable } from "./PharmacyTable";
 import PharmacyRegistration from "./PharmacyRegistration";
+import { useNavigate } from "react-router-dom";
 
 const Pharmacy = () => {
 const [addPharmacy,setAddPharmacy]=useState()
-
+const navigate = useNavigate()
   const handleAdd = () => {
     setAddPharmacy(true)
   };
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState("no");
 
-  const handleclick = () => {
-    setChecked(!checked);
-
-    console.log(checked);
-  };
+  useEffect(()=>{
+    if(checked==="yes")
+    {
+      navigate("/home/pharmacy/inventory")
+    }
+  },[checked])
   return (
     <div>
       {!addPharmacy && <div>
@@ -44,16 +46,16 @@ const [addPharmacy,setAddPharmacy]=useState()
             <span className="pharmacy-1st-div-span">( What is this?)</span>
 
             <p
-              onClick={handleclick}
+              onClick={()=>setChecked("yes")}
               className="pharmacy-3rd-col-yes mb-0"
-              style={{ backgroundColor: checked ? "green" : "gray" }}
+              style={{ backgroundColor: checked==="yes" ? "green" : "gray" }}
             >
               YES
             </p>
             <p
-              onClick={handleclick}
+              onClick={()=>setChecked("no")}
               className="pharmacy-3rd-col-no mb-0"
-              style={{ backgroundColor: checked ? "gray" : "green" }}
+              style={{ backgroundColor: checked==="no" ? "green" : "gray" }}
             >
               NO
             </p>

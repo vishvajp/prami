@@ -60,7 +60,7 @@ const AboutDoctor = () => {
              {singleDoc.doc_name}
             </p>
             <span className="text-warning profile-doc-designation">
-             {userdata.role}
+             {singleDoc.doc_role}
             </span>
           </div>
           <div className="profile-vertical-line"></div>

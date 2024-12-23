@@ -8,11 +8,17 @@ import axios from "axios";
 import UserDataContext from "./Context/UserDataContext";
 
 export function ClinecsTable({clinicSearch}) {
-  const navToClinicEdit = useNavigate();
+  const navigate = useNavigate();
   const handleEdit = (game) => {
-    navToClinicEdit("/home/clinics/edit", { state: { game } });
+    navigate("/home/clinics/edit", { state: { game } });
     console.log(game);
   };
+
+  const handleMoreDetail = (game) => {
+    navigate("/home/clinics/moredetail", { state: { game } });
+    console.log(game);
+  };
+
 
   const [tableContent, setTableContent] = useState(null);
   const { apiBaseUrl } = useContext(UserDataContext);
@@ -77,7 +83,7 @@ export function ClinecsTable({clinicSearch}) {
           </button> */}
           <FaTrash className="clinicstable-trash-icon" />{" "}
           <BiEdit
-            onClick={() => handleEdit(element)}
+            onClick={() => handleMoreDetail(element)}
             className="clinicstable-Edit-icon"
           />
         </div>

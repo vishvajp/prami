@@ -2,12 +2,14 @@ import React, { useState,useEffect, useContext } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import UserDataContext from "./Context/UserDataContext";
+import { useNavigate } from "react-router-dom";
 
 
 const PhysiotherapyTable = ({searchPhysio}) => {
 
   const [tableContent,setTableContent]=useState(null)
   const {apiBaseUrl}=useContext(UserDataContext)
+  const navigate = useNavigate()
   // const tableHeader = [
   //   {
   //     name: "Name",
@@ -102,6 +104,27 @@ const PhysiotherapyTable = ({searchPhysio}) => {
       : true;
       return searchData || searchCLinic;
   });
+
+  const RefreshIcons = ({ user }) => {
+    return (
+      <div className="refresh-icons-container justify-content-center">
+        <div>
+          <button
+            onClick={() => handlenavigate(user)}
+            className="registerpatient-table-update-button"
+          >
+            More Details
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  const handlenavigate = (doc) => {
+ 
+    navigate("/home/physiotheray/moredetails", { state: { doc } });
+  };
+
   return (
     <Table responsive>
       <thead className="patienttable-head-container">
@@ -125,12 +148,15 @@ const PhysiotherapyTable = ({searchPhysio}) => {
                 <th className="table-header-col" key={index}>
                   {key.replace(/_/g, " ").toUpperCase()}{" "}
                   {/* Capitalize key and replace underscores with spaces */}
-                  {index < Object.keys(filteredItem[0]).length-8 && (
+                  {index < Object.keys(filteredItem[0]).length && (
                     <div className="table-header-div"></div>
                   )}
                 </th>
               ) : null
             )}
+            <th className="table-header-col" key="refresh">
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -154,7 +180,7 @@ const PhysiotherapyTable = ({searchPhysio}) => {
           }
           return (
             <td className="patienttable-body-row" key={cellIndex}>
-              {cellIndex < Object.keys(element).length - 8 ? (
+              {cellIndex < Object.keys(element).length ? (
                 <>
                   {element[rowData]}
                   <div className="clinicstable-header-div"></div>
@@ -165,6 +191,9 @@ const PhysiotherapyTable = ({searchPhysio}) => {
             </td>
           );
         })}
+         <td className="patienttable-body-row" key="refresh-icon">
+                <RefreshIcons user={element} />
+              </td>
       </tr>
     );
   })}

@@ -63,6 +63,10 @@ import ClinecEditPage from "./ClinecEditPage";
 import Employee from "./Employee";
 import EmployeeRegistration from "./EmployeeRegistration";
 import EmployeeEdit from "./EmployeeEdit";
+import ClinecMoreDetails from "./ClinecMoreDetails";
+import PhysioMoreDet from "./PhysioMoreDet";
+import PhysioEdit from "./PhysioEdit";
+import PharmInventory from "./PharmInventory";
 
 function App() {
   const [docDetailData, setDocDetailData] = useState();
@@ -84,7 +88,8 @@ function App() {
 
   const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami";
 
-  const apiBaseUrl = "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/"
+  const apiBaseUrl =
+    "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";
 
   console.log(adminFieldChoose);
   return (
@@ -163,8 +168,22 @@ function App() {
           ></Route>
           <Route
             path="/home/clinics/edit"
-            element={<AppLayout><ClinecEditPage></ClinecEditPage></AppLayout>}
+            element={
+              <AppLayout>
+                <ClinecEditPage></ClinecEditPage>
+              </AppLayout>
+            }
           ></Route>
+
+          <Route
+            path="/home/clinics/moredetail"
+            element={
+              <AppLayout>
+                <ClinecMoreDetails></ClinecMoreDetails>
+              </AppLayout>
+            }
+          ></Route>
+
           <Route
             path="/home/doctor"
             element={
@@ -243,11 +262,11 @@ function App() {
               </AppLayout>
             }
           ></Route>
-           <Route
+          <Route
             path="/home/patientadmission/moredet"
             element={
               <AppLayout>
-               <AdmissionMoreDet></AdmissionMoreDet>
+                <AdmissionMoreDet></AdmissionMoreDet>
               </AppLayout>
             }
           ></Route>
@@ -255,17 +274,25 @@ function App() {
             path="/home/patientadmission/edit"
             element={
               <AppLayout>
-               <AdmissionEdit></AdmissionEdit>
+                <AdmissionEdit></AdmissionEdit>
               </AppLayout>
             }
           ></Route>
           <Route
             path="/home/register/moredetail"
-            element={ <AppLayout><RegistrationMoreDet></RegistrationMoreDet></AppLayout>}
+            element={
+              <AppLayout>
+                <RegistrationMoreDet></RegistrationMoreDet>
+              </AppLayout>
+            }
           ></Route>
-           <Route
+          <Route
             path="/home/register/edit"
-            element={ <AppLayout><RegistrationPatientEdit></RegistrationPatientEdit></AppLayout>}
+            element={
+              <AppLayout>
+                <RegistrationPatientEdit></RegistrationPatientEdit>
+              </AppLayout>
+            }
           ></Route>
           <Route
             path="home/patient/pastrecords"
@@ -368,6 +395,14 @@ function App() {
             }
           ></Route>
           <Route
+            path="/home/pharmacy/inventory"
+            element={
+              <AppLayout>
+                <PharmInventory />
+              </AppLayout>
+            }
+          ></Route>
+          <Route
             path="/home/branch"
             element={
               <AppLayout>
@@ -382,7 +417,26 @@ function App() {
                 <AddPhysiotherapy />
               </AppLayout>
             }
+            
           ></Route>
+          <Route
+            path="/home/physiotheray/moredetails"
+            element={
+              <AppLayout>
+               <PhysioMoreDet></PhysioMoreDet>
+              </AppLayout>
+            }
+            
+          ></Route>
+          <Route
+            path="/home/physiotheray/edit"
+            element={
+              <AppLayout>
+            <PhysioEdit></PhysioEdit>
+              </AppLayout>
+            }           
+          ></Route>
+
           <Route
             path="/home/menumodal"
             element={
@@ -454,23 +508,23 @@ function App() {
             path="home/employee"
             element={
               <AppLayout>
-            <Employee></Employee>
+                <Employee></Employee>
               </AppLayout>
             }
           ></Route>
-           <Route
+          <Route
             path="home/employee/registration"
             element={
               <AppLayout>
-            <EmployeeRegistration></EmployeeRegistration>
+                <EmployeeRegistration></EmployeeRegistration>
               </AppLayout>
             }
           ></Route>
-            <Route
+          <Route
             path="home/employee/edit"
             element={
               <AppLayout>
-            <EmployeeEdit></EmployeeEdit>
+                <EmployeeEdit></EmployeeEdit>
               </AppLayout>
             }
           ></Route>
