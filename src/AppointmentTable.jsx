@@ -37,7 +37,7 @@ export function AppointmentTable({
   };
 
   const [specificPatient, setSpecificPatient] = useState();
-  const { apiBaseUrl } = useContext(UserDataContext);
+  const { apiBaseUrl, refreshAppointments } = useContext(UserDataContext);
   useEffect(() => {
     const getAppointmentDetail = async () => {
       try {
@@ -52,7 +52,7 @@ export function AppointmentTable({
     };
 
     getAppointmentDetail();
-  }, [isModalOpenReschdule, startCheck]);
+  }, [isModalOpenReschdule, startCheck,refreshAppointments]);
 
   // Call the API when the page is loaded initially, and when isModalOpenReschdule changes to false
   useEffect(() => {
@@ -60,7 +60,7 @@ export function AppointmentTable({
       const getAppointmentDetail = async () => {
         try {
           const response = await axios.post(
-            "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/get_appointment_list"
+           `${apiBaseUrl}get_appointment_list`
           );
           if (response.data) {
             setTableContent(response.data.data); // Set your state with the fetched data
@@ -73,7 +73,7 @@ export function AppointmentTable({
 
       getAppointmentDetail(); // Calls the async function to fetch the data
     }
-  }, [isModalOpenReschdule]);
+  }, [isModalOpenReschdule,refreshAppointments]);
 
   const filteredItem = tableContent?.filter((item) => {
     // console.log(tableContent);

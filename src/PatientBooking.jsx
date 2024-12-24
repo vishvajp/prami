@@ -36,7 +36,7 @@ const PatientBooking = ({
   const [clinicName, setClinicName] = useState("");
   const [clinic, setClinic] = useState("");
   const [clinicData, setClinicData] = useState(null);
-  const { apiBaseUrl } = useContext(UserDataContext);
+  const { apiBaseUrl,setRefreshAppointments } = useContext(UserDataContext);
   const user = "physiotherapy";
 
   // const date = new Date(selectedSlot);
@@ -218,6 +218,7 @@ const PatientBooking = ({
     );
     if (response.data) {
       window.alert("Appointment booked successfully:", response.data);
+      setRefreshAppointments((prev) => !prev);
       setPatientName("");
       setPatientMobile("");
       setClinic("");

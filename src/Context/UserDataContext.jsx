@@ -8,6 +8,8 @@ export const DataProvider = ({children})=>{
     const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
     const [selectedButton, setSelectedButton] = useState(0);
   const [selectedBtnName, setSelectedBtnName] = useState("CLINIC");
+  const [refreshAppointments, setRefreshAppointments] = useState(false);
+
     const apiBaseUrl = "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/"
    
 
@@ -18,11 +20,11 @@ export const DataProvider = ({children})=>{
 
     return(
         <UserDataContext.Provider
-        value={{baseUrl,selectedButton,setSelectedButton,selectedBtnName,setSelectedBtnName,apiBaseUrl}}
+        value={{baseUrl,selectedButton,setSelectedButton,selectedBtnName,setSelectedBtnName,apiBaseUrl,refreshAppointments, setRefreshAppointments}}
         >
             {children}
         </UserDataContext.Provider>
     )
-}
+}   
 
 export default UserDataContext;

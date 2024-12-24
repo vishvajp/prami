@@ -3,67 +3,69 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import Table from "react-bootstrap/Table";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-const PharmInventory = () => {
+import { useNavigate } from 'react-router-dom';
+const PharmaInvoice = () => {
 
 const [searchTerm,setSearchTerm]=useState("")
+const navigate = useNavigate()
 
     const handleAdd = ()=>{
-        console.log("Add button clicked");
+        navigate("/home/pharmacy/invoiceregistration")
     }
 
-const handlenavigate = ()=>{
-    console.log("Navigate button clicked");
+const handlenavigate = (user)=>{
+   navigate("/home/invoice/moredetail",{state:user})
 }
     const tableContent = [
         {
-          agency_Name: "Chennai Pharmacy",
-          agency_Ct_No: "4563217",
-          gst_No: "78945614785469",
-          invoice_No: "8596741595",
-          invoice_Date: "22-10-2024",
+          agency_name: "Chennai Pharmacy",
+          agency_contactNo: "4563217",
+          gst_no: "78945614785469",
+          invoice_no: "8596741595",
+          invoice_date: "10/22/2025",
           product_Name: "Paracetomol",
-          Invoice_Amount:"1000",
-          exp_Date:"22-10-2026"
+          exp_date:"10/22/2025",
+          invoice_amt:"1000",
         },
         {
-            agency_Name: "Anto Agency",
-            agency_Ct_No: "4563217",
-            gst_No: "78945614785469",
-            invoice_No: "8596741595",
-            invoice_Date: "22-10-2024",
-            product_Name: "Paracetomol",
-            Invoice_Amount:"1000",
-            exp_Date:"22-10-2026"
+          agency_name: "Anto Agency",
+          agency_contactNo: "4563217",
+          gst_no: "78945614785469",
+          invoice_no: "8596741595",
+          invoice_date: "10/22/2025",
+          product_Name: "Paracetomol",
+          exp_date:"10/22/2025",
+          invoice_amt:"1000",
           },
           {
-            agency_Name: "kalar Pharmacy",
-            agency_Ct_No: "4563217",
-            gst_No: "78945614785469",
-            invoice_No: "8596741595",
-            invoice_Date: "22-10-2024",
-            product_Name: "Paracetomol",
-            Invoice_Amount:"1000",
-            exp_Date:"22-10-2026"
+            agency_name: "kalar Pharmacy",
+            agency_contactNo: "4563217",
+          gst_no: "78945614785469",
+          invoice_no: "8596741595",
+          invoice_date: "10/22/2025",
+          product_Name: "Paracetomol",
+          exp_date:"10/22/2025",
+          invoice_amt:"1000",
           },
           {
-            agency_Name: "Sun rise agency",
-            agency_Ct_No: "4563217",
-            gst_No: "78945614785469",
-            invoice_No: "8596741595",
-            invoice_Date: "22-10-2024",
-            product_Name: "Paracetomol",
-            Invoice_Amount:"1000",
-            exp_Date:"22-10-2026"
+            agency_name: "Sun rise agency",
+            agency_contactNo: "4563217",
+          gst_no: "78945614785469",
+          invoice_no: "8596741595",
+          invoice_date: "10/22/2025",
+          product_Name: "Paracetomol",
+          exp_date:"10/22/2025",
+          invoice_amt:"1000",
           },
           {
-            agency_Name: "Malar Agency",
-            agency_Ct_No: "4563217",
-            gst_No: "78945614785469",
-            invoice_No: "8596741595",
-            invoice_Date: "22-10-2024",
-            product_Name: "Paracetomol",
-            Invoice_Amount:"1000",
-            exp_Date:"22-10-2026"
+            agency_name: "Malar Agency",
+            agency_contactNo: "4563217",
+          gst_no: "78945614785469",
+          invoice_no: "8596741595",
+          invoice_date: "10/22/2025",
+          product_Name: "Paracetomol",
+          exp_date:"10/22/2025",
+          invoice_amt:"1000",
           },
     
       ];
@@ -101,7 +103,7 @@ const handlenavigate = ()=>{
   return (
      <div>
   <div>
-      <p className="pharmacy-1stdiv-text">Pharmacy Inventory</p>
+      <p className="pharmacy-1stdiv-text">Pharmacy Invoice</p>
       <div className="pharmacy-1st-div d-flex gap-5">
         <div className=" d-flex align-items-center Pharmacy-search-div">
           <input
@@ -114,7 +116,7 @@ const handlenavigate = ()=>{
         </div>
         <div className=" d-flex justify-content-center">
           <button onClick={handleAdd} className="pharmacy-add-pharmacy-button">
-            ADD INVENTORY
+            ADD INVOICE
           </button>
         </div>
        
@@ -190,4 +192,4 @@ const handlenavigate = ()=>{
   )
 }
 
-export default PharmInventory
+export default PharmaInvoice

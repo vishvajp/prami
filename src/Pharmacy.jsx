@@ -18,7 +18,7 @@ const navigate = useNavigate()
   useEffect(()=>{
     if(checked==="yes")
     {
-      navigate("/home/pharmacy/inventory")
+      navigate("/home/pharmacy/invoice")
     }
   },[checked])
   return (

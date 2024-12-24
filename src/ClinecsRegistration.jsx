@@ -5,8 +5,9 @@ import "./ClinecsRegistration.css";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
-import UserDataContext from "./Context/UserDataContext";
 import { format } from 'date-fns'
+import UserDataContext from "./Context/UserDataContext";
+
 
 const ClinecsRegistration = ({ setAddClinic }) => {
   const [formData, setFormData] = useState({

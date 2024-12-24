@@ -66,7 +66,10 @@ import EmployeeEdit from "./EmployeeEdit";
 import ClinecMoreDetails from "./ClinecMoreDetails";
 import PhysioMoreDet from "./PhysioMoreDet";
 import PhysioEdit from "./PhysioEdit";
-import PharmInventory from "./PharmInventory";
+import PharmaInvoice from "./PharmaInvoice"
+import InvoiceReg from "./InvoiceReg"
+import InvoiceMoreDet from "./InvoiceMoreDet";
+import InoviceEdit from "./InoviceEdit";
 
 function App() {
   const [docDetailData, setDocDetailData] = useState();
@@ -395,10 +398,34 @@ function App() {
             }
           ></Route>
           <Route
-            path="/home/pharmacy/inventory"
+            path="/home/pharmacy/invoice"
             element={
               <AppLayout>
-                <PharmInventory />
+                <PharmaInvoice></PharmaInvoice>
+              </AppLayout>
+            }
+          ></Route>
+            <Route
+            path="/home/pharmacy/invoiceregistration"
+            element={
+              <AppLayout>
+              <InvoiceReg></InvoiceReg>
+              </AppLayout>
+            }
+          ></Route>
+              <Route
+            path="/home/invoice/moredetail"
+            element={
+              <AppLayout>
+            <InvoiceMoreDet></InvoiceMoreDet>
+              </AppLayout>
+            }
+          ></Route>
+          <Route
+            path="/home/invoice/edit"
+            element={
+              <AppLayout>
+           <InoviceEdit></InoviceEdit>
               </AppLayout>
             }
           ></Route>
