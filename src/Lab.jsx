@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./Lab.css";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LabTable } from "./LabTable";
 import { Link } from "react-router-dom";
 import LabRegistration from "./LabRegistration";
+import UserDataContext from "./Context/UserDataContext";
 
 const Lab = () => {
-  const [addLab,setAddLab]=useState()
+  const {addLab, setAddLab}=useContext(UserDataContext)
+  const [searchInput,setSearchInput]=useState("")
   const handleAdd = () => {
     // showPhysiotherapistAdd("LAB", "");
     setAddLab(true)
   };
+
+ 
   return (
     <div className="bg">
     {!addLab &&  <div>
@@ -36,7 +40,7 @@ const Lab = () => {
           </div>
         </div>
         <div className="lab-table-div">
-          <LabTable />
+          <LabTable searchInput={searchInput} />
         </div>
         </div>
       </div>}  

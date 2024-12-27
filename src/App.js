@@ -66,10 +66,17 @@ import EmployeeEdit from "./EmployeeEdit";
 import ClinecMoreDetails from "./ClinecMoreDetails";
 import PhysioMoreDet from "./PhysioMoreDet";
 import PhysioEdit from "./PhysioEdit";
-import PharmaInvoice from "./PharmaInvoice"
-import InvoiceReg from "./InvoiceReg"
+import PharmaInvoice from "./PharmaInvoice";
+import InvoiceReg from "./InvoiceReg";
 import InvoiceMoreDet from "./InvoiceMoreDet";
 import InoviceEdit from "./InoviceEdit";
+import LabMoreDet from "./LabMoreDet";
+import LabEdit from "./LabEdit";
+import PharmacyMoreDet from "./PharmacyMoreDet";
+import PharmacyEdit from "./PharmacyEdit";
+import ProfileEdit from "./ProfileEdit";
+import AdminDocDet from "./AdminDocDet";
+import AdminDocEdit from "./AdminDocEdit";
 
 function App() {
   const [docDetailData, setDocDetailData] = useState();
@@ -145,6 +152,14 @@ function App() {
               </AppLayout>
             }
           />
+            <Route
+            path="/home/profile/edit"
+            element={
+              <AppLayout>
+                <ProfileEdit></ProfileEdit>
+              </AppLayout>
+            }
+          />
           <Route
             path="/home/admin/accesscontrol"
             element={
@@ -192,6 +207,22 @@ function App() {
             element={
               <AppLayout>
                 <Doctor />
+              </AppLayout>
+            }
+          ></Route>
+           <Route
+            path="/home/admin/docmoredetail"
+            element={
+              <AppLayout>
+              <AdminDocDet></AdminDocDet>
+              </AppLayout>
+            }
+          ></Route>
+          <Route
+            path="/home/admin/docedit"
+            element={
+              <AppLayout>
+             <AdminDocEdit></AdminDocEdit>
               </AppLayout>
             }
           ></Route>
@@ -338,6 +369,22 @@ function App() {
             }
           ></Route>
           <Route
+            path="home/patient/labmoredet"
+            element={
+              <AppLayout>
+                <LabMoreDet></LabMoreDet>
+              </AppLayout>
+            }
+          ></Route>
+          <Route
+            path="home/patient/labEdit"
+            element={
+              <AppLayout>
+                <LabEdit></LabEdit>
+              </AppLayout>
+            }
+          ></Route>
+          <Route
             path="home/patient/medicine"
             element={
               <AppLayout>
@@ -405,19 +452,38 @@ function App() {
               </AppLayout>
             }
           ></Route>
-            <Route
+          <Route
             path="/home/pharmacy/invoiceregistration"
             element={
               <AppLayout>
-              <InvoiceReg></InvoiceReg>
+                <InvoiceReg></InvoiceReg>
               </AppLayout>
             }
           ></Route>
-              <Route
+
+          <Route
+            path="/home/pharmacy/moredet"
+            element={
+              <AppLayout>
+                <PharmacyMoreDet></PharmacyMoreDet>
+              </AppLayout>
+            }
+          ></Route>
+
+          <Route
+            path="/home/pharmacy/edit"
+            element={
+              <AppLayout>
+                <PharmacyEdit></PharmacyEdit>
+              </AppLayout>
+            }
+          ></Route>
+
+          <Route
             path="/home/invoice/moredetail"
             element={
               <AppLayout>
-            <InvoiceMoreDet></InvoiceMoreDet>
+                <InvoiceMoreDet></InvoiceMoreDet>
               </AppLayout>
             }
           ></Route>
@@ -425,7 +491,7 @@ function App() {
             path="/home/invoice/edit"
             element={
               <AppLayout>
-           <InoviceEdit></InoviceEdit>
+                <InoviceEdit></InoviceEdit>
               </AppLayout>
             }
           ></Route>
@@ -444,24 +510,22 @@ function App() {
                 <AddPhysiotherapy />
               </AppLayout>
             }
-            
           ></Route>
           <Route
             path="/home/physiotheray/moredetails"
             element={
               <AppLayout>
-               <PhysioMoreDet></PhysioMoreDet>
+                <PhysioMoreDet></PhysioMoreDet>
               </AppLayout>
             }
-            
           ></Route>
           <Route
             path="/home/physiotheray/edit"
             element={
               <AppLayout>
-            <PhysioEdit></PhysioEdit>
+                <PhysioEdit></PhysioEdit>
               </AppLayout>
-            }           
+            }
           ></Route>
 
           <Route

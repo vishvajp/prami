@@ -70,9 +70,9 @@ const handlenavigate = (user)=>{
     
       ];
     
-        const Inbutton = () => {
-          return <div>IN</div>;
-        };
+        // const Inbutton = () => {
+        //   return <div>IN</div>;
+        // };
 
         const filteredItem = tableContent?.filter((data) => {
 

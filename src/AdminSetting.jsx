@@ -6,6 +6,7 @@ import Pharmacy from "./Pharmacy";
 import Doctor from "./Doctor";
 import Physiotherapist from "./Physiotherapist";
 import UserDataContext from "./Context/UserDataContext";
+import AdminDoc from "./AdminDoc";
 
 const AdminSetting = () => {
   // const [selectedButton, setSelectedButton] = useState(0);
@@ -57,7 +58,7 @@ const AdminSetting = () => {
       {selectedBtnName === "PHARMACY" && (
         <Pharmacy  />
       )}
-      {selectedBtnName === "DOCTOR" && <Doctor />}
+      {selectedBtnName === "DOCTOR" && <AdminDoc></AdminDoc>}
       {selectedBtnName === "PHYSIOTHERAPY" && (
         <Physiotherapist />
       )}

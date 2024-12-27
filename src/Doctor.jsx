@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 const Doctor = () => {
 const docDetailNavigate = useNavigate()
 const [docSearch,setDocSearch]=useState("")
+ 
 const handledocdetail =()=>{
   docDetailNavigate("/home/doctor/details")
 }
 
   return (
     <div>
+     <div>
       <div className="d-flex w-100 justify-content-end mt-3 pe-5">
         <div className="doctor-search-container">
           <p>
@@ -42,6 +44,9 @@ const handledocdetail =()=>{
         <Doctortable docSearch={docSearch} />
       </div>
     </div>
+
+    </div>
+    
   );
 };
 

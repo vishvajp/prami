@@ -59,76 +59,113 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
     {
       reg_No: "Ih475",
       reg_Date: "08-30-24",
-      name: "Monica",
+      name: "Kathir",
       reg_Address: "Chennai",
-      mobile: "9874563211",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
+      mobile: "8564153458",
       marital_status: "Married",
-      gender: "female",
-      age: "34",
-      action: "",
-    },
-    {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Monica",
-      reg_Address: "Chennai",
-      mobile: "9874563211",
-      marital_status: "Married",
-      gender: "female",
-      age: "34",
-      action: "",
-    },
-    {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Monica",
-      reg_Address: "Chennai",
-      mobile: "9874563211",
-      marital_status: "Married",
-      gender: "female",
-      age: "34",
-      action: "",
+      gender: "male",
+      age: "28",
+       email:"monica@gmail.com",
+      occupation:"Business"
     },
     {
       reg_No: "Ih475",
       reg_Date: "08-30-24",
       name: "Kathir",
       reg_Address: "Chennai",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
       mobile: "8564153458",
       marital_status: "Married",
       gender: "male",
       age: "28",
-      action: "",
+       email:"monica@gmail.com",
+      occupation:"Business"
     },
     {
       reg_No: "Ih475",
       reg_Date: "08-30-24",
       name: "Kathir",
       reg_Address: "Chennai",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
       mobile: "8564153458",
       marital_status: "Married",
       gender: "male",
       age: "28",
-      action: "",
+       email:"monica@gmail.com",
+      occupation:"Business"
     },
     {
       reg_No: "Ih475",
       reg_Date: "08-30-24",
       name: "Kathir",
       reg_Address: "Chennai",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
       mobile: "8564153458",
       marital_status: "Married",
       gender: "male",
       age: "28",
-      action: "",
+       email:"monica@gmail.com",
+      occupation:"Business"
+ 
+    },
+    {
+      reg_No: "Ih475",
+      reg_Date: "08-30-24",
+      name: "Kathir",
+      reg_Address: "Chennai",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
+      mobile: "8564153458",
+      marital_status: "Married",
+      gender: "male",
+      age: "28",
+       email:"monica@gmail.com",
+      occupation:"Business"
+    },
+    {
+      reg_No: "Ih475",
+      reg_Date: "08-30-24",
+      name: "Kathir",
+      reg_Address: "Chennai",
+      reg_city:"Chennai",
+      reg_state:"Tamil Nadu",
+      reg_country:"India",
+      pincode:"600001",
+      landmark:"Near Bus Stand",
+      mobile: "8564153458",
+      marital_status: "Married",
+      gender: "male",
+      age: "28",
+      email:"monica@gmail.com",
+      occupation:"Business"
     },
   ];
 
-  const RefreshIcons = ({ element }) => {
+  const RefreshIcons = ({ user }) => {
     return (
       <div className="refresh-icons-container justify-content-center">
        <div>
-          <button onClick={()=>handleNavToSpecPat(element)} className="registerpatient-table-update-button">
+          <button onClick={()=>handleNavToSpecPat(user)} className="registerpatient-table-update-button">
             More Details
           </button>
         </div>    
@@ -165,45 +202,73 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
       </div>
       <div className="registerPatient-table-div">
         <Table responsive>
-          <thead className="patienttable-head-container">
-            <tr>
-              {[...tableHeader].map((ele, index) => (
-                <th className="patienttable-header-col" key={index}>
-                  {ele.name}
-                  {index < tableHeader.length - 1 && (
-                    <>
-                      <div className="clinicstable-header-div"></div>
-                    </>
+        <thead className="patienttable-head-container">
+        <tr>
+        {filteredItem &&
+            filteredItem.length > 0 &&
+            Object.keys(filteredItem[0]).map((key, index) =>
+              key !== "reg_city" &&
+              key !== "reg_state" &&
+              key !== "reg_country" &&
+              key !== "pincode" &&
+              key !== "landmark" &&
+              key !== "occupation" &&
+              key !== "email"
+             
+            
+             ? (
+                // Filter out unwanted columns
+                <th className="table-header-col" key={index}>
+                  {key.replace(/_/g, " ").toUpperCase()}{" "}
+                  {/* Capitalize key and replace underscores with spaces */}
+                  {index < Object.keys(filteredItem[0]).length && (
+                    <div className="table-header-div"></div>
                   )}
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredItem.map((element) => {
+              ) : null
+            )}
+          <th className="table-header-col" key="refresh">
+            ACTION
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredItem.map((element) => {
+          return (
+            <tr className="patienttable-body-row-container">
+            {Object.keys(element).map((rowData, cellIndex) => {
+              if (
+                rowData === "reg_city" ||
+                rowData === "reg_state" ||
+                rowData === "reg_country" ||
+                rowData === "pincode" ||
+                rowData === "landmark" ||
+                rowData === "occupation" ||
+                rowData === "email"
+           
+              
+               
+              ) {
+                return null;
+              }
+
               return (
-                <tr className="patienttable-body-row-container">
-                  {Object.keys(element).map((rowData, cellIndex) => {
-                    if (cellIndex === Object.keys(element).length - 1) { 
-                      return <RefreshIcons element={element} />;
-                    }
-                    return (
-                      <td className="patienttable-body-row" key={cellIndex}>
-                        {cellIndex < Object.keys(element).length - 1 ? (
-                          <>
-                            {element[rowData]}
-                            <div className="clinicstable-header-div"></div>
-                          </>
-                        ) : (
-                          element[rowData]
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
+                <td className="patienttable-body-row" key={cellIndex}>
+                  {element[rowData]}
+                  {cellIndex < Object.keys(element).length && (
+                    <div className="clinicstable-header-div"></div>
+                  )}
+                </td>
               );
             })}
-          </tbody>
+
+            <td className="patienttable-body-row" key="refresh-icon">
+              <RefreshIcons user={element} />
+            </td>
+            </tr>
+          );
+        })}
+      </tbody>
         </Table>
       </div>
       <div>

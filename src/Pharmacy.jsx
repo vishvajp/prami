@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Pharmacy = () => {
 const [addPharmacy,setAddPharmacy]=useState()
+const [searchInput,setSearchInput]=useState("")
 const navigate = useNavigate()
   const handleAdd = () => {
     setAddPharmacy(true)
@@ -30,6 +31,9 @@ const navigate = useNavigate()
           <input
             type="search"
             className="pharmacy-1st-search-input-div"
+            placeholder="Search"
+            value={searchInput}
+            onChange={(e)=>setSearchInput(e.target.value)}
           ></input>
           <span className="pharmacy-search-icon-span">
             <FaMagnifyingGlass className="pharmacy-search-icon" />
@@ -63,7 +67,7 @@ const navigate = useNavigate()
         </div>
       </div>
       <div className="pharmacy-table-div">
-        <PharmacyTable />
+        <PharmacyTable searchInput={searchInput}/>
       </div>
     </div>}
       {addPharmacy && <PharmacyRegistration setAddPharmacy={setAddPharmacy}></PharmacyRegistration>}

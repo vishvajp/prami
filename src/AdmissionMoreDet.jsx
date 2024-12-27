@@ -41,7 +41,7 @@ console.log(singleData)
               Consulting Doctor Name
             </lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.mobile} */} Dr. Karunakaran
+              {singleData?.consulting_doctor} 
             </p>
           </div>
           <div className="d-flex flex-column col">
@@ -49,20 +49,20 @@ console.log(singleData)
               {" "}
               DOCTOR'S CONTACT NUMBER
             </lable>
-            <p className="medicalhistory-records-para">789456123</p>
+            <p className="medicalhistory-records-para">   {singleData?.doctor_contact_no} </p>
           </div>
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Patient Name</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.name}
+            {singleData?.patient_name} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Admission Number</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.admission_No}
+            {singleData?.admission_No} 
             </p>
           </div>
         </div>
@@ -70,13 +70,13 @@ console.log(singleData)
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> DOB or Age</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.age}
+            {singleData?.patient_dob} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Address</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.admission_Address}
+            {singleData?.admission_Address} 
             </p>
           </div>
         </div>
@@ -84,23 +84,23 @@ console.log(singleData)
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Mobile No</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.mobile}
+            {singleData?.mobile} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Email</lable>
-            <p className="medicalhistory-records-para">-</p>
+            <p className="medicalhistory-records-para">      {singleData?.email} </p>
           </div>
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
-            <lable className="medichistory-lable"> Occupation</lable>
-            <p className="medicalhistory-records-para">-</p>
+            <lable className="medichistory-lable"> Blood Group</lable>
+            <p className="medicalhistory-records-para">      {singleData?.blood_group} </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Marital Status</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.marital_status}
+            {singleData?.marital_status} 
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ console.log(singleData)
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Admission Date</lable>
             <p className="medicalhistory-records-para">
-              {singlePatient.element.admission_Date}
+            {singleData?.admission_Date} 
             </p>
           </div>
           <div className="d-flex flex-column col">
@@ -119,62 +119,89 @@ console.log(singleData)
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Aadhar Card Number</lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.admission_Date} */}6978 5845 6541
+            {singleData?.aadhar_no} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Passport Number</lable>
-            <p className="medicalhistory-records-para">8954 87895 789</p>
+            <p className="medicalhistory-records-para">      {singleData?.passport_no} </p>
           </div>
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Visa Status</lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.admission_Date} */}Active
+            {singleData?.visa_status} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Pan Number</lable>
-            <p className="medicalhistory-records-para">9096325874</p>
+            <p className="medicalhistory-records-para">      {singleData?.pan_no} </p>
           </div>
+        </div>
+        <p className="medichistory-lable"> HEALTH HISTORY </p>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> TAKING ANY MEDICATIONS, CURRENTLY?</lable>
+            <p className="medicalhistory-records-para">{singleData?.medications} </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable">REASON FOR REGISTRATION</lable>
+            <p className="medicalhistory-records-para">{singleData?.reason_register} </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col-6">
+            <lable className="medichistory-lable"> ADDITIONAL NOTES</lable>
+            <p className="medicalhistory-records-para">{singleData?.additonal_notes} </p>
+          </div>
+          
         </div>
         <p className="medichistory-lable"> EMERGENCY CONTACT</p>
         <div className="row">
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> RelationShip</lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.admission_Date} */}friend
+            {singleData?.emergency_relation} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Contact Number</lable>
-            <p className="medicalhistory-records-para">7894561230</p>
+            <p className="medicalhistory-records-para">      {singleData?.emergency_contact} </p>
           </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col-6">
+            <lable className="medichistory-lable"> Emergency Dob</lable>
+            <p className="medicalhistory-records-para">
+            {singleData?.emergency_dob} 
+            </p>
+          </div>
+          
         </div>
         <p className="medichistory-lable"> INSURANCE INFORMATION</p>
         <div className="row">
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable">Insurance Company</lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.admission_Date} */}Gobibo
+            {singleData?.insurance_company} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable">Insurance Id</lable>
-            <p className="medicalhistory-records-para">1578 1458 789</p>
+            <p className="medicalhistory-records-para">      {singleData?.insurance_id} </p>
           </div>
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable">PlaceHolder's Name</lable>
             <p className="medicalhistory-records-para">
-              {/* {singlePatient.element.admission_Date} */}Guru
+            {singleData?.placeholers_name} 
             </p>
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable">Date Of Birth</lable>
-            <p className="medicalhistory-records-para">6/7/8</p>
+            <p className="medicalhistory-records-para">      {singleData?.consulting_doctor} </p>
           </div>
         </div>
       </div>

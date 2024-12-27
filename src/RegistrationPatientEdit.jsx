@@ -1,36 +1,90 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import { FaCalendarAlt } from "react-icons/fa";
+import { format } from 'date-fns'
 
 const RegistrationPatientEdit = () => {
     const location = useLocation();
-    const singlePatientData = location.state;
+    const singlePatientData = location.state.singleData;
     const navigate = useNavigate()
-
+console.log(singlePatientData)
     // Set initial state based on singlePatientData
     const [patientDetails, setPatientDetails] = useState({
-        name: '',
-        reg_No: '',
-        age: '',
-        reg_Address: '',
-        mobile: '',
-        marital_status: '',
-        reg_Date: ''
+        reg_No: "",
+        reg_Date: "",
+        name: "",
+        reg_Address: "",
+        reg_city:"",
+        reg_state:" ",
+        reg_country:"",
+        pincode:"",
+        landmark:"  ",
+        mobile: "",
+        marital_status: "",
+        gender: "",
+        age: "",
+         email:"",
+        occupation:""
     });
 
     // Update state when singlePatientData changes
     useEffect(() => {
-        if (singlePatientData && singlePatientData.singleData) {
+        if (singlePatientData ) {
             setPatientDetails({
-                name: singlePatientData.singleData.name,
-                reg_No: singlePatientData.singleData.reg_No,
-                age: singlePatientData.singleData.age,
-                reg_Address: singlePatientData.singleData.reg_Address,
-                mobile: singlePatientData.singleData.mobile,
-                marital_status: singlePatientData.singleData.marital_status,
-                reg_Date: singlePatientData.singleData.reg_Date
+                name: singlePatientData.name,
+                reg_No: singlePatientData.reg_No,
+                age: singlePatientData.age,
+                reg_Address: singlePatientData.reg_Address,
+                reg_city:singlePatientData.reg_city,
+                reg_state:singlePatientData.reg_state,
+                reg_country:singlePatientData.reg_country,
+                pincode:singlePatientData.pincode,
+                landmark:singlePatientData.landmark,
+                mobile: singlePatientData.mobile,
+                marital_status: singlePatientData.marital_status,
+                reg_Date: singlePatientData.reg_Date,
+                occupation: singlePatientData.occupation,
+                email:singlePatientData.email
+
             });
         }
     }, [singlePatientData]);
+
+
+    const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
+                    const formattedDate = value ? format(new Date(value), "dd/MM/yyyy") : "DD/MM/YYYY";
+                    
+                    return (
+                      <button
+                        ref={ref}
+                        type="button"
+                        className="patientBooking-date-input"
+                        onClick={onClick}
+                      >
+                        {formattedDate} <FaCalendarAlt className="homepage-date-icon" />
+                      </button>
+                    );
+                  });
+    
+                  const handleRegDateChange = (date) => {
+                    console.log(date)
+                    const selectedDate = new Date(date)
+                    
+                        const formatDate = selectedDate.toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        });
+
+                        console.log(formatDate)
+                        // Generate slots for the selected date
+                        setPatientDetails((prevFormData)=>({
+                          ...prevFormData,
+                          reg_Date: formatDate
+                        }))
+                      };
 
     // Handle input changes
     const handleInputChange = (e) => {
@@ -94,6 +148,58 @@ const RegistrationPatientEdit = () => {
                 </div>
                 <div className='row'>
                     <div className="d-flex flex-column col">
+                        <label className="medichistory-lable">City</label>
+                        <input
+                            name="age"
+                            value={patientDetails.reg_city}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
+                    </div>
+                    <div className="d-flex flex-column col">
+                        <label className="medichistory-lable">State</label>
+                        <input
+                            name="reg_Address"
+                            value={patientDetails.reg_state}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="d-flex flex-column col">
+                        <label className="medichistory-lable">Country</label>
+                        <input
+                            name="age"
+                            value={patientDetails.reg_country}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
+                    </div>
+                    <div className="d-flex flex-column col">
+                        <label className="medichistory-lable">Pincode</label>
+                        <input
+                            name="reg_Address"
+                            value={patientDetails.pincode}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="d-flex flex-column col-6">
+                        <label className="medichistory-lable">Landmark</label>
+                        <input
+                            name="age"
+                            value={patientDetails.landmark}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
+                    </div>
+                    
+                </div>
+                <div className='row'>
+                    <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Mobile No</label>
                         <input
                             name="mobile"
@@ -104,13 +210,23 @@ const RegistrationPatientEdit = () => {
                     </div>
                     <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Email</label>
-                        <p className='medicalhistory-records-para'>-</p>
+                        <input
+                            name="email"
+                            value={patientDetails.email}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
                     </div>
                 </div>
                 <div className='row'>
                     <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Occupation</label>
-                        <p className='medicalhistory-records-para'>-</p>
+                        <input
+                            name="occupation"
+                            value={patientDetails.occupation}
+                            onChange={handleInputChange}
+                            className='medicalhistory-records-para'
+                        />
                     </div>
                     <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Marital Status</label>
@@ -125,12 +241,16 @@ const RegistrationPatientEdit = () => {
                 <div className='row'>
                     <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Registration Date</label>
-                        <input
-                            name="reg_Date"
-                            value={patientDetails.reg_Date}
-                            onChange={handleInputChange}
-                            className='medicalhistory-records-para'
-                        />
+                        <DatePicker
+                                                     selected={patientDetails.reg_Date}
+                                                     onChange={handleRegDateChange}
+                                                     customInput={<CustomInput />}
+                                                     showYearDropdown
+                                                     scrollableYearDropdown
+                                                     yearDropdownItemNumber={80}
+                                                     scrollableMonthYearDropdown
+                                                   />
+                        
                     </div>
                     <div className="d-flex flex-column col">
                         <label className="medichistory-lable">Insurance</label>

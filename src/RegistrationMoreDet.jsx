@@ -59,6 +59,50 @@ navToRegistrationEdit("/home/register/edit",{state:{singleData}})
         <div className="d-flex flex-column col">
         <lable className="medichistory-lable">
                   {" "}
+               City
+                </lable>
+                <p className='medicalhistory-records-para'>{singlePatient.element.reg_city}</p>
+        </div>
+        <div className="d-flex flex-column col">
+        
+        <lable className="medichistory-lable">
+                  {" "}
+               State
+                </lable>
+                <p className='medicalhistory-records-para'>{singlePatient.element.reg_state}</p>
+        </div>   
+        </div> 
+        < div className='row'>
+        <div className="d-flex flex-column col">
+        <lable className="medichistory-lable">
+                  {" "}
+                Country
+                </lable>
+                <p className='medicalhistory-records-para'>{singlePatient.element.reg_country}</p>
+        </div>
+        <div className="d-flex flex-column col">
+        
+        <lable className="medichistory-lable">
+                  {" "}
+                 Pincode
+                </lable>
+                <p className='medicalhistory-records-para'>{singlePatient.element.pincode}</p>
+        </div>   
+        </div> 
+        < div className='row'>
+        <div className="d-flex flex-column col-6">
+        <lable className="medichistory-lable">
+                  {" "}
+                 Landmark
+                </lable>
+                <p className='medicalhistory-records-para'>{singlePatient.element.landmark}</p>
+        </div>
+         
+        </div> 
+        < div className='row'>
+        <div className="d-flex flex-column col">
+        <lable className="medichistory-lable">
+                  {" "}
                   Mobile No
                 </lable>
                 <p className='medicalhistory-records-para'>{singlePatient.element.mobile}</p>
@@ -69,7 +113,7 @@ navToRegistrationEdit("/home/register/edit",{state:{singleData}})
                   {" "}
               Email
                 </lable>
-                <p className='medicalhistory-records-para'>-</p>
+                <p className='medicalhistory-records-para'>{singlePatient.element.email}</p>
         </div>   
         </div> 
         < div className='row'>
@@ -78,7 +122,7 @@ navToRegistrationEdit("/home/register/edit",{state:{singleData}})
                   {" "}
                   Occupation
                 </lable>
-                <p className='medicalhistory-records-para'>-</p>
+                <p className='medicalhistory-records-para'>{singlePatient.element.occupation}</p>
         </div>
         <div className="d-flex flex-column col">
         

@@ -2,15 +2,37 @@ import React from "react";
 import { FaRegEdit, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { useState } from "react";
+import { RiPolaroidLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [profile, setProfile]=useState({
+    admin_name:"Dr. Karunakaran S",
+    specialist:"Pediatrics",
+    experience:"28",
+    registration_no:"000005b",
+    email_id:"karunakarn@gmail.com",
+    password:"123456",
+    mobile_no:"9876543210",
+    education:"M.B.B.S, Md",
+    address:"No. 12, 1st Street, Anna Nagar, Chennai",
+    clinic:"Spine Clinics",
+    location:"Adayar, Chennai",
+    dob:"12/12/1981",
+    gender:"Male"
+
+  })
   const countryCodes = [
     { code: "+91", name: "India" },
     { code: "+1", name: "USA" },
     { code: "+44", name: "UK" },
     // Add more countries as needed
   ];
+const navigate = useNavigate()
 
+const handleEdit = () => {
+  navigate("/home/profile/edit",{state:profile})
+}
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -19,10 +41,10 @@ const Profile = () => {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <p className=" col doctor-profile text-end">Doctor Profile </p>
+        <p className=" col doctor-profile text-end">Admin Profile </p>
         <div className="col text-end ">
           <p className="mb-0 ">
-            <button className="profile-edit-button me-4 ">
+            <button className="profile-edit-button me-4 " onClick={handleEdit}>
               Edit <FaRegEdit className="ms-1 profile-edit-icon" />
             </button>
           </p>
@@ -41,22 +63,17 @@ const Profile = () => {
           </div>
 
           <div className="profile-docname-div ms-2 d-flex flex-column justify-content-center ">
-            <p className="text-white profile-doc-name">Dr. Karunakaran S</p>
+            <p className="text-white profile-doc-name">{profile.admin_name}</p>
             <p className="text-warning profile-doc-designation mb-0">
-              spine Surgeon
+             {profile.specialist}
             </p>
-            <div>
-              <span className="profile-specialist-text">Specialist :</span>
-              <span className="profile-specialist-designation">
-                 Pediatrics
-              </span>{" "}
-            </div>
+           
           </div>
           <div className="profile-vertical-line"></div>
           <div className="profile-experience ms-2 ">
             <p className="text-white mt-4 profile-doc-experience">Experience</p>
             <span className="text-warning profile-doc-designation">
-              28Year(s)
+              {profile.experience}Year(s)
             </span>
           </div>
           <div className="profile-vertical-line "></div>
@@ -64,7 +81,7 @@ const Profile = () => {
             <p className="text-white mt-3 profile-doc-experience">Medical</p>
             <p className="profile-doc-registration">Registration No</p>
             <span className="text-warning profile-doc-designation mb-5">
-              000005b
+              {profile.registration_no}
             </span>
           </div>
         </div>
@@ -72,88 +89,42 @@ const Profile = () => {
           <div className="col profile-detail-1col">
             <div className="d-flex flex-column ">
               <label className="profile-input-label">E Mail ID</label>
-              <input
-                className="profile-input"
-                type="email"
-                placeholder="Karunakaran@gmail.com"
-              />
+              <p className='medicalhistory-records-para'>{profile.email_id}</p>
             </div>
             <div className="d-flex flex-column ">
               <label className="profile-input-label">Date Of Birth</label>
-              <input
-                className="profile-input"
-                type="text"
-                placeholder="20.12.1981"
-              />
+              <p className='medicalhistory-records-para'>{profile.dob}</p>
             </div>
             <div className="d-flex flex-column ">
               <label className="profile-input-label">Location</label>
-              <input
-                className="profile-input"
-                type="text"
-                placeholder="Adayar,Chennai"
-              />
+              <p className='medicalhistory-records-para'>{profile.location}</p>
             </div>
             <div className="d-flex flex-column">
               <label className="profile-input-label">Password</label>
-              <div className="input-wrapper-profile">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="**********"
-                  className="profile-input me-0"
-                />
-                <span className="icon" onClick={togglePasswordVisibility}>
-                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                </span>
-              </div>
+             
+              <p className='medicalhistory-records-para'>{profile.password}</p>
+               
             </div>
           </div>
           <div className="col profile-detail-2col">
             <div className="d-flex flex-column">
               <label className="profile-input-label">Mobile No</label>
-              <div className="input-wrapper-profile">
-                <select
-                  value={selectedCountry}
-                  onChange={(e) => setSelectedCountry(e.target.value)}
-                  className="country-selector"
-                >
-                  {countryCodes.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.code}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  //   className="profile-input"
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Enter phone number"
-                />
-              </div>
+          
+              <p className='medicalhistory-records-para'>{profile.mobile_no}</p>
+           
             </div>
 
             <div className="d-flex flex-column ">
               <label className="profile-input-label" for="Education">
                 Education
               </label>
-              <select name="Education" id="education">
-                <option value="volvo">M.B.B.S, Md,</option>
-                <option value="saab">""</option>
-                <option value="opel">""</option>
-                <option value="audi">""</option>
-              </select>
+              <p className='medicalhistory-records-para'>{profile.education}</p>
             </div>
             <div className="d-flex flex-column ">
               <label className="profile-input-label" for="Clinic">
                 Clinic Name
               </label>
-              <select name="clinic" id="clinic">
-                <option value="volvo">Spine Clinics</option>
-                <option value="saab">""</option>
-                <option value="opel">""</option>
-                <option value="audi">""</option>
-              </select>
+              <p className='medicalhistory-records-para'>{profile.clinic}</p>
             </div>
           </div>
         </div>
