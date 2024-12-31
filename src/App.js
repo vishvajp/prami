@@ -39,7 +39,7 @@ import AboutDoctorEdit from "./AboutDoctorEdit";
 import AccessControl from "./AccessControl";
 import AdminSetting from "./AdminSetting";
 import AddProfileModal from "./AddProfileModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RegisterPatient from "./RegisterPatient";
 import NotesImg from "./NotesImg";
 import BillingPage from "./BillingPage";
@@ -81,6 +81,9 @@ import AdminDocEdit from "./AdminDocEdit";
 function App() {
   const [docDetailData, setDocDetailData] = useState();
   const [introData, setIntroData] = useState("");
+  const [isAuth, setIsAuth] = useState(
+   localStorage.getItem("isAuth") === "true"
+  );
 
   const getDataFromDocDetail = (dataFromDocDetail) => {
     setDocDetailData(dataFromDocDetail);
@@ -96,11 +99,27 @@ function App() {
     setAdminFieldChoose(btnName);
   };
 
+  // useEffect(() => {
+  //   const handleStorageChange = () => {
+  //     setIsAuth(localStorage.getItem("isAuth") === "true");
+  //   };
+
+  //   window.addEventListener("storage", handleStorageChange);
+  //   return () => {
+  //     window.removeEventListener("storage", handleStorageChange);
+  //   };
+  // }, []);
+
   const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami";
 
   const apiBaseUrl =
     "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";
 
+  const handleLogin = () => {
+   
+    localStorage.setItem("isAuth", true);
+    setIsAuth(localStorage.getItem("isAuth"));
+  };
   console.log(adminFieldChoose);
   return (
     <div className="App">
@@ -117,9 +136,10 @@ function App() {
           />
           <Route
             path="/login"
-            element={<Login introData={introData} baseUrl={baseUrl} />}
+            element={<Login  onLogin={handleLogin} introData={introData} baseUrl={baseUrl} />}
           />
           {/* <Route path="/register" element={<Register />} /> */}
+          {isAuth ? (<>
           <Route
             path="/home/dashboard"
             element={
@@ -152,7 +172,7 @@ function App() {
               </AppLayout>
             }
           />
-            <Route
+          <Route
             path="/home/profile/edit"
             element={
               <AppLayout>
@@ -210,11 +230,11 @@ function App() {
               </AppLayout>
             }
           ></Route>
-           <Route
+          <Route
             path="/home/admin/docmoredetail"
             element={
               <AppLayout>
-              <AdminDocDet></AdminDocDet>
+                <AdminDocDet></AdminDocDet>
               </AppLayout>
             }
           ></Route>
@@ -222,7 +242,7 @@ function App() {
             path="/home/admin/docedit"
             element={
               <AppLayout>
-             <AdminDocEdit></AdminDocEdit>
+                <AdminDocEdit></AdminDocEdit>
               </AppLayout>
             }
           ></Route>
@@ -619,6 +639,10 @@ function App() {
               </AppLayout>
             }
           ></Route>
+              </>
+          ) : (
+            <Route path="*" element={<Navigate to="/" />} />
+          )}
         </Routes>
       </DataProvider>
     </div>

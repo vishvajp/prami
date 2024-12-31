@@ -1,7 +1,6 @@
 .menulabstatsmodal-modal .ant-modal-content{
-width: 100% !important;
-left: 65%; 
-
+width: 50% !important;
+left: 25%;
 }
 
 .menulabstatsmodal-modal-label{

@@ -170,8 +170,10 @@ const PatientBooking = ({
   };
 
   const handleDoctorChange = (event) => {
+    setTreatmentType("")
     setStartDate(null);
     setAvailableSlots([]);
+    setPhysioAsset("");
     const specDocName = event.target.value;
     setSingleDocName(specDocName);
     const getDocId = doctorData?.find(
@@ -232,11 +234,13 @@ const PatientBooking = ({
       setVisitReason("");
       setSelectedSlot(null);
       setPhysioAsset("");
-setSelectedSlot([])
+      setAvailableSlots([])
       handleCancel();
     }
   } catch (error) {
-    console.error("Error booking appointment:", error);
+    alert(error.response.data.message)
+   
+    // console.error("Error booking appointment:", error)
   }
 
    
@@ -489,7 +493,7 @@ setSelectedSlot([])
                         </select>
                       </div>
                     <div className="col">
-                    {treatmentType === "Clinic Physio Asset" && (
+                    {treatmentType === "Clinic Physio Asset" && singleDocName=== "physiotherapy" && (
                       <div className="d-flex flex-column mt-2 ">
                         <label className="patientbooking-input-label ms-3">
                           Clinic Physio Asset
@@ -498,6 +502,7 @@ setSelectedSlot([])
                           id="appointment"
                           value={physioAsset}
                           onChange={(e) => setPhysioAsset(e.target.value)}
+                          required
                         >
                           <option value=""></option>
                           <option value="Super Inductive System">
@@ -522,7 +527,7 @@ setSelectedSlot([])
                         </select>
                       </div>
                     )}
-                    {treatmentType === "Home Care Asset" && (
+                    {treatmentType === "Home Care Asset" && singleDocName=== "physiotherapy" && (
                      
                       <div className="d-flex flex-column mt-2 col">
                         <label className="patientbooking-input-label ms-3">
@@ -532,6 +537,7 @@ setSelectedSlot([])
                           id="appointment"
                           value={physioAsset}
                           onChange={(e) => setPhysioAsset(e.target.value)}
+                          required
                         >
                           <option value=""></option>
                           <option value="Super Inductive System">
@@ -624,7 +630,7 @@ setSelectedSlot([])
                   </div>
                 </div>
 
-                <div className="d-flex mt-3 gap-2">
+                {/* <div className="d-flex mt-3 gap-2">
                   <div className="d-flex align-items-center patientbooking-checkbox-input">
                     <input
                       className="patientbooking-input-checkbox me-1"
@@ -646,12 +652,12 @@ setSelectedSlot([])
                     />
                     <label>Send Whatsapp</label>
                   </div>
-                </div>
-                <div className="mt-5">
-                  <button   type="button" className="patientbooking-addpatient-button">
+                </div> */}
+                <div className="mt-5 d-flex justify-content-center">
+                  {/* <button   type="button" className="patientbooking-addpatient-button">
                    
                     + ADD PATIENT
-                  </button>
+                  </button> */}
                   <button
                     className="patientbooking-bookappointment-button"
                     type="submit"

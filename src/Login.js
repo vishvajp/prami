@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 
-const Login = ({introData,baseUrl}) => {
+const Login = ({introData,baseUrl,onLogin}) => {
   const [passwordView, setPasswrodView] = useState(true);
   const [userName, setuserName] = useState(null);
   const [password, setpassword] = useState(null);
@@ -15,7 +15,8 @@ const Login = ({introData,baseUrl}) => {
   const homeNavigate = useNavigate();
   const handleSignIn = function (e) {
     e.preventDefault();
-    if (userName === "admin" && password === "admin") {
+    if (userName === "Karthick" && password === "Karthick@123") {
+      onLogin()
       homeNavigate("/home/dashboard");
     } else {
       alert("Invalid Credentials");

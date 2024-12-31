@@ -4,6 +4,19 @@ import PhysioAssetStats from "./PhysioAssetStats";
 
 const PhysioMaster = () => {
   const [labTitle, setLabTitle] = useState("Physiotherapy Item Master");
+  const [physioData, setPhysioData] = useState({
+    asset_price: "",
+    asset_type: "",
+    homeCare_Physio: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPhysioData({
+      ...physioData,
+      [name]: value,
+    });
+  };
   return (
     <div>
       {" "}
@@ -43,6 +56,9 @@ const PhysioMaster = () => {
               <input
                 className="medicinemaster-1st-col-input"
                 type="text"
+                name="asset_type"
+                value={physioData.asset_type}
+                onChange={handleInputChange}
               ></input>
             </div>
 
@@ -53,7 +69,26 @@ const PhysioMaster = () => {
               <input
                 className="medicinemaster-1st-col-input"
                 type="text"
+                name="asset_price"
+                value={physioData.asset_price}
+                onChange={handleInputChange}
               ></input>
+            </div>
+            <div className="d-flex flex-column">
+              <label className="medicinemaster-1st-col-label">
+                Do you want to add this asset to the Homecare?
+              </label>
+              <select
+                    className="medicinemaster-1st-col-input"
+              name="homeCare_Physio"
+              value={physioData.homeCare_Physio}
+              onChange={handleInputChange}
+                
+              >
+                <option>Select Options</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
             </div>
             <div className="d-flex justify-content-end">
               <button className="medicinemaster-1st-col-add-button">ADD</button>

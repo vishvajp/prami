@@ -12,11 +12,12 @@ const MenuLabTestStats = () => {
   const itemsPerPage = 5;
   const [searchCategory, setSearchCategory] = useState("");
   const tableRef = useRef(null);
-
+  const [specUser, setSpecUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-   
+  const showModal = (user) => {
+    setSpecUser(user);
     setIsModalOpen(true);
+    console.log("user", user);
   };
 
   const tableHeader = [
@@ -36,60 +37,59 @@ const MenuLabTestStats = () => {
 
   const tableContent = [
     {
-      labCategorie: "Iodine test",
-      testName: "Iodine test level",
-      testPrice: "250.00",
-      Action: "",
+      lab_Categorie: "Iodine test",
+      test_Name: "Iodine test level",
+      test_Price: "250.00",
     },
     {
-      labCategorie: "Bone Density",
-      testName: "Bone Width",
-      testPrice: "500.00",
-      Action: "",
+      lab_Categorie: "Bone Density",
+      test_Name: "Bone Width",
+      test_Price: "500.00",
     },
     {
-      labCategorie: "Skull test",
-      testName: " test level 2 ",
-      testPrice: "300.00",
-      Action: "",
+      lab_Categorie: "Skull test",
+      test_Name: " test level 2 ",
+      test_Price: "300.00",
     },
     {
-      labCategorie: "leg test",
-      testName: "Iodine test level",
-      testPrice: "250.00",
-      Action: "",
+      lab_Categorie: "leg test",
+      test_Name: "Iodine test level",
+      test_Price: "250.00",
     },
     {
-      labCategorie: "Iodine test",
-      testName: "Iodine test level",
-      testPrice: "250.00",
-      Action:"",
+      lab_Categorie: "Iodine test",
+      test_Name: "Iodine test level",
+      test_Price: "250.00",
     },
     {
-      labCategorie: "Iodine test",
-      testName: "Iodine test level",
-      testPrice: "250.00",
-      Action: "",
+      lab_Categorie: "Iodine test",
+      test_Name: "Iodine test level",
+      test_Price: "250.00",
     },
     {
-      labCategorie: "Iodine test",
-      testName: "Iodine test level",
-      testPrice: "250.00",
-      Action: "",
+      lab_Categorie: "Iodine test",
+      test_Name: "Iodine test level",
+      test_Price: "250.00",
     },
   ];
 
-  const ActionButtons = () => (
-    <div className="d-flex gap-2 justify-content-center" style={{height:"100%"}}>
-      <FaRegEdit className="teststats-edit-icon" onClick={showModal} />
+  const RefreshIcons = ({ user }) => (
+    <div
+      className="d-flex gap-2 justify-content-center"
+      style={{ height: "100%" }}
+    >
+      <FaRegEdit
+        className="teststats-edit-icon"
+        onClick={() => showModal(user)}
+      />
       <FaTrash className="teststats-delete-icon" />
     </div>
   );
 
   const filteredItem = tableContent.filter((tab) => {
     const searchCat =
-      tab.labCategorie && searchCategory
-        ? tab.labCategorie.toLowerCase().includes(searchCategory.toLowerCase())
+      tab.lab_Categorie && searchCategory
+        ? tab.lab_Categorie.toLowerCase().includes(searchCategory.toLowerCase())
         : true;
 
     return searchCat;
@@ -175,16 +175,29 @@ const MenuLabTestStats = () => {
         <Table responsive ref={tableRef}>
           <thead className="patienttable-head-container">
             <tr>
-              {[...tableHeader].map((ele, index) => (
-                <th className="patienttable-header-col" key={index}>
-                  {ele.name}
-                  {index < tableHeader.length - 1 && (
-                    <>
-                      <div className="clinicstable-header-div"></div>
-                    </>
-                  )}
-                </th>
-              ))}
+              {filteredItem &&
+                filteredItem.length > 0 &&
+                Object.keys(filteredItem[0]).map((key, index) =>
+                  key !== "city" &&
+                  key !== "state" &&
+                  key !== "country" &&
+                  key !== "pincode" &&
+                  key !== "landmark" &&
+                  key !== "role" &&
+                  key !== "group" ? (
+                    // Filter out unwanted columns
+                    <th className="table-header-col" key={index}>
+                      {key.replace(/_/g, " ").toUpperCase()}{" "}
+                      {/* Capitalize key and replace underscores with spaces */}
+                      {index < Object.keys(filteredItem[0]).length && (
+                        <div className="table-header-div"></div>
+                      )}
+                    </th>
+                  ) : null
+                )}
+              <th className="table-header-col" key="refresh">
+                ACTION
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -192,29 +205,43 @@ const MenuLabTestStats = () => {
               return (
                 <tr className="patienttable-body-row-container">
                   {Object.keys(element).map((rowData, cellIndex) => {
-                    if (cellIndex === Object.keys(element).length - 1) {
-                      return <ActionButtons key={cellIndex} />;
+                    if (
+                      rowData === "city" ||
+                      rowData === "state" ||
+                      rowData === "country" ||
+                      rowData === "pincode" ||
+                      rowData === "landmark" ||
+                      rowData === "role" ||
+                      rowData === "group"
+                    ) {
+                      return null;
                     }
+
                     return (
                       <td className="patienttable-body-row" key={cellIndex}>
-                        {cellIndex < Object.keys(element).length - 1 ? (
-                          <>
-                            {element[rowData]}
-                            <div className="clinicstable-header-div"></div>
-                          </>
-                        ) : (
-                          element[rowData]
+                        {element[rowData]}
+                        {cellIndex < Object.keys(element).length && (
+                          <div className="clinicstable-header-div"></div>
                         )}
                       </td>
                     );
                   })}
+
+                  <td className="patienttable-body-row" key="refresh-icon">
+                    <RefreshIcons user={element} />
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </Table>
       </div>
-      <MenuLabTestStatsModal isModalOpen={isModalOpen} showModal={showModal} setIsModalOpen={setIsModalOpen}/>
+      <MenuLabTestStatsModal
+        specUser={specUser}
+        isModalOpen={isModalOpen}
+        showModal={showModal}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   );
 };

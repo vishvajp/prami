@@ -1,12 +1,12 @@
 import React ,{useState,useEffect}from "react";
 import "./IntroPage.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const IntroPage = ({getDetailFromIntro,baseUrl}) => {
 
   const [selectUser, setSelectUser]=useState("")
   const navToLogin = useNavigate()
-
+const location = useLocation();
 
 
 useEffect(() => {
@@ -20,6 +20,12 @@ const handleUserSelection = (userType) => {
   setSelectUser(userType);
   
 };
+
+useEffect(() => {
+  if (location.pathname === "/") {
+    localStorage.clear();
+  }
+}, [location.pathname]);
 
   return (
     <div className="intro-full-div"  style={{ height: "100vh" }}>
