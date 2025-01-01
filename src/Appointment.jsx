@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -9,8 +9,9 @@ import { format } from 'date-fns'
 import ParameterModal from "./ParameterModal";
 import Paymentmodal from "./Paymentmodal";
 import WalkInConsult from "./WalkInConsult";
+import UserDataContext from "./Context/UserDataContext";
 
-const Appointment = ({apiBaseUrl}) => {
+const Appointment = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [basicisModalOpen, basicsetIsModalOpen] = useState(false);
   const [startDate, setStartDate] = useState();
@@ -27,6 +28,7 @@ const Appointment = ({apiBaseUrl}) => {
   const [singleDocName, setSingleDocName] = useState("");
   const user = "physiotherapy"
   const [walkinModalOpen, setWalkinModalOpen] = useState(false);
+  const { apiBaseUrl,setRefreshAppointments } = useContext(UserDataContext);
    
   const currentDayDate = new Date();
   currentDayDate.setHours(0, 0, 0, 0);

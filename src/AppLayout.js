@@ -413,7 +413,7 @@ export default function AppLayout({ children }) {
           textAlign: "center",
         }}
       >
-        ©{new Date().getFullYear()}.prami.com
+        ©{new Date().getFullYear()}.saaluvar.com
       </Footer>
     </Layout>
   );

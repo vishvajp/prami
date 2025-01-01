@@ -2,7 +2,8 @@ import React from "react";
 import { GrSchedule } from "react-icons/gr";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { useState } from "react";
-
+// import saaluvar from "./loginimages/Prami-Final-Logo.png";
+import saalu from "./img/saaluvar.png"
 import PatientBooking from "./PatientBooking";
 
 const Header = () => {
@@ -22,7 +23,7 @@ const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
     <div className="d-flex flex-row align-items-center navbar h-auto p-0">
       <div className="d-flex align-items-center">
         <img
-          src={`${baseUrl}/loginimages/Prami-Final-Logo.png`}
+          src={saalu}
           style={{ width: "170px", height: "70px", padding: "8px",marginLeft: "20px" }}
         />
       </div>

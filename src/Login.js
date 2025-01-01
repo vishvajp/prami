@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
+import saalu from "./img/saaluvar.png"
 
 const Login = ({introData,baseUrl,onLogin}) => {
   const [passwordView, setPasswrodView] = useState(true);
@@ -32,7 +33,7 @@ const Login = ({introData,baseUrl,onLogin}) => {
         <p className="login-person-name">{introData}</p>
         <div style={{textAlign : "center"}}>
         <img
-          src={`${baseUrl}/loginimages/logo.jpg`}
+          src={saalu}
           alt="pramilogo"
           className="login-prami-logo"
         ></img>

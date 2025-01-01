@@ -1,6 +1,7 @@
 import React ,{useState,useEffect}from "react";
 import "./IntroPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import saalu from "./img/saaluvar.png"
 
 const IntroPage = ({getDetailFromIntro,baseUrl}) => {
 
@@ -32,7 +33,7 @@ useEffect(() => {
       <div className="intro-page-whole-div">
         <div>
         <img
-  src={`${baseUrl}/loginimages/Prami-Final-Logo.png`}
+  src={saalu}
   style={{ width: "30%", marginBottom: "50px" }}
 />
         </div>

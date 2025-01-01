@@ -215,7 +215,7 @@ const PatientBooking = ({
 
   try {
     const response = await axios.post(
-      "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/bookappointment",
+      `${apiBaseUrl}bookappointment`,
       formData
     );
     if (response.data) {
