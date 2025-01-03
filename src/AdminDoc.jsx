@@ -113,7 +113,8 @@ const AdminDoc = () => {
               key !== "doc_group" &&
               key !== "doc_fee" &&
               key !== "doc_achievement" &&
-              key !== "doc_education" ? (
+              key !== "doc_education" &&
+              key !== "doctorTiming"? (
                 // Filter out unwanted columns
                 <th className="table-header-col" key={index}>
                   {key.replace(/_/g, " ").toUpperCase()}{" "}
@@ -141,7 +142,8 @@ const AdminDoc = () => {
                   rowData === "doc_group" ||
                   rowData === "doc_fee" ||
                   rowData === "doc_achievement" ||
-                  rowData === "doc_education"
+                  rowData === "doc_education" ||
+                  rowData === "doctorTiming" 
                 ) {
                   return null;
                 }

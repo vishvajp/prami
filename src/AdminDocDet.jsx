@@ -124,6 +124,12 @@ const AdminDocDet = () => {
                   </label>
                   <span className="docabout-input">{singleDoc.doc_achievement}</span>
                 </div>
+                {/* <div className="d-flex flex-column ">
+                  <label className="profile-input-label" for="Clinic">
+                    Time Slot Increment
+                  </label>
+                  <span className="docabout-input">{singleDoc.doc_achievement}</span>
+                </div> */}
               </div>
               <div className="col-5 profile-detail-2col">
                 <div className="d-flex flex-column">
@@ -177,80 +183,34 @@ const AdminDocDet = () => {
               </div>
             </div>
             
-            <div className="d-flex flex-column docabout-time-container ">
-              <label className="docdetail-input-label">Time</label>
-              <div className="d-flex justify-content-evenly align-items-center docdetail-medical-registration py-1">
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Sunday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Monday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Tuesday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Wednesday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Thursday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Friday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-                <div className="docabout-time-vertical-line"></div>
-                <div className="d-flex flex-row">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <label for="Gender" className="me-1">
-                      Saturday
-                    </label>
-                    <p className="mb-0 docabout-time">10 AM to 1 PM</p>
-                  </div>
-                  <input type="checkbox" className="docabout-checkbox"></input>
-                </div>
-              </div>
+            <div className="row doc-day-row">
+  {singleDoc.doctorTiming.map((docSpec) => {
+    const formatTime = (time) => {
+      const [hour, minute, second] = time.split(":");
+      const date = new Date();
+      date.setHours(hour, minute, second);
+      return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+    };
+
+    return (
+      <div className="col" key={docSpec.day_name}>
+        <div className="d-flex flex-column">
+          <div className="d-flex flex-column">
+            <span className="doc-name-day d-flex justify-content-center">{docSpec.day_name}</span>
+            <div className="d-flex justify-content-center">
+              <span className="from-to-span">From :</span>
+              <span>{formatTime(docSpec.start_time)}</span>
             </div>
+            <div className="d-flex justify-content-center">
+              <span className="from-to-span">To :</span>
+              <span>{formatTime(docSpec.end_time)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
           </div>
         </div>
   )

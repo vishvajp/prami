@@ -92,6 +92,7 @@ const Doctordetails = () => {
     setDocFemale(false);
   };
 
+ 
   const handleFemale = () => {
     setDocFemale(true);
     setDocMale(false);

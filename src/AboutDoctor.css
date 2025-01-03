@@ -36,3 +36,22 @@
   display: flex;
   align-items: center;
 }
+
+.doc-name-day{
+color: red;
+font-weight: 500;
+}
+
+.doc-day-row{
+
+  background-color: white;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px gray;
+}
+
+.from-to-span{
+  color: red;
+    font-weight: 500;
+    margin-right: 5px;
+}

@@ -285,7 +285,7 @@ console.log(specClinic)
             onChange={(e) => setDocReg(e.target.value)}
             className="docdetail-input"
             value={docReg}
-            type="number"
+            type="text"
             placeholder="Enter Medical Registration No"
             required
           />

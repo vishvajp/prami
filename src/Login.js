@@ -62,7 +62,7 @@ const Login = ({introData,baseUrl,onLogin}) => {
         <button className="login-signin-button" onClick={handleSignIn}>Sign In</button>
       </form>
       <div className="login-emty-div-gradient"></div>
-      <div className="login-bottom-div">@2024.prami.com</div>
+      <div className="login-bottom-div">©{new Date().getFullYear()}.saaluvar.com</div>
     </div>
   );
 };

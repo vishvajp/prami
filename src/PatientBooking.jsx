@@ -663,7 +663,7 @@ const PatientBooking = ({
                     type="submit"
                   >
                     {" "}
-                    BOOK APOINTMENT
+                    BOOK APPOINTMENT
                   </button>
                 </div>
               </form>

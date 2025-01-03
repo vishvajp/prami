@@ -5,9 +5,11 @@ import { useState } from "react";
 // import saaluvar from "./loginimages/Prami-Final-Logo.png";
 import saalu from "./img/saaluvar.png"
 import PatientBooking from "./PatientBooking";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate()
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -18,6 +20,10 @@ const Header = () => {
     setIsModalOpen(false);
   };
 const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
+const handleLogout = ()=>{
+  localStorage.clear()
+  navigate('/')
+}
 
   return (
     <div className="d-flex flex-row align-items-center navbar h-auto p-0">
@@ -62,7 +68,7 @@ const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
             </div>
           </div>
 
-          <div
+          {/* <div
             className="drophead d-flex justify-content-end align-items-center px-0 "
             style={{ marginLeft: "-35px" }}
           >
@@ -70,6 +76,9 @@ const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
               className="pe-1 "
               style={{ width: "28px", height: "28px", color:"red" }}
             />
+          </div> */}
+          <div className="d-flex align-items-center logout-button-div">
+            <button className="logout-button" onClick={handleLogout}>LOGOUT</button>
           </div>
         </div>
       </div>
@@ -78,7 +87,6 @@ const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
         handleOk={handleOk}
         handleCancel={handleCancel}
         setIsModalOpen={setIsModalOpen}
-       
       />
     </div>
   );

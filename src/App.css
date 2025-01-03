@@ -859,7 +859,7 @@
 .table-header-col {
   background: #fc0000 !important;
   color: white !important;
-
+white-space: nowrap;
   text-align: center;
   vertical-align: middle;
   position: relative;
@@ -887,6 +887,7 @@
 
 .table-body-row {
   position: relative;
+  white-space: nowrap;
 }
 
 .table-body-row:nth-child(1) {

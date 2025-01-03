@@ -86,7 +86,7 @@ useEffect(() => {
         </div>
       </div>
 
-      <p className="intro-footer">©{new Date().getFullYear()}.prami.com</p>
+      <p className="intro-footer">©{new Date().getFullYear()}.saaluvar.com</p>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import LabRegistration from "./LabRegistration";
 import UserDataContext from "./Context/UserDataContext";
 
 const Lab = () => {
-  const {addLab, setAddLab}=useContext(UserDataContext)
+  const [addLab, setAddLab]=useState()
   const [searchInput,setSearchInput]=useState("")
   const handleAdd = () => {
     // showPhysiotherapistAdd("LAB", "");
