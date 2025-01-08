@@ -72,7 +72,7 @@ const AboutDoctorEdit = () => {
       const ends = [];
       const timeId = [];
 
-      docDays.forEach((dayObj) => {
+      docDays?.forEach((dayObj) => {
         console.log(dayObj);
         days.push(dayObj.day_name);
         starts.push(dayObj.start_time);
@@ -92,7 +92,7 @@ const AboutDoctorEdit = () => {
     setDocDob(specificDoc.doc_dob);
     setDocJoin(specificDoc.date_of_joining);
   }, [specificDoc]);
-
+console.log(selectedDays)
   useEffect(() => {
     const getDays = async () => {
       try {

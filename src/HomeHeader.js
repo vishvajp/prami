@@ -1,11 +1,12 @@
 import React from "react";
 import { GrSchedule } from "react-icons/gr";
 import { MdArrowDropDownCircle } from "react-icons/md";
-import { useState } from "react";
+import { useState,useContext } from "react";
 // import saaluvar from "./loginimages/Prami-Final-Logo.png";
 import saalu from "./img/saaluvar.png"
 import PatientBooking from "./PatientBooking";
 import { useNavigate } from "react-router-dom";
+import UserDataContext from "./Context/UserDataContext";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +20,8 @@ const Header = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami"
+  const { apiBaseUrl, baseUrl } = useContext(UserDataContext);
+
 const handleLogout = ()=>{
   localStorage.clear()
   navigate('/')

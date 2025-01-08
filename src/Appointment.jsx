@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import DatePicker from "react-datepicker";
+import { format } from 'date-fns'
 import axios from "axios";
 import { FaCalendarAlt } from "react-icons/fa";
 import "./Appointment.css";
 import { FaSearch } from "react-icons/fa";
 import { AppointmentTable } from "./AppointmentTable";
-import { format } from 'date-fns'
+
 import ParameterModal from "./ParameterModal";
 import Paymentmodal from "./Paymentmodal";
 import WalkInConsult from "./WalkInConsult";
@@ -15,6 +16,7 @@ const Appointment = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [basicisModalOpen, basicsetIsModalOpen] = useState(false);
   const [startDate, setStartDate] = useState();
+  const [toDate, setToDate] = useState();
   const [isModalOpenPayment, setIsModalOpenPayment] = useState(false);
   const [clinic, setClinic] = useState("");
   const [clinicData, setClinicData] = useState(null);
@@ -23,7 +25,7 @@ const Appointment = () => {
   const [searchpatient,setSearchPatient]=useState("")
   const [doctorData, setDoctorData] = useState(null);
   const [chooseDays, setChooseDays] = useState("Appointment List");
-  const [toDate, setToDate] = useState();
+
   const [clinicName, setClinicName] = useState("");
   const [singleDocName, setSingleDocName] = useState("");
   const user = "physiotherapy"

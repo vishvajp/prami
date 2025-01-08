@@ -184,7 +184,7 @@ const AdminDocDet = () => {
             </div>
             
             <div className="row doc-day-row">
-  {singleDoc.doctorTiming.map((docSpec) => {
+  {singleDoc.doctorTiming?.map((docSpec) => {
     const formatTime = (time) => {
       const [hour, minute, second] = time.split(":");
       const date = new Date();

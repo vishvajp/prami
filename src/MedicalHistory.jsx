@@ -11,6 +11,7 @@ import MedicalHistory3rdPage from "./MedicalHistory3rdPage";
 import MedicalHistory4thPage from "./MedicalHistory4thPage";
 import MedicalHistory5thPage from "./MedicalHistory5thPage";
 import MedicalHistoryRecords from "./MedicalHistoryRecords";
+import ParameterRecords from "./ParameterRecords";
 
 const MedicalHistory = () => {
   // const [isParameter, setIsParameter] = useState(false);
@@ -109,31 +110,17 @@ const MedicalHistory = () => {
           <input className="medicalhistory-visit-input" type="text" />
           <FaCirclePlus className="medicalhistory-2nddiv-plus" />
         </div>
-        <div className="d-flex align-items-center ms-5 medicalhistory-master-div">
-          <label className="medicalhistory-input-label me-2" for="Education">
-            Master Templates
+        <div className="d-flex align-items-center me-5 medicalhistory-visitreason-div">
+          <label className="medicalhistory-input-label ms-3 me-2">
+            Registerd patient
           </label>
-          <select name="Education" id="templates">
-            <option value="volvo">M.B.B.S, Md,</option>
-            <option value="saab"></option>
-            <option value="opel"></option>
-            <option value="audi"></option>
-          </select>
+          <input className="medicalhistory-visit-input" type="text" />
+         
         </div>
       </div>
       <div className="d-flex  justify-content-center medicalhistory-3rd-div mt-2 gap-2">
         <div className="medicalhistory-title-div d-flex gap-2">
-          <span
-            style={{
-              backgroundColor:
-                isMedicalHistory === "Medical History" ? "#b3b1b1  " : "white",
-              color: isMedicalHistory === "Medical History" ? "white" : "black",
-            }}
-            onClick={() => setMedicalHistory("Medical History")}
-          >
-            Medical History
-          </span>
-          <span
+        <span
             style={{
               backgroundColor:
                 isMedicalHistory === "Parameters" ? "#b3b1b1" : "white",
@@ -144,6 +131,32 @@ const MedicalHistory = () => {
             {" "}
             Parameters
           </span>
+          <span
+            style={{
+              backgroundColor:
+                isMedicalHistory === "Parameter Records"
+                  ? "#b3b1b1  "
+                  : "white",
+              color:
+                isMedicalHistory === "Parameter Records"
+                  ? "white"
+                  : "black",
+            }}
+            onClick={() => setMedicalHistory("Parameter Records")}
+          >
+           Parameter Records
+          </span>
+          <span
+            style={{
+              backgroundColor:
+                isMedicalHistory === "Medical History" ? "#b3b1b1  " : "white",
+              color: isMedicalHistory === "Medical History" ? "white" : "black",
+            }}
+            onClick={() => setMedicalHistory("Medical History")}
+          >
+            Medical History
+          </span>
+         
           <span
             style={{
               backgroundColor:
@@ -159,6 +172,7 @@ const MedicalHistory = () => {
           >
             Medical History Records
           </span>
+         
         </div>
       </div>
       <div className="medicalhistory-main-div">
@@ -340,6 +354,9 @@ const MedicalHistory = () => {
         )}
         {isMedicalHistory === "Medical History Records" && (
           <MedicalHistoryRecords />
+        )}
+         {isMedicalHistory === "Parameter Records" && (
+         <ParameterRecords></ParameterRecords>
         )}
       </div>
       {isMedicalHistory === "Medical History" && (

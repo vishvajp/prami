@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import UserDataContext from "./Context/UserDataContext";
 import { useAsyncError } from "react-router-dom";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 const PatientBooking = ({
   isModalOpen,
@@ -36,16 +36,9 @@ const PatientBooking = ({
   const [clinicName, setClinicName] = useState("");
   const [clinic, setClinic] = useState("");
   const [clinicData, setClinicData] = useState(null);
-  const { apiBaseUrl,setRefreshAppointments } = useContext(UserDataContext);
+  const { apiBaseUrl, setRefreshAppointments } = useContext(UserDataContext);
+  const [loading, setLoading] = useState(false);
   const user = "physiotherapy";
-
-  // const date = new Date(selectedSlot);
-  // const customFormattedTime = date.toLocaleTimeString("en-US", {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  //   second: "2-digit",
-  //   hour12: true, // '7:00:00 PM'
-  // });
 
   const selectedDate = new Date(startDate);
 
@@ -63,8 +56,10 @@ const PatientBooking = ({
   // console.log(selectedSlot);
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
-    const formattedDate = value ? format(new Date(value), "dd/MM/yyyy") : "DD/MM/YYYY";
-    
+    const formattedDate = value
+      ? format(new Date(value), "dd/MM/yyyy")
+      : "DD/MM/YYYY";
+
     return (
       <button
         ref={ref}
@@ -116,31 +111,9 @@ const PatientBooking = ({
     }
   }, [clinic]);
 
-  // useEffect(() => {
-  //   const specDoc = selectedDoctor ? selectedDoctor : singleDocName;
-  //   if (specDoc && formattedDate) {
-  //     const formattedDateWithoutSpaces = formattedDate.replace(/ /g, "-");
-
-  //     const getSlot = async () => {
-  //       try {
-  //         const response = await axios.post(
-  //           `${apiBaseUrl}get_timeslot_list/${specDoc}/${formattedDateWithoutSpaces}`
-  //         );
-  //         if (response.data) {
-  //           setAvailableSlots(response.data.data);
-  //           console.log(response.data.data);
-  //         }
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     };
-  //     getSlot();
-  //   }
-  // }, [formattedDate, startDate]);
-
   useEffect(() => {
     const specDoc = selectedDoctor ? selectedDoctor : singleDocName;
-    if (specDoc && startDate ) {
+    if (specDoc && startDate) {
       const formattedDateWithoutSpaces = formattedDate.replace(/ /g, "-");
       const getSlot = async () => {
         try {
@@ -152,7 +125,7 @@ const PatientBooking = ({
             console.log(response.data.data);
           }
         } catch (err) {
-          setAvailableSlots([])
+          setAvailableSlots([]);
           console.log(err);
         }
       };
@@ -170,7 +143,7 @@ const PatientBooking = ({
   };
 
   const handleDoctorChange = (event) => {
-    setTreatmentType("")
+    setTreatmentType("");
     setStartDate(null);
     setAvailableSlots([]);
     setPhysioAsset("");
@@ -182,7 +155,6 @@ const PatientBooking = ({
     setSelectedDoctor(getDocId?.doctor_id);
   };
 
-  
   const handleEventDateChange = (date) => {
     setEventDate(date);
   };
@@ -196,7 +168,10 @@ const PatientBooking = ({
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
- 
+    if (loading) return; // Prevent additional clicks if loading is true
+
+    setLoading(true);
+
     const formData = {
       patientName,
       patientMobile,
@@ -213,37 +188,37 @@ const PatientBooking = ({
 
     console.log(formData);
 
-  try {
-    const response = await axios.post(
-      `${apiBaseUrl}bookappointment`,
-      formData
-    );
-    if (response.data) {
-      window.alert("Appointment booked successfully:", response.data);
-      setRefreshAppointments((prev) => !prev);
-      setPatientName("");
-      setPatientMobile("");
-      setClinic("");
-      setClinicName("");
-      setSingleDocName("");
-      setSelectedDoctor("");
-      setAppointmentType("");
-      setStartDate(null);
-      setTreatmentType("");
-      setReferralSource("");
-      setVisitReason("");
-      setSelectedSlot(null);
-      setPhysioAsset("");
-      setAvailableSlots([])
-      handleCancel();
-    }
-  } catch (error) {
-    alert(error.response.data.message)
-   
-    // console.error("Error booking appointment:", error)
-  }
+    try {
+      const response = await axios.post(
+        `${apiBaseUrl}bookappointment`,
+        formData
+      );
+      if (response.data) {
+        window.alert("Appointment booked successfully:", response.data);
+        setRefreshAppointments((prev) => !prev);
+        setPatientName("");
+        setPatientMobile("");
+        setClinic("");
+        setClinicName("");
+        setSingleDocName("");
+        setSelectedDoctor("");
+        setAppointmentType("");
+        setStartDate(null);
+        setTreatmentType("");
+        setReferralSource("");
+        setVisitReason("");
+        setSelectedSlot(null);
+        setPhysioAsset("");
+        setAvailableSlots([]);
+        handleCancel();
+      }
+    } catch (error) {
+      alert(error.response.data.message);
 
-   
+      // console.error("Error booking appointment:", error)
+    } finally {
+      setLoading(false); // Reset loading state
+    }
   };
 
   console.log(selectedSlot);
@@ -263,7 +238,7 @@ const PatientBooking = ({
     setVisitReason("");
     setSelectedSlot(null);
     setPhysioAsset("");
-    setAvailableSlots([])
+    setAvailableSlots([]);
     handleCancel(); // Call the function
   };
 
@@ -289,20 +264,15 @@ const PatientBooking = ({
               >
                 <MdCancel className="patientbooking-1st-div-cancel" />
               </span>
-              {/* <p className="text-center mb-0 patientbooking-searchpatient-text">
-                Search Patient
-              </p>
-              <p className="text-center mb-0 patientbooking-dot-text">
-                ....................
-              </p> */}
+
               <p className="text-center mb-0 patientbooking-datetime-appointment">
                 Selected Date & Slot
               </p>
               <p className="text-center mb-0 patientbooking-date-text">
-              {formattedDate ? formattedDate : "-----"}
+                {formattedDate ? formattedDate : "-----"}
               </p>
               <p className="text-center mb-0 patientbookin-time-text">
-             {selectedSlot ? selectedSlot : "-----"}
+                {selectedSlot ? selectedSlot : "-----"}
               </p>
               <p className="text-center mb-0 patientbooking-dot-text">
                 ....................
@@ -331,12 +301,8 @@ const PatientBooking = ({
                 </p>
               </div>
               <form onSubmit={handleFormSubmit}>
-                <div className="row">
-                  <div
-                    className="col"
-                    style={{ padding: "10px 10px 5px 10px" }}
-                  >
-                   
+                <div className="row mt-3">
+                  <div className="col">
                     <div className="d-flex flex-column">
                       <label className="patientbooking-input-label">
                         Select Clinic
@@ -345,8 +311,7 @@ const PatientBooking = ({
                         required
                         value={clinicName}
                         onChange={handleCliniChange}
-                        name="man"
-                        id="appointment"
+                        className="patientbooking-patient-input"
                       >
                         <option value="">Select Clinic</option>
                         {clinicData ? (
@@ -361,36 +326,39 @@ const PatientBooking = ({
                       </select>
                     </div>
                   </div>
-                  <div
-                    className="col"
-                    style={{ padding: "10px 25px 5px 10px" }}
-                  >
+                  <div className="col">
                     <div className="d-flex flex-column">
                       <label className="patientbooking-input-label">
                         Name Of The Patient
                       </label>
                       <input
-                        className="patientbooking-2col-patient-input"
+                        className="patientbooking-patient-input"
                         type="text"
                         value={patientName}
-                        onChange={(e) => setPatientName(e.target.value)}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          // Remove numeric characters using a regular expression
+                          if (!/\d/.test(value)) {
+                            setPatientName(value);
+                          }
+                        }}
                         placeholder="Enter Name"
                         required
-                      ></input>
+                      />
                     </div>
                   </div>
                 </div>
 
-                <div className="d-flex flex-column me-3">
-                  <div className="d-flex mt-2 row">
-                    <div className="d-flex flex-column col">
+                <div className=" row mt-3">
+                  <div className="col">
+                    <div className="d-flex flex-column">
                       <label className="patientbooking-input-label ms-3">
                         Choose Doctor
                       </label>
                       <select
                         name="doctor"
                         value={singleDocName}
-                        id="doctor"
+                        className="patientbooking-patient-input"
                         onChange={handleDoctorChange}
                         required
                       >
@@ -407,32 +375,29 @@ const PatientBooking = ({
                         {clinicName && <option>{user}</option>}
                       </select>
                     </div>
-
-                    <div
-                      className="col"
-                      style={{ padding: "0px 10px 5px 10px" }}
-                    >
-                      <div className="d-flex flex-column">
-                        <label className="patientbooking-input-label">
-                          Mobile Number
-                        </label>
-                        <input
-                          className="patientbooking-2col-patient-input"
-                          type="tel"
-                          value={patientMobile}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/[^0-9]/g, "");
-                            setPatientMobile(value);
-                          }}
-                          maxLength={10}
-                          placeholder="Enter Mobile Number"
-                          required
-                        ></input>
-                      </div>
+                  </div>
+                  <div className="col">
+                    <div className="d-flex flex-column">
+                      <label className="patientbooking-input-label">
+                        Mobile Number
+                      </label>
+                      <input
+                        className="patientbooking-patient-input"
+                        type="tel"
+                        value={patientMobile}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/[^0-9]/g, "");
+                          setPatientMobile(value);
+                        }}
+                        maxLength={10}
+                        placeholder="Enter Mobile Number"
+                        required
+                      ></input>
                     </div>
                   </div>
                 </div>
-                <div className="d-flex mt-2 row">
+
+                <div className="d-flex mt-3 row">
                   <div className="d-flex flex-column col">
                     <label className="patientbooking-input-label ms-3">
                       Appointment Type
@@ -466,168 +431,174 @@ const PatientBooking = ({
                     {/* Show error if date is not selected */}
                   </div>
                 </div>
-                <div className="mt-2">
-                  <div className="d-flex flex-column me-3">
-                    <div className="d-flex row">
-                      <div className="d-flex flex-column mt-2 col">
-                        <label className="patientbooking-input-label ms-3">
-                          Treatment Type
-                        </label>
-                        <select
-                          value={treatmentType}
-                          required
-                          name="man"
-                          id="appointment"
-                          onChange={handleTreatmentType}
-                        >
-                          <option value="">Select Treatment</option>{" "}
-                          {/* Set value as empty */}
-                          {singleDocName !== "physiotherapy" && <option>Consultation</option>}
-                          
-                          {singleDocName === "physiotherapy" && (
-                            <>
-                              <option>Clinic Physio Asset</option>
-                              <option>Home Care Asset</option>
-                            </>
-                          )}
-                        </select>
-                      </div>
-                    <div className="col">
-                    {treatmentType === "Clinic Physio Asset" && singleDocName=== "physiotherapy" && (
-                      <div className="d-flex flex-column mt-2 ">
-                        <label className="patientbooking-input-label ms-3">
-                          Clinic Physio Asset
-                        </label>
-                        <select
-                          id="appointment"
-                          value={physioAsset}
-                          onChange={(e) => setPhysioAsset(e.target.value)}
-                          required
-                        >
-                          <option value=""></option>
-                          <option value="Super Inductive System">
-                            Super Inductive System
-                          </option>
-                          <option value="Tecar Therapy">Tecar Therapy</option>
-                          <option value="Shockwave Therapy">
-                            Shockwave Therapy
-                          </option>
-                          <option value="Dry Needling Therapy">
-                            Dry Needling Therapy
-                          </option>
-                          <option value="Tapping Therapy">
-                            Tapping Therapy
-                          </option>
-                          <option value="Laser Therapy">Laser Therapy</option>
-                          <option value="Pens Therapy">Pens Therapy</option>
-                          <option value="UST,IFT,TENS,MST,RST,TRACTION">
-                            UST,IFT,TENS,MST,RST,TRACTION
-                          </option>
-                          <option value="Cryotherapy">Cryotherapy</option>
-                        </select>
-                      </div>
-                    )}
-                    {treatmentType === "Home Care Asset" && singleDocName=== "physiotherapy" && (
-                     
-                      <div className="d-flex flex-column mt-2 col">
-                        <label className="patientbooking-input-label ms-3">
-                          Home Care Physio Asset
-                        </label>
-                        <select
-                          id="appointment"
-                          value={physioAsset}
-                          onChange={(e) => setPhysioAsset(e.target.value)}
-                          required
-                        >
-                          <option value=""></option>
-                          <option value="Super Inductive System">
-                            Super Inductive System
-                          </option>
-                          <option value="Tecar Therapy">Tecar Therapy</option>
-                          <option value="Shockwave Therapy">
-                            Shockwave Therapy
-                          </option>
-                          <option value="Dry Needling Therapy">
-                            Dry Needling Therapy
-                          </option>
-                          <option value="Tapping Therapy">
-                            Tapping Therapy
-                          </option>
-                          <option value="Laser Therapy">Laser Therapy</option>
-                          <option value="Pens Therapy">Pens Therapy</option>
-                          <option value="UST,IFT,TENS,MST,RST,TRACTION">
-                            UST,IFT,TENS,MST,RST,TRACTION
-                          </option>
-                          <option value="Cryotherapy">Cryotherapy</option>
-                        </select>
-                      </div>
-                     
-                   
-                    )}
-                    </div>
-                    </div>
-            
-                      <div className="d-flex flex-column mt-3">
-                        {availableSlots.length > 0 ? (
-                          <>
-                            {/* First Row (4 slots) */}
-                            <div className="d-flex flex-wrap mb-1">
-                              {availableSlots.map((slot, index) => (
-                                <div
-                                  key={index}
-                                  className={`patientBooking-time-slot ms-1 mb-1 ${
-                                    selectedSlot === slot ? "selected-slot" : ""
-                                  }`}
-                                  onClick={() => setSelectedSlot(slot)} // Update the selected slot state
-                                >
-                                  {slot}
-                                </div>
-                              ))}
-                            </div>
-                          </>
-                        ) : (
-                          <div className="mt-4">
-                            <span className="patientBooking-time-slot">
-                              No Slots available
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    <div className="d-flex flex-column mt-2 ">
-                      <label className="patientbooking-input-label ms-3">
-                        Referral Source
-                      </label>
-                      <input
-                        className="patientbooking-2col-patient-input"
-                        type="text"
-                        value={referralSource}
-                        onChange={(e) => {
-                          setReferralSource(e.target.value);
-                        }}
-                        placeholder="Enter Referral Source"
-                      ></input>
-                    </div>
 
-                    <div
-                      className="d-flex align-items-center"
-                      style={{ padding: " 2px 0px 2px 10px" }}
-                    >
-                      <label className="patientbooking-input-label mt-2">
-                        Visit Reason
+                <div className=" row mt-3">
+                  <div className="d-flex flex-column col">
+                    <div className="d-flex flex-column">
+                      <label className="patientbooking-input-label ms-3">
+                        Treatment Type
                       </label>
-                    </div>
-                    <div>
-                      <input
-                        className="patientbooking-2col-patient-input"
-                        type="text"
-                        value={visitReason}
-                        onChange={(e) => {
-                          setVisitReason(e.target.value);
-                        }}
-                        placeholder="Enter Visit Reason"
-                      />
+                      <select
+                        value={treatmentType}
+                        required
+                        name="man"
+                        id="appointment"
+                        onChange={handleTreatmentType}
+                      >
+                        <option value="">Select Treatment</option>{" "}
+                        {/* Set value as empty */}
+                        {singleDocName !== "physiotherapy" && (
+                          <option>Consultation</option>
+                        )}
+                        {singleDocName === "physiotherapy" && (
+                          <>
+                            <option>Clinic Physio Asset</option>
+                            <option>Home Care Asset</option>
+                          </>
+                        )}
+                      </select>
                     </div>
                   </div>
+                  <div className="col">
+                    {treatmentType === "Clinic Physio Asset" &&
+                      singleDocName === "physiotherapy" && (
+                        <div className="d-flex flex-column  ">
+                          <label className="patientbooking-input-label ms-3">
+                            Clinic Physio Asset
+                          </label>
+                          <select
+                            id="appointment"
+                            value={physioAsset}
+                            onChange={(e) => setPhysioAsset(e.target.value)}
+                            required
+                          >
+                            <option value=""></option>
+                            <option value="Super Inductive System">
+                              Super Inductive System
+                            </option>
+                            <option value="Tecar Therapy">Tecar Therapy</option>
+                            <option value="Shockwave Therapy">
+                              Shockwave Therapy
+                            </option>
+                            <option value="Dry Needling Therapy">
+                              Dry Needling Therapy
+                            </option>
+                            <option value="Tapping Therapy">
+                              Tapping Therapy
+                            </option>
+                            <option value="Laser Therapy">Laser Therapy</option>
+                            <option value="Pens Therapy">Pens Therapy</option>
+                            <option value="UST,IFT,TENS,MST,RST,TRACTION">
+                              UST,IFT,TENS,MST,RST,TRACTION
+                            </option>
+                            <option value="Cryotherapy">Cryotherapy</option>
+                          </select>
+                        </div>
+                      )}
+                    {treatmentType === "Home Care Asset" &&
+                      singleDocName === "physiotherapy" && (
+                        <div className="d-flex flex-column col">
+                          <label className="patientbooking-input-label ms-3">
+                            Home Care Physio Asset
+                          </label>
+                          <select
+                            id="appointment"
+                            value={physioAsset}
+                            onChange={(e) => setPhysioAsset(e.target.value)}
+                            required
+                          >
+                            <option value=""></option>
+                            <option value="Super Inductive System">
+                              Super Inductive System
+                            </option>
+                            <option value="Tecar Therapy">Tecar Therapy</option>
+                            <option value="Shockwave Therapy">
+                              Shockwave Therapy
+                            </option>
+                            <option value="Dry Needling Therapy">
+                              Dry Needling Therapy
+                            </option>
+                            <option value="Tapping Therapy">
+                              Tapping Therapy
+                            </option>
+                            <option value="Laser Therapy">Laser Therapy</option>
+                            <option value="Pens Therapy">Pens Therapy</option>
+                            <option value="UST,IFT,TENS,MST,RST,TRACTION">
+                              UST,IFT,TENS,MST,RST,TRACTION
+                            </option>
+                            <option value="Cryotherapy">Cryotherapy</option>
+                          </select>
+                        </div>
+                      )}
+                  </div>
+                </div>
+
+                {availableSlots.length > 0 ? (
+                  <>
+                    {/* First Row (4 slots) */}
+                    <div className="row mt-3">
+                      {availableSlots.map((slot, index) => (
+                        <div className="col-2" key={index}>
+                          <div
+                            key={index}
+                            className={`patientBooking-time-slot ms-1 mb-1 ${
+                              selectedSlot === slot ? "selected-slot" : ""
+                            }`}
+                            onClick={() => setSelectedSlot(slot)} // Update the selected slot state
+                          >
+                            {slot}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-3">
+                    <span className="patientBooking-time-slot">
+                      No Slots available
+                    </span>
+                  </div>
+                )}
+
+                <div className="d-flex flex-column mt-2 ">
+                  <label className="patientbooking-input-label ms-3">
+                    Referral Source
+                  </label>
+                  <input
+                    className="patientbooking-patient-input"
+                    type="text"
+                    value={referralSource}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (!/\d/.test(value)) {
+                        setReferralSource(value);
+                      }
+                    }}
+                    placeholder="Enter Referral Source"
+                  ></input>
+                </div>
+
+                <div
+                  className="d-flex align-items-center"
+                  style={{ padding: " 2px 0px 2px 10px" }}
+                >
+                  <label className="patientbooking-input-label mt-2">
+                    Visit Reason
+                  </label>
+                </div>
+                <div>
+                  <input
+                    className="patientbooking-patient-input"
+                    type="text"
+                    value={visitReason}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (!/\d/.test(value)) {
+                        setVisitReason(value);
+                      }
+                    }}
+                    placeholder="Enter Visit Reason"
+                  />
                 </div>
 
                 {/* <div className="d-flex mt-3 gap-2">
@@ -661,9 +632,9 @@ const PatientBooking = ({
                   <button
                     className="patientbooking-bookappointment-button"
                     type="submit"
+                    disabled={loading}
                   >
-                    {" "}
-                    BOOK APPOINTMENT
+                    {loading ? "BOOKING..." : "BOOK APPOINTMENT"}
                   </button>
                 </div>
               </form>

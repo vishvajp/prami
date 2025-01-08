@@ -4,6 +4,10 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import "./PharmacyTable.css";
 import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import { BiEdit } from "react-icons/bi";
+
+
 export function PharmacyTable({searchInput}) {
   const tableHeader = [
     {
@@ -124,9 +128,13 @@ export function PharmacyTable({searchInput}) {
     console.log(checked);
   };
 
-  const handleNavToSpecPat = (user) => {
-   navigate("/home/pharmacy/moredet",{state:{user:user}})
-  }
+  // const handleNavToSpecPat = (user) => {
+  //  navigate("/home/pharmacy/moredet",{state:{user:user}})
+  // }
+
+  const handleNavToLabEdit = (singlePharmacy) => {
+    navigate("/home/pharmacy/edit", { state: {singlePharmacy} })
+    }
 
   const filteredItem = tableContent.filter((tab) => {
     const searchTerm = tab.contact_no && tab.contact_no.includes(searchInput);
@@ -158,11 +166,13 @@ export function PharmacyTable({searchInput}) {
           </p>
         </div>
         <div className="refresh-icons-container justify-content-center">
-       <div>
-          <button onClick={()=>handleNavToSpecPat(user)} className="registerpatient-table-update-button">
-            More Details
-          </button>
-        </div>    
+        <div>
+          <FaTrash className="clinicstable-trash-icon" />{" "}
+          <BiEdit
+            onClick={() => handleNavToLabEdit(user)}
+            className="clinicstable-Edit-icon"
+          />
+        </div>
       </div>
       </div>
     );
@@ -179,9 +189,8 @@ export function PharmacyTable({searchInput}) {
               key !== "state" &&
               key !== "country" &&
               key !== "pincode" &&
-              key !== "landmark" &&
-              key !== "role" &&
-              key !== "group"
+              key !== "landmark" 
+             
              
             
              ? (
@@ -210,9 +219,8 @@ export function PharmacyTable({searchInput}) {
                 rowData === "state" ||
                 rowData === "country" ||
                 rowData === "pincode" ||
-                rowData === "landmark" ||
-                rowData === "role" ||
-                rowData === "group"
+                rowData === "landmark" 
+            
            
               
                

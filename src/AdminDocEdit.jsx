@@ -73,7 +73,7 @@ const AdminDocEdit = () => {
       const ends = [];
       const timeId = [];
 
-      docDays.forEach((dayObj) => {
+      docDays?.forEach((dayObj) => {
         console.log(dayObj);
         days.push(dayObj.day_name);
         starts.push(dayObj.start_time);

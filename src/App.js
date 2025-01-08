@@ -110,7 +110,7 @@ function App() {
   //   };
   // }, []);
 
-  const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami";
+    const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami";
 
   const apiBaseUrl =
     "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";

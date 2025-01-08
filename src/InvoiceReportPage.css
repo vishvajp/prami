@@ -18,3 +18,69 @@ font-weight: 500;
     border: none;
     box-shadow: 0px 1px 5px gray;
 }
+
+
+.invoice-reg-total{
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px gainsboro;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.invoice-reg-value{
+    color: red;
+    font-size: larger;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.invoice-reg-input{
+    border: none;
+    height: 30px;
+    border-radius: 7px;
+    box-shadow: 0px 2px 2px gray;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+}
+
+
+.invoice-exp-date{
+    border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 0px 2px rgb(79, 79, 79);
+    background-color: white;
+    width: 150px;
+    display: flex
+;
+    align-items: center;
+    justify-content: space-between
+}
+
+
+.pharma-invoice-from-to-date{
+    border-radius: 5px;
+    margin-right: 6px;
+    border: none;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 0px 1px 5px rgb(147, 147, 147);
+    background-color: white;
+    display: flex;
+    width: 160px;
+    align-items: center;
+    justify-content: space-between;     
+}
+
+.pharma-invoice-total{
+    background-color: red;
+    padding: 5px 15px;
+    border-radius: 5px;
+   
+    font-weight: 500;
+
+}
