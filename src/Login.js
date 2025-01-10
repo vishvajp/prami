@@ -4,7 +4,7 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import saalu from "./img/saaluvar.png"
 
-const Login = ({introData,baseUrl,onLogin}) => {
+const Login = ({introData,onLogin}) => {
   const [passwordView, setPasswrodView] = useState(true);
   const [userName, setuserName] = useState(null);
   const [password, setpassword] = useState(null);

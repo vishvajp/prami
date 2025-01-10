@@ -1,13 +1,14 @@
-import React ,{useState,useEffect}from "react";
+import React ,{useState,useEffect,useContext}from "react";
 import "./IntroPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import saalu from "./img/saaluvar.png"
-
-const IntroPage = ({getDetailFromIntro,baseUrl}) => {
+import UserDataContext from "./Context/UserDataContext";
+const IntroPage = ({getDetailFromIntro}) => {
 
   const [selectUser, setSelectUser]=useState("")
   const navToLogin = useNavigate()
 const location = useLocation();
+const { apiBaseUrl,setRefreshAppointments,baseUrl } = useContext(UserDataContext);
 
 
   useEffect(() => {

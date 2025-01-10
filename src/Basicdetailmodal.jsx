@@ -8,8 +8,10 @@ import { FaDroplet } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 // import React from 'react';
 import { Collapse, Input } from "antd";
+import { GiConsoleController } from "react-icons/gi";
 
 const Basicdetailmodal = ({
   basicisModalOpen,
@@ -18,11 +20,79 @@ const Basicdetailmodal = ({
 }) => {
   const [startDate, setStartDate] = useState();
   const [insureDate, setInsureDate] = useState();
-  const CustomInput = ({ value, onClick }) => (
-    <button className="dashboard-date-input" onClick={onClick}>
-      {value || "DD/MM/YYYY"} <FaCalendarAlt className="homepage-date-icon" />
-    </button>
-  );
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [address3, setAddress3] = useState("");
+  const [address4, setAddress4] = useState("");
+  const [address5, setAddress5] = useState("");
+  const [address6, setAddress6] = useState("");
+  const [formData, setFormData] = useState({
+    date: "",
+    time: "",
+    doc_name: "",
+    doc_contact: "",
+    patient_name: "",
+    marital_status: "",
+    dob: "",
+    age: "",
+    gender: "",
+    blood_group: "",
+    contact_num: "",
+    email_id: "",
+    aadhar: "",
+    pan: "",
+    passport_no: "",
+    visa_status: "",
+    relationship: "",
+    relation_contact: "",
+    insure_company: "",
+    insure_id: "",
+    placeholder_name: "",
+    insure_dob: "",
+    address: `${address1} ${address2} ${address3} ${address4} ${address5} ${address6}`,
+    taking_medication: "",
+  });
+
+  console.log(formData);
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
+    const formattedDate = value
+      ? format(new Date(value), "dd/MM/yyyy")
+      : "DD/MM/YYYY";
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className="patientBooking-date-input"
+        onClick={onClick}
+      >
+        {formattedDate} <FaCalendarAlt className="homepage-date-icon" />
+      </button>
+    );
+  });
+
+  const handleAddDateChange = (specDate, date) => {
+    const selectedDate = new Date(date);
+
+    const formatDate = selectedDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+    // Generate slots for the selected date
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [specDate]: formatDate,
+    }));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
   const { Panel } = Collapse;
   return (
     <div>
@@ -52,9 +122,7 @@ const Basicdetailmodal = ({
         <div className="row">
           <div className="col basicdetail-1st-col">
             <div className="mb-2">
-              <span className="basic-modal-titel">
-               Admission Date and Time
-              </span>
+              <span className="basic-modal-titel">Admission Date and Time</span>
             </div>
             <div className="row mb-2">
               <div className="col-1 basic-modal-col1">
@@ -66,9 +134,13 @@ const Basicdetailmodal = ({
               >
                 <label className="docdetail-input-label">DATE*</label>
                 <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  selected={formData.date}
+                  onChange={(date) => handleAddDateChange("date", date)}
                   customInput={<CustomInput />}
+                  showYearDropdown
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={80}
+                  scrollableMonthYearDropdown
                 />
               </div>
               <div
@@ -79,7 +151,13 @@ const Basicdetailmodal = ({
                   <lablel className="docdetail-input-label">TIME</lablel>
                 </div>
 
-                <input className="basicdetail-time-input" type="time"></input>
+                <input
+                  className="basicdetail-time-input"
+                  type="time"
+                  value={formData.time}
+                  onChange={handleInputChange}
+                  name="time"
+                ></input>
               </div>
             </div>
             <div className="row">
@@ -99,7 +177,12 @@ const Basicdetailmodal = ({
                       className="me-2"
                       style={{ width: "20px", height: "20px" }}
                     />
-                    <select name="man" id="gender">
+                    <select
+                      id="gender"
+                      value={formData.doc_name}
+                      name="doc_name"
+                      onChange={handleInputChange}
+                    >
                       <option value="volvo"></option>
                       <option value="saab">MR</option>
                       <option value="opel">MRS</option>
@@ -119,6 +202,9 @@ const Basicdetailmodal = ({
                     <input
                       className="basicdetail-double-inputfield"
                       type="text"
+                      value={formData.doc_contact}
+                      name="doc_contact"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -141,6 +227,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.patient_name}
+                    name="patient_name"
+                    onChange={handleInputChange}
                   />
 
                   <span className="ms-2">
@@ -153,7 +242,12 @@ const Basicdetailmodal = ({
                   <label className="docdetail-input-label">
                     MARITAL STATUS*
                   </label>
-                  <select name="man" id="gender">
+                  <select
+                    id="gender"
+                    value={formData.marital_status}
+                    name="marital_status"
+                    onChange={handleInputChange}
+                  >
                     <option value="volvo"></option>
                     <option value="saab">MR</option>
                     <option value="opel">MRS</option>
@@ -179,9 +273,14 @@ const Basicdetailmodal = ({
                     style={{ width: "20px", height: "20px" }}
                   />
 
-                  <input
-                    className="basicdetail-double-inputfield"
-                    type="date"
+                  <DatePicker
+                    selected={formData.date}
+                    onChange={(date) => handleAddDateChange("dob", date)}
+                    customInput={<CustomInput />}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={80}
+                    scrollableMonthYearDropdown
                   />
                   <span className="ms-2">(or)</span>
                 </div>
@@ -189,21 +288,14 @@ const Basicdetailmodal = ({
               <div>
                 <div className="d-flex flex-column  mt-1">
                   <label className="docdetail-input-label">AGE*</label>
-                  <select name="man" id="age">
-                    <option value="volvo"> 0 Years</option>
-                    <option value="saab">MR</option>
-                    <option value="opel">MRS</option>
-                    <option value="audi">""</option>
-                  </select>
+                  <input
+                    className="basicdetail-double-inputfield"
+                    type="text"
+                    value={formData.age}
+                    name="age"
+                    onChange={handleInputChange}
+                  />
                 </div>
-              </div>
-              <div className="d-flex align-items-end">
-                <select name="man" id="age">
-                  <option value="volvo">0 Months</option>
-                  <option value="saab">MR</option>
-                  <option value="opel">MRS</option>
-                  <option value="audi">""</option>
-                </select>
               </div>
             </div>
             <div className="d-flex flex-row">
@@ -220,7 +312,12 @@ const Basicdetailmodal = ({
                     className="me-2"
                     style={{ width: "20px", height: "20px" }}
                   />
-                  <select name="man" id="gender">
+                  <select
+                    id="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    name="gender"
+                  >
                     <option value="volvo"></option>
                     <option value="saab">MR</option>
                     <option value="opel">MRS</option>
@@ -235,7 +332,12 @@ const Basicdetailmodal = ({
               <div>
                 <div className="d-flex flex-column  mt-1">
                   <label className="docdetail-input-label">BLOOD GROUP</label>
-                  <select name="man" id="gender">
+                  <select
+                    id="gender"
+                    value={formData.blood_group}
+                    name="blood_group"
+                    onChange={handleInputChange}
+                  >
                     <option value="volvo"></option>
                     <option value="saab">O+</option>
                     <option value="opel">O-</option>
@@ -272,6 +374,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.contact_num}
+                    name="contact_num"
+                    onChange={handleInputChange}
                   />
 
                   <span className="ms-2">
@@ -285,6 +390,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.email_id}
+                    name="email_id"
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -309,6 +417,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.aadhar}
+                    name="aadhar"
+                    onChange={handleInputChange}
                   />
 
                   <span className="ms-2">
@@ -322,6 +433,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.pan}
+                    name="pan"
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -346,6 +460,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.passport_no}
+                    name="passport_no"
+                    onChange={handleInputChange}
                   />
 
                   <span className="ms-2">
@@ -356,12 +473,16 @@ const Basicdetailmodal = ({
               <div>
                 <div className="d-flex flex-column  mt-1 ">
                   <label className="docdetail-input-label">VISA STATUS</label>
-                  <select name="man" id="gender">
-                  <option></option>
-                  <option>Live</option>
-                      <option>Expired</option>
-                      </select>
-                     
+                  <select
+                    id="gender"
+                    value={formData.visa_status}
+                    name="visa_status"
+                    onChange={handleInputChange}
+                  >
+                    <option></option>
+                    <option>Live</option>
+                    <option>Expired</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -386,6 +507,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.relationship}
+                    name="relationship"
+                    onChange={handleInputChange}
                   />
 
                   <span className="ms-2">
@@ -401,6 +525,9 @@ const Basicdetailmodal = ({
                   <input
                     className="basicdetail-double-inputfield"
                     type="text"
+                    value={formData.relation_contact}
+                    name="relation_contact"
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -428,11 +555,16 @@ const Basicdetailmodal = ({
                       className="me-2"
                       style={{ width: "20px", height: "20px" }}
                     />
-                    <select name="man" id="gender">
-                      <option value="volvo"></option>
-                      <option value="saab">Ackwo</option>
-                      <option value="opel">Check</option>
-                      <option value="audi">""</option>
+                    <select
+                      id="gender"
+                      value={formData.insure_company}
+                      name="insure_company"
+                      onChange={handleInputChange}
+                    >
+                      <option></option>
+                      <option>Ackwo</option>
+                      <option>Check</option>
+                      <option>""</option>
                     </select>
                     <span className="ms-2">
                       <FaDroplet />
@@ -447,6 +579,9 @@ const Basicdetailmodal = ({
                     <input
                       className="basicdetail-double-inputfield"
                       type="text"
+                      value={formData.insure_id}
+                      name="insure_id"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -470,6 +605,9 @@ const Basicdetailmodal = ({
                     <input
                       className="basicdetail-double-inputfield"
                       type="text"
+                      value={formData.placeholder_name}
+                      name="placeholder_name"
+                      onChange={handleInputChange}
                     />
 
                     <span className="ms-2">
@@ -483,10 +621,14 @@ const Basicdetailmodal = ({
                       DATE OF BIRTH
                     </label>
                     <DatePicker
-                      selected={insureDate}
-                      onChange={(date) => setInsureDate(date)}
-                      customInput={<CustomInput />}
-                    />
+                    selected={formData.date}
+                    onChange={(date) => handleAddDateChange("insure_dob", date)}
+                    customInput={<CustomInput />}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={80}
+                    scrollableMonthYearDropdown
+                  />
                   </div>
                 </div>
               </div>
@@ -509,31 +651,51 @@ const Basicdetailmodal = ({
                           type="text"
                           placeholder="Address 1"
                           className="basicdetail-collape-input"
+                          name="address1"
+                          value={address1}
+                          onChange={(e)=>setAddress1(e.target.value)}
+
                         ></input>
                         <input
                           type="text"
-                           placeholder="Address 2"
+                          placeholder="Address 2"
                           className="basicdetail-collape-input"
+                          name="address2"
+                          value={address2}
+                          onChange={(e)=>setAddress2(e.target.value)}
                         ></input>
                       </div>
                       <div className="d-flex ">
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput me-3"
+                          name="address3"
+                          value={address3}
+                          onChange={(e)=>setAddress3(e.target.value)}
+
                         ></input>
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput"
+                          name="address4"
+                          value={address4}
+                          onChange={(e)=>setAddress4(e.target.value)}
                         ></input>
                       </div>
                       <div className="d-flex ">
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput me-3"
+                          name="address5"
+                          value={address5}
+                          onChange={(e)=>setAddress5(e.target.value)}
                         ></input>
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput"
+                          name="address6"
+                          value={address6}
+                          onChange={(e)=>setAddress6(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -634,9 +796,7 @@ const Basicdetailmodal = ({
                 >
                   CANCEL
                 </button>
-                <button className=" basicdetail-register-button">
-                SUBMIT
-                </button>
+                <button className=" basicdetail-register-button">SUBMIT</button>
               </div>
             </div>
           </div>

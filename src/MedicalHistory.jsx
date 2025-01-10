@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaNotesMedical } from "react-icons/fa";
 import { MdOutlineNoteAlt } from "react-icons/md";
 import { Dropdown } from "react-bootstrap";
@@ -12,13 +12,17 @@ import MedicalHistory4thPage from "./MedicalHistory4thPage";
 import MedicalHistory5thPage from "./MedicalHistory5thPage";
 import MedicalHistoryRecords from "./MedicalHistoryRecords";
 import ParameterRecords from "./ParameterRecords";
+import UserDataContext from "./Context/UserDataContext";
 
 const MedicalHistory = () => {
   // const [isParameter, setIsParameter] = useState(false);
-  const [isMedicalHistory, setMedicalHistory] = useState("Medical History");
+  const [isMedicalHistory, setMedicalHistory] = useState("Parameters");
   const [selectedMedic, setSelectedMedic] = useState([]);
   const [selectedAttacks, setSelectedAttacks] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [nextValue, setNextValue] = useState(1);
+  const { mediFormData, setMediFormData, handleMediHisInputChange } =
+    useContext(UserDataContext);
   const medic = {
     suffer: ["Asthma", "High or Low Blood Pressure", "Epilepsy", "Diabetes"],
     attacks: [
@@ -35,6 +39,9 @@ const MedicalHistory = () => {
     } else {
       setSelectedMedic([...selectedMedic, optionKey]);
     }
+    setMediFormData((prvedata) => {
+      return { ...prvedata, sufferedConditions: selectedMedic };
+    });
   };
 
   const toggleAttacks = (optionKey) => {
@@ -43,25 +50,26 @@ const MedicalHistory = () => {
     } else {
       setSelectedAttacks([...selectedAttacks, optionKey]);
     }
-    console.log(selectedAttacks);
+    setMediFormData((prvedata) => {
+      return { ...prvedata, relativeConditions: selectedAttacks };
+    });
   };
 
-  const handleNext = () => {
-    if (nextValue < 5) {
-      setNextValue(nextValue + 1);
-    }
-    console.log(nextValue);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleBack = () => {
-    if (nextValue > 1) {
-      setNextValue(nextValue - 1);
-    }
-    console.log(nextValue);
+    setIsSubmitting(true);
+    // try {
+    //   const response = await axios.post("http://example.com/api/medical-history", formData);
+    //   console.log("Form submitted successfully:", response.data);
+    // } catch (error) {
+    //   console.error("Error submitting form:", error);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
-
   return (
-    <div className="bg">
+    <div className="bg mt-2">
       <div className="d-flex pastrecords-header-div">
         <div
           className="d-flex pastrecords-monica"
@@ -107,7 +115,11 @@ const MedicalHistory = () => {
           <label className="medicalhistory-input-label ms-3 me-2">
             Visit Reason
           </label>
-          <input className="medicalhistory-visit-input" type="text" />
+          <input className="medicalhistory-visit-input" type="text"
+    name="visitReason"
+    value= {mediFormData.visitReason}      
+    
+          ></input>
           <FaCirclePlus className="medicalhistory-2nddiv-plus" />
         </div>
         <div className="d-flex align-items-center me-5 medicalhistory-visitreason-div">
@@ -115,12 +127,11 @@ const MedicalHistory = () => {
             Registerd patient
           </label>
           <input className="medicalhistory-visit-input" type="text" />
-         
         </div>
       </div>
       <div className="d-flex  justify-content-center medicalhistory-3rd-div mt-2 gap-2">
         <div className="medicalhistory-title-div d-flex gap-2">
-        <span
+          <span
             style={{
               backgroundColor:
                 isMedicalHistory === "Parameters" ? "#b3b1b1" : "white",
@@ -138,13 +149,11 @@ const MedicalHistory = () => {
                   ? "#b3b1b1  "
                   : "white",
               color:
-                isMedicalHistory === "Parameter Records"
-                  ? "white"
-                  : "black",
+                isMedicalHistory === "Parameter Records" ? "white" : "black",
             }}
             onClick={() => setMedicalHistory("Parameter Records")}
           >
-           Parameter Records
+            Parameter Records
           </span>
           <span
             style={{
@@ -156,7 +165,7 @@ const MedicalHistory = () => {
           >
             Medical History
           </span>
-         
+
           <span
             style={{
               backgroundColor:
@@ -172,7 +181,6 @@ const MedicalHistory = () => {
           >
             Medical History Records
           </span>
-         
         </div>
       </div>
       <div className="medicalhistory-main-div">
@@ -234,6 +242,11 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hadSurgery"
+                          value="yes"
+                          checked={mediFormData.hadSurgery === "yes"}
+                          onChange={handleMediHisInputChange}
+
                         ></input>
                         <label>Yes</label>
                       </div>
@@ -241,6 +254,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hadSurgery"
+                          value="no"
+                          checked={mediFormData.hadSurgery === "no"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>No</label>
                       </div>
@@ -278,6 +295,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hasInjuries"
+                          value="yes"
+                          checked={mediFormData.hasInjuries === "yes"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>Yes</label>
                       </div>
@@ -285,6 +306,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hasInjuries"
+                          value="no"
+                          checked={mediFormData.hasInjuries === "no"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>No</label>
                       </div>
@@ -303,6 +328,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hasAny"
+                          value="Medications"
+                          checked={mediFormData.hasAny === "Medications"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>Medications</label>
                       </div>
@@ -312,6 +341,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hasAny"
+                          value="Supplements"
+                          checked={mediFormData.hasAny === "Supplements"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>Supplements</label>
                       </div>
@@ -321,6 +354,10 @@ const MedicalHistory = () => {
                         <input
                           className="medicalhistory-radio-input"
                           type="radio"
+                          name="hasAny"
+                          value="None"
+                          checked={mediFormData.hasAny === "None"}
+                          onChange={handleMediHisInputChange}
                         ></input>
                         <label>None</label>
                       </div>
@@ -334,18 +371,18 @@ const MedicalHistory = () => {
                   <textarea
                     className="medicalhistory-last-input"
                     type="text"
+                    name="hasAnyBrief"
+                    value={mediFormData.hasAnyBrief}
+                    onChange={handleMediHisInputChange}
                   ></textarea>
                 </div>
               </div>
             )}
-            {/* <div className="d-flex flex-column justify-content-center align-items-center">
-            <MdOutlineNoteAlt className="pastrecords-main-div-notes" />
-            No Previous visit by this patient
-          </div> */}
-            {nextValue === 2 && <MedicalHistory2ndPage />}
-            {nextValue === 3 && <MedicalHistory3rdPage />}
-            {nextValue === 4 && <MedicalHistory4thPage />}
-            {nextValue === 5 && <MedicalHistory5thPage />}
+
+            <MedicalHistory2ndPage />
+            <MedicalHistory3rdPage />
+            <MedicalHistory4thPage />
+            <MedicalHistory5thPage />
           </div>
         )}
 
@@ -355,43 +392,23 @@ const MedicalHistory = () => {
         {isMedicalHistory === "Medical History Records" && (
           <MedicalHistoryRecords />
         )}
-         {isMedicalHistory === "Parameter Records" && (
-         <ParameterRecords></ParameterRecords>
+        {isMedicalHistory === "Parameter Records" && (
+          <ParameterRecords></ParameterRecords>
         )}
       </div>
       {isMedicalHistory === "Medical History" && (
         <div className="d-flex justify-content-end">
-             {nextValue !== 1 && (
-            <div className="text-end m-2">
-              <button
-                onClick={() => handleBack()}
-                className="medicalhistory-nex-button "
-              >
-                BACK
-              </button>
-            </div>
-          )}
-          {nextValue !== 5 && (
-            <div className="text-end m-2">
-              <button
-                onClick={() => handleNext()}
-                className="medicalhistory-back-button"
-              >
-                NEXT
-              </button>
-            </div>
-          )}
-       
-          {nextValue === 5 && (
-            <div className="text-end m-2">
-              <button
-                // onClick={()=>handleNext()}
-                className="meidcalhistory-submit-button "
-              >
-                SUBMIT
-              </button>
-            </div>
-          )}
+          {nextValue !== 1 && <div className="text-end m-2"></div>}
+
+          <div className="text-end m-2">
+            <button
+              // onClick={()=>handleNext()}
+              className="meidcalhistory-submit-button "
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
+          </div>
         </div>
       )}
     </div>

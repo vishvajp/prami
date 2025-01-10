@@ -110,10 +110,9 @@ function App() {
   //   };
   // }, []);
 
-  const baseUrl = "https://tabsquareinfotech.com/TSIT_Clients/vprami";
 
-  const apiBaseUrl =
-    "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";
+
+
 
   const handleLogin = () => {
     localStorage.setItem("isAuth", true);
@@ -129,7 +128,7 @@ function App() {
             element={
               <IntroPage
                 getDetailFromIntro={getDetailFromIntro}
-                baseUrl={baseUrl}
+              
               />
             }
           />
@@ -139,7 +138,7 @@ function App() {
               <Login
                 onLogin={handleLogin}
                 introData={introData}
-                baseUrl={baseUrl}
+               
               />
             }
           />
@@ -290,7 +289,7 @@ function App() {
                 path="/home/appointment"
                 element={
                   <AppLayout>
-                    <Appointment apiBaseUrl={apiBaseUrl} />
+                    <Appointment />
                   </AppLayout>
                 }
               ></Route>
