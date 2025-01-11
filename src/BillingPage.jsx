@@ -263,7 +263,10 @@ const BillingPage = () => {
                       <label className="me-2">Mode of payment</label>
                       <select className="payment-patient-select">
                         <option disabled>Select Payment</option>
-                        <option>cash</option>
+                        <option>Cash</option>
+                        <option>UPI</option>
+                        <option>Credit card / Debit card</option>
+                        <option>Net Banking</option>
                       </select>
                     </div>
                   </div>

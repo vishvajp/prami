@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
 import "./RescheduleAppointment.css";
 import axios from "axios";
+import { format } from "date-fns";
 import UserDataContext from "./Context/UserDataContext";
 
 const RescheduleAppointment = ({
@@ -19,6 +20,14 @@ const RescheduleAppointment = ({
   const [appointment_Date, setappointment_Date] = useState(null);
   const [selected_Slot, setselected_Slot] = useState();
   const { apiBaseUrl } = useContext(UserDataContext);
+  const [loading, setLoading] = useState(false);
+  
+
+  const handleModalCancel = ()=>{
+    setappointment_Date(null);
+    setselected_Slot("");
+    handleCancelReschedule();
+  }
 
   const handleDateChange = (date) => {
     const selectedDate = new Date(date);
@@ -31,27 +40,50 @@ const RescheduleAppointment = ({
     // Generate slots for the selected date
     setappointment_Date(formatDate);
   };
-
-  const CustomInput = ({ value, onClick }) => (
-    <button className="patientBooking-date-input" onClick={onClick}>
-      {value || "DD/MM/YYYY"} <FaCalendarAlt className="homepage-date-icon" />
-    </button>
-  );
+console.log(specificPatient)
+ const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
+     const formattedDate = value
+       ? format(new Date(value), "dd/MM/yyyy")
+       : "DD/MM/YYYY";
+ 
+     return (
+       <button
+         ref={ref}
+         type="button"
+         className="patientBooking-date-input"
+         onClick={onClick}
+       >
+         {formattedDate} <FaCalendarAlt className="homepage-date-icon" />
+       </button>
+     );
+   });
 
   const specPatientId = specificPatient.appointment_id;
   console.log(`${apiBaseUrl}reschedule_appointment/${specPatientId}`);
 
-  const handleRescheduleFormSubmit = async () => {
+  const handleRescheduleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (loading) return; // Prevent additional clicks if loading is true
+
+    if (!appointment_Date) {
+      alert("Please select an appointment date.");
+      return;
+    }
+
+    setLoading(true);
     try {
       const reschedulePatient = {
         clinic: specificPatient.clinic_id,
-        doctor: specificPatient.doctor_id,
+        doctor: specificPatient.doctor_id ? specificPatient.doctor_id :"Physiotherapy" ,
         appointmentType: specificPatient.appointment_type,
         treatmentType: specificPatient.treatment_type,
         patientName: specificPatient.patient_name,
         patientMobile: specificPatient.patient_mobile,
         selectedSlot: selected_Slot,
         appointmentDate: appointment_Date,
+        physioAsset:specificPatient.physio_assets,
+        referralSource:specificPatient.referral_source,
+        visitReason:specificPatient.visit_reason
       };
 
       // console.log(reschedulePatient)
@@ -63,11 +95,15 @@ const RescheduleAppointment = ({
       if (response.data) {
         window.alert(response.data.message);
       }
-      handleCancelReschedule();
       setappointment_Date(null);
       setselected_Slot("");
+      handleCancelReschedule();
+   
     } catch (err) {
-      console.log(err);
+      alert(err.response.data.message);
+      console.log(err)
+    }finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -88,7 +124,7 @@ const RescheduleAppointment = ({
             </div>
             <span
               onClick={() => {
-                handleCancelReschedule(); // Call the function
+               handleModalCancel()
               }}
               className="patientbooking-1stdiv-cancelspan"
             >
@@ -128,6 +164,7 @@ const RescheduleAppointment = ({
                 appointment
               </p>
             </div>
+            <form onSubmit={handleRescheduleFormSubmit}>
             <div className="row">
               <div className="col" style={{ padding: "10px 10px 5px 10px" }}>
                 <div className="d-flex flex-column">
@@ -198,10 +235,10 @@ const RescheduleAppointment = ({
             <div className="d-flex mt-2 row">
               <div className="d-flex flex-column col">
                 <label className="patientbooking-input-label">
-                  Clinic Physio Asset
+                Physio Asset
                 </label>
 
-                <p className="patientbooking-2col-patient-input">
+                <p className="reschedule-appointment-para">
                   {specificPatient.physio_assets
                     ? specificPatient.physio_assets
                     : "-"}
@@ -213,10 +250,12 @@ const RescheduleAppointment = ({
                 </label>
 
                 <input
-                  className="patientbooking-2col-patient-input"
+                id="appointment"
+            
                   type="time"
                   value={selected_Slot}
                   onChange={(e) => setselected_Slot(e.target.value)}
+                  required
                 ></input>
               </div>
             </div>
@@ -241,7 +280,7 @@ const RescheduleAppointment = ({
               </div>
             </div>
 
-            <div className="d-flex mt-3 gap-2">
+            {/* <div className="d-flex mt-3 gap-2">
               <div className="d-flex align-items-center patientbooking-checkbox-input">
                 <input
                   className="patientbooking-input-checkbox me-1"
@@ -263,20 +302,21 @@ const RescheduleAppointment = ({
                 />
                 <label>Send Whatsapp</label>
               </div>
-            </div>
-            <div className="mt-5">
-              <button className="patientbooking-addpatient-button">
+            </div> */}
+            <div className="mt-3 d-flex justify-content-center">
+              {/* <button className="patientbooking-addpatient-button">
                 {" "}
                 + ADD PATIENT
-              </button>
+              </button> */}
               <button
                 className="patientbooking-bookappointment-button"
-                onClick={handleRescheduleFormSubmit}
+                type="submit"
+                disabled={loading}
               >
-                {" "}
-                BOOK APOINTMENT
+                {loading ? "BOOKING..." : "BOOK APPOINTMENT"}
               </button>
             </div>
+            </form>
           </div>
         </div>
       </Modal>
