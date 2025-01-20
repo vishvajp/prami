@@ -29,6 +29,7 @@ const RegistrationModal = ({
     landMark: "",
     marital_status: "",
     insurance: "",
+    gender:""
   });
 
   const handleInputChange = (e) => {
@@ -148,18 +149,22 @@ const RegistrationModal = ({
             </div>
           </div>
           <div className="col">
-            <div className="d-flex flex-column">
-              <lable className="registration-modal-label">
-                Patient Occupation
-              </lable>
-              <input
+       
+              <div className="d-flex flex-column">
+              <label className="registration-modal-label">Gender</label>
+              <select
                 className="registration-modal-input"
-                type="text"
-                value={formData.patient_occupation}
-                name="patient_occupation"
+                value={formData.gender}
+                name="gender"
                 onChange={handleInputChange}
-              ></input>
+                required
+              >
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
             </div>
+       
           </div>
         </div>
 
@@ -244,19 +249,26 @@ const RegistrationModal = ({
                 <lable className="registration-modal-label">
                   Marital Status
                 </lable>
-                <input
+                <select
                   className="registration-modal-input"
-                  type="text"
+                
                   name="marital_status"
                   value={formData.marital_status}
                   onChange={handleInputChange}
-                ></input>
+                >
+                  <option value="">
+                    Select Marital Status
+                  </option>
+                  <option>Married</option>
+                  <option>Unmarried</option>
+                </select>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="d-flex">
+       <div className="row">
+<div className=" col d-flex align-items-center">
+<div className="d-flex">
           <div className="d-flex ">
             <input
               type="radio"
@@ -278,6 +290,23 @@ const RegistrationModal = ({
             <lable className="registration-modal-label">No Insurance</lable>
           </div>
         </div>
+</div>
+<div className="col">
+<div className="d-flex flex-column">
+              <lable className="registration-modal-label">
+                Patient Occupation
+              </lable>
+              <input
+                className="registration-modal-input"
+                type="text"
+                value={formData.patient_occupation}
+                name="patient_occupation"
+                onChange={handleInputChange}
+              ></input>
+            </div>
+</div>
+</div>
+       
 
         <div className="d-flex justify-content-end basicdetail-button-div">
           <button

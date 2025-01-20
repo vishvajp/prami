@@ -77,6 +77,7 @@ import PharmacyEdit from "./PharmacyEdit";
 import ProfileEdit from "./ProfileEdit";
 import AdminDocDet from "./AdminDocDet";
 import AdminDocEdit from "./AdminDocEdit";
+import PastPatientRecReg from "./PastPatientRecReg";
 
 function App() {
   const [docDetailData, setDocDetailData] = useState();
@@ -639,6 +640,14 @@ function App() {
                 element={
                   <AppLayout>
                     <Employee></Employee>
+                  </AppLayout>
+                }
+              ></Route>
+               <Route
+                path="home/pastpatient"
+                element={
+                  <AppLayout>
+                   <PastPatientRecReg></PastPatientRecReg>
                   </AppLayout>
                 }
               ></Route>

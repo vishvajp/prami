@@ -263,6 +263,13 @@ export default function AppLayout({ children }) {
       visible: true,
     },
     {
+      menu_name: "Past Patient Records",
+      menu_url: "home/pastpatient",
+      menu_icon: "settings-icon.png",
+      submenuservice: [],
+      visible: true,
+    },
+    {
       menu_name: "Security",
       menu_url: "home/security",
       menu_icon: "account-icon.png",

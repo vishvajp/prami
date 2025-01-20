@@ -223,6 +223,9 @@ const AdminDocReg = ({setAddDoctor}) => {
                       <label className="docdetail-input-label">Doctor Name</label>
                       <input
                         onChange={(e) => setDocName(e.target.value)}
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+                        }}
                         className="docdetail-input"
                         value={docName}
                         type="text"
@@ -349,6 +352,9 @@ const AdminDocReg = ({setAddDoctor}) => {
                       <label className="docdetail-input-label">Specialist</label>
                       <input
                         onChange={(e) => setDocSpl(e.target.value)}
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+                        }}
                         value={docSpl}
                         className="docdetail-input"
                         type="text"
