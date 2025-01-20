@@ -5,9 +5,8 @@ import "./ClinecsRegistration.css";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 import UserDataContext from "./Context/UserDataContext";
-
 
 const ClinecsRegistration = ({ setAddClinic }) => {
   const [formData, setFormData] = useState({
@@ -27,25 +26,23 @@ const ClinecsRegistration = ({ setAddClinic }) => {
   });
 
   const navigate = useNavigate();
-const {apiBaseUrl} = useContext(UserDataContext)
+  const { apiBaseUrl } = useContext(UserDataContext);
   // Handle form data change
 
-
-
   const handleDateChange = (date) => {
-    const selectedDate = new Date(date)
-    
-        const formatDate = selectedDate.toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        });
-        // Generate slots for the selected date
-        setFormData((prevFormData)=>({
-          ...prevFormData,
-          clinic_reg_date: formatDate
-        }))
-      };
+    const selectedDate = new Date(date);
+
+    const formatDate = selectedDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+    // Generate slots for the selected date
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      clinic_reg_date: formatDate,
+    }));
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -55,8 +52,10 @@ const {apiBaseUrl} = useContext(UserDataContext)
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
-    const formattedDate = value ? format(new Date(value), "dd/MM/yyyy") : "DD/MM/YYYY";
-    
+    const formattedDate = value
+      ? format(new Date(value), "dd/MM/yyyy")
+      : "DD/MM/YYYY";
+
     return (
       <button
         ref={ref}
@@ -68,47 +67,42 @@ const {apiBaseUrl} = useContext(UserDataContext)
       </button>
     );
   });
-  
 
   // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
- 
+    console.log(formData);
 
-  try {
-    const response = await axios.post(`${apiBaseUrl}add_clinic`, formData);
+    if (formData.clinic_pincode.length !== 6) {
+      alert("Pincode must be exactly 6 digits.");
+    }
 
-if(response.data){
-window.alert("Clinic submitted successfully:")
-setFormData(
-  {
-    clinic_name: "",
-    clinic_mobile: "",
-    clinic_owner: "",
-    clinic_email: "",
-    clinic_address: "",
-    clinic_country: "",
-    clinic_district: "",
-    clinic_state: "",
-    clinic_pincode: "",
-    clinic_location: "",
-    clinic_licence_no: "",
-    clinic_reg_date: "",
-    clinic_tin_no: "",
-  }
-)
-setAddClinic(false); 
-}
+    try {
+      const response = await axios.post(`${apiBaseUrl}add_clinic`, formData);
 
-
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("There was an error submitting the form. Please try again.");
-  
-}
-
-   
+      if (response.data) {
+        window.alert("Clinic submitted successfully:");
+        setFormData({
+          clinic_name: "",
+          clinic_mobile: "",
+          clinic_owner: "",
+          clinic_email: "",
+          clinic_address: "",
+          clinic_country: "",
+          clinic_district: "",
+          clinic_state: "",
+          clinic_pincode: "",
+          clinic_location: "",
+          clinic_licence_no: "",
+          clinic_reg_date: "",
+          clinic_tin_no: "",
+        });
+        setAddClinic(false);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting the form. Please try again.");
+    }
   };
 
   return (
@@ -124,6 +118,9 @@ setAddClinic(false);
                 name="clinic_name"
                 value={formData.clinic_name}
                 onChange={handleInputChange}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+                }}
                 placeholder="Enter Hospital or Clinic"
                 required
               />
@@ -134,7 +131,15 @@ setAddClinic(false);
                 type="text"
                 name="clinic_mobile"
                 value={formData.clinic_mobile}
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  if (/^\d*$/.test(value)) {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      clinic_mobile: value,
+                    }));
+                  }
+                }}
                 placeholder="Enter Contact Number"
                 required
               />
@@ -148,6 +153,9 @@ setAddClinic(false);
                 name="clinic_owner"
                 value={formData.clinic_owner}
                 onChange={handleInputChange}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+                }}
                 placeholder="Enter Contact Person"
                 required
               />
@@ -155,7 +163,7 @@ setAddClinic(false);
             <div className="d-flex flex-column mb-4">
               <label>Email ID</label>
               <input
-                type="clinic_email"
+                type="email"
                 name="clinic_email"
                 value={formData.email}
                 onChange={handleInputChange}
@@ -181,8 +189,7 @@ setAddClinic(false);
           </div>
           <div className="row">
             <div className="col clinecs-first-col py-0">
-
-            <div className="d-flex flex-column  mb-4" >
+              <div className="d-flex flex-column  mb-4">
                 <input
                   type="text"
                   name="clinic_district"
@@ -192,7 +199,10 @@ setAddClinic(false);
                   required
                 />
               </div>
-              <div className="d-flex flex-column"style={{ marginTop: "47.5px" }}>
+              <div
+                className="d-flex flex-column"
+                style={{ marginTop: "47.5px" }}
+              >
                 <input
                   type="text"
                   name="clinic_country"
@@ -202,7 +212,6 @@ setAddClinic(false);
                   required
                 />
               </div>
-           
             </div>
             <div className="col clinecs-first-col py-0 pe-0">
               <div className="d-flex flex-column mb-4">
@@ -221,7 +230,16 @@ setAddClinic(false);
                   type="text"
                   name="clinic_pincode"
                   value={formData.clinic_pincode}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    // Allow only numeric input with a maximum length of 6
+                    if (/^\d{0,6}$/.test(value)) {
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        clinic_pincode: value,
+                      }));
+                    }
+                  }}
                   placeholder="Enter Pincode"
                   required
                 />
@@ -236,11 +254,12 @@ setAddClinic(false);
                   name="clinic_location"
                   value={formData.clinic_location}
                   onChange={handleInputChange}
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/\d/g, "");
+                  }}
                   placeholder="Enter Location"
                   required
-                >
-                
-                </input>
+                ></input>
               </div>
               <div className="d-flex flex-column mb-4">
                 <label>Practising Licence Number</label>
@@ -248,7 +267,15 @@ setAddClinic(false);
                   type="text"
                   name="clinic_licence_no"
                   value={formData.clinic_licence_no}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    if (/^\d*$/.test(value)) {
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        clinic_licence_no: value,
+                      }));
+                    }
+                  }}
                   placeholder="Enter Practising Licence Number"
                   required
                 />
@@ -264,12 +291,12 @@ setAddClinic(false);
                   onChange={handleInputChange}
                   required
                 /> */}
-                 <DatePicker
-                    selected={formData.clinic_reg_date}
-                    minDate={new Date()}
-                    onChange={handleDateChange}
-                    customInput={<CustomInput />}
-                  />
+                <DatePicker
+                  selected={formData.clinic_reg_date}
+                  minDate={new Date()}
+                  onChange={handleDateChange}
+                  customInput={<CustomInput />}
+                />
               </div>
               <div className="d-flex flex-column mb-4">
                 <label>Enter TIN Number</label>
@@ -277,7 +304,15 @@ setAddClinic(false);
                   type="text"
                   name="clinic_tin_no"
                   value={formData.clinic_tin_no}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    if (/^\d*$/.test(value)) {
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        clinic_tin_no: value,
+                      }));
+                    }
+                  }}
                   placeholder="Enter TIN Number"
                   required
                 />
@@ -292,10 +327,7 @@ setAddClinic(false);
             >
               CANCEL
             </button>
-            <button
-              type="submit"
-              className="medicalhistory-nex-button"
-            >
+            <button type="submit" className="medicalhistory-nex-button">
               SUBMIT
             </button>
           </div>

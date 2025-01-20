@@ -51,6 +51,8 @@ const Basicdetailmodal = ({
     insure_dob: "",
     address: `${address1} ${address2} ${address3} ${address4} ${address5} ${address6}`,
     taking_medication: "",
+    reason: "",
+    additonal_notes: "",
   });
 
   console.log(formData);
@@ -621,14 +623,16 @@ const Basicdetailmodal = ({
                       DATE OF BIRTH
                     </label>
                     <DatePicker
-                    selected={formData.date}
-                    onChange={(date) => handleAddDateChange("insure_dob", date)}
-                    customInput={<CustomInput />}
-                    showYearDropdown
-                    scrollableYearDropdown
-                    yearDropdownItemNumber={80}
-                    scrollableMonthYearDropdown
-                  />
+                      selected={formData.date}
+                      onChange={(date) =>
+                        handleAddDateChange("insure_dob", date)
+                      }
+                      customInput={<CustomInput />}
+                      showYearDropdown
+                      scrollableYearDropdown
+                      yearDropdownItemNumber={80}
+                      scrollableMonthYearDropdown
+                    />
                   </div>
                 </div>
               </div>
@@ -653,8 +657,7 @@ const Basicdetailmodal = ({
                           className="basicdetail-collape-input"
                           name="address1"
                           value={address1}
-                          onChange={(e)=>setAddress1(e.target.value)}
-
+                          onChange={(e) => setAddress1(e.target.value)}
                         ></input>
                         <input
                           type="text"
@@ -662,7 +665,7 @@ const Basicdetailmodal = ({
                           className="basicdetail-collape-input"
                           name="address2"
                           value={address2}
-                          onChange={(e)=>setAddress2(e.target.value)}
+                          onChange={(e) => setAddress2(e.target.value)}
                         ></input>
                       </div>
                       <div className="d-flex ">
@@ -671,15 +674,14 @@ const Basicdetailmodal = ({
                           className="basicdetail-collape-doubleinput me-3"
                           name="address3"
                           value={address3}
-                          onChange={(e)=>setAddress3(e.target.value)}
-
+                          onChange={(e) => setAddress3(e.target.value)}
                         ></input>
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput"
                           name="address4"
                           value={address4}
-                          onChange={(e)=>setAddress4(e.target.value)}
+                          onChange={(e) => setAddress4(e.target.value)}
                         ></input>
                       </div>
                       <div className="d-flex ">
@@ -688,14 +690,14 @@ const Basicdetailmodal = ({
                           className="basicdetail-collape-doubleinput me-3"
                           name="address5"
                           value={address5}
-                          onChange={(e)=>setAddress5(e.target.value)}
+                          onChange={(e) => setAddress5(e.target.value)}
                         ></input>
                         <input
                           type="text"
                           className="basicdetail-collape-doubleinput"
                           name="address6"
                           value={address6}
-                          onChange={(e)=>setAddress6(e.target.value)}
+                          onChange={(e) => setAddress6(e.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -736,11 +738,23 @@ const Basicdetailmodal = ({
                         style={{ marginLeft: "17px" }}
                       >
                         <label className="me-2">YES</label>{" "}
-                        <input type="checkbox"></input>
+                        <input
+                          type="checkbox"
+                          name="taking_medication"
+                          value="yes"
+                          checked={formData.taking_medication === "yes"}
+                          onChange={handleInputChange}
+                        ></input>
                       </div>
                       <div className="col d-flex">
                         <label className="me-2">NO</label>{" "}
-                        <input type="checkbox"></input>
+                        <input
+                          type="checkbox"
+                          name="taking_medication"
+                          value="no"
+                          checked={formData.taking_medication === "no"}
+                          onChange={handleInputChange}
+                        ></input>
                       </div>
                     </div>
                   </div>
@@ -764,6 +778,9 @@ const Basicdetailmodal = ({
                       style={{ width: "95%" }}
                       className="basicmodal-reason-registration"
                       type="text"
+                      value={formData.reason}
+                      name="reason"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -786,6 +803,9 @@ const Basicdetailmodal = ({
                   style={{ width: "93%", height: "100px" }}
                   className="basicmodal-reason-registration"
                   type="text"
+                  value={formData.additonal_notes}
+                  name="additonal_notes"
+                  onChange={handleInputChange}
                 />
               </div>
 

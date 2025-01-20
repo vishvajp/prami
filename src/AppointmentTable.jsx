@@ -10,6 +10,7 @@ import { LuRefreshCw } from "react-icons/lu";
 import { AiOutlineHistory } from "react-icons/ai";
 import RescheduleAppointment from "./RescheduleAppointment";
 import UserDataContext from "./Context/UserDataContext";
+import { isWithinInterval, parseISO } from "date-fns";
 
 export function AppointmentTable({
   showModal,
@@ -52,7 +53,7 @@ export function AppointmentTable({
     };
 
     getAppointmentDetail();
-  }, [isModalOpenReschdule, startCheck,refreshAppointments]);
+  }, [isModalOpenReschdule, startCheck, refreshAppointments]);
 
   // Call the API when the page is loaded initially, and when isModalOpenReschdule changes to false
   useEffect(() => {
@@ -60,7 +61,7 @@ export function AppointmentTable({
       const getAppointmentDetail = async () => {
         try {
           const response = await axios.post(
-           `${apiBaseUrl}get_appointment_list`
+            `${apiBaseUrl}get_appointment_list`
           );
           if (response.data) {
             setTableContent(response.data.data); // Set your state with the fetched data
@@ -73,15 +74,20 @@ export function AppointmentTable({
 
       getAppointmentDetail(); // Calls the async function to fetch the data
     }
-  }, [isModalOpenReschdule,refreshAppointments]);
+  }, [isModalOpenReschdule, refreshAppointments]);
 
   const filteredItem = tableContent?.filter((item) => {
     // console.log(tableContent);
 
+    const appointmentDate = parseISO(item.appointment_date);
+
+    // Check if the date is within the range
     const isDateInRange =
       startDate && toDate
-        ? new Date(item.appointment_date) >= startDate &&
-          new Date(item.appointment_date) <= toDate
+        ? isWithinInterval(appointmentDate, {
+            start: new Date(startDate),
+            end: new Date(toDate),
+          })
         : true;
 
     console.log(

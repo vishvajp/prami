@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Button, Modal } from "antd";
+import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "./RegistrationModal.css";
 
@@ -13,13 +14,60 @@ const RegistrationModal = ({
   basichandleOk,
   basichandleCancel,
 }) => {
-  const [startDate, setStartDate] = useState();
-  const [DateOfBirth, setDateOfBirth] = useState();
-  const CustomInput = ({ value, onClick }) => (
-    <button className="dashboard-date-input" onClick={onClick}>
-      {value || "DD/MM/YYYY"} <FaCalendarAlt className="homepage-date-icon" />
-    </button>
-  );
+  const [formData, setFormData] = useState({
+    register_date: "",
+    dob: "",
+    patient_name: "",
+    mobile: "",
+    email: "",
+    patient_occupation: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    pincode: "",
+    landMark: "",
+    marital_status: "",
+    insurance: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
+    const formattedDate = value
+      ? format(new Date(value), "dd/MM/yyyy")
+      : "DD/MM/YYYY";
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className="patientBooking-date-input"
+        onClick={onClick}
+      >
+        {formattedDate} <FaCalendarAlt className="homepage-date-icon" />
+      </button>
+    );
+  });
+
+  const handleAddDateChange = (specDate, date) => {
+    const selectedDate = new Date(date);
+
+    const formatDate = selectedDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+    // Generate slots for the selected date
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [specDate]: formatDate,
+    }));
+  };
+
   return (
     <div>
       {" "}
@@ -35,9 +83,13 @@ const RegistrationModal = ({
                 Registration Date
               </label>
               <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                selected={formData.register_date}
+                onChange={(date) => handleAddDateChange("register_date", date)}
                 customInput={<CustomInput />}
+                showYearDropdown
+                scrollableYearDropdown
+                yearDropdownItemNumber={80}
+                scrollableMonthYearDropdown
               />
             </div>
           </div>
@@ -45,9 +97,13 @@ const RegistrationModal = ({
             <div className="d-flex flex-column">
               <lable className="registration-modal-label">Date Of Birth</lable>
               <DatePicker
-                selected={DateOfBirth}
-                onChange={(date) => setDateOfBirth(date)}
+                selected={formData.dob}
+                onChange={(date) => handleAddDateChange("dob", date)}
                 customInput={<CustomInput />}
+                showYearDropdown
+                scrollableYearDropdown
+                yearDropdownItemNumber={80}
+                scrollableMonthYearDropdown
               />
             </div>
           </div>
@@ -56,13 +112,25 @@ const RegistrationModal = ({
           <div className="col">
             <div className="d-flex flex-column">
               <lable className="registration-modal-label">Patient Name</lable>
-              <input className="registration-modal-input" type="text"></input>
+              <input
+                className="registration-modal-input"
+                type="text"
+                value={formData.patient_name}
+                name="patient_name"
+                onChange={handleInputChange}
+              ></input>
             </div>
           </div>
           <div className="col">
             <div className="d-flex flex-column">
               <lable className="registration-modal-label">Mobile</lable>
-              <input className="registration-modal-input" type="tel"></input>
+              <input
+                className="registration-modal-input"
+                type="tel"
+                value={formData.mobile}
+                name="mobile"
+                onChange={handleInputChange}
+              ></input>
             </div>
           </div>
         </div>
@@ -70,7 +138,13 @@ const RegistrationModal = ({
           <div className="col">
             <div className="d-flex flex-column">
               <label className="registration-modal-label">Email</label>
-              <input className="registration-modal-input" type="text"></input>
+              <input
+                className="registration-modal-input"
+                type="text"
+                value={formData.email}
+                name="email"
+                onChange={handleInputChange}
+              ></input>
             </div>
           </div>
           <div className="col">
@@ -78,7 +152,13 @@ const RegistrationModal = ({
               <lable className="registration-modal-label">
                 Patient Occupation
               </lable>
-              <input className="registration-modal-input" type="text"></input>
+              <input
+                className="registration-modal-input"
+                type="text"
+                value={formData.patient_occupation}
+                name="patient_occupation"
+                onChange={handleInputChange}
+              ></input>
             </div>
           </div>
         </div>
@@ -88,13 +168,12 @@ const RegistrationModal = ({
             <div className="d-flex flex-column mb-3">
               <label className="registration-modal-label">Address</label>
               <input
-              className="registration-modal-input"
+                className="registration-modal-input"
                 type="text"
-                name="register_address"
-                // value={formData.clinic_address}
-                // onChange={handleInputChange}
                 placeholder="Enter Address"
-                required
+                value={formData.address}
+                name="address"
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -103,49 +182,45 @@ const RegistrationModal = ({
           <div className="col ">
             <div className="d-flex flex-column  mb-3">
               <input
-              className="registration-modal-input"
+                className="registration-modal-input"
                 type="text"
-                name="register_district"
-                // value={formData.clinic_district}
-                // onChange={handleInputChange}
                 placeholder="Enter City"
-                required
+                value={formData.city}
+                name="city"
+                onChange={handleInputChange}
               />
             </div>
             <div className="d-flex flex-column" style={{ marginTop: "47.5px" }}>
               <input
-              className="registration-modal-input"
+                className="registration-modal-input"
                 type="text"
-                name="register_country"
-                // value={formData.clinic_country}
-                // onChange={handleInputChange}
                 placeholder="Enter Country"
-                required
+                value={formData.country}
+                name="country"
+                onChange={handleInputChange}
               />
             </div>
           </div>
           <div className="col ">
             <div className="d-flex flex-column mb-4">
               <input
-               className="registration-modal-input"
+                className="registration-modal-input"
                 type="text"
-                name="register_state"
-                // value={formData.clinic_state}
-                // onChange={handleInputChange}
                 placeholder="Enter State"
-                required
+                value={formData.state}
+                name="state"
+                onChange={handleInputChange}
               />
             </div>
             <div className="d-flex flex-column mb-4">
               <label className="registration-modal-label">Pincode</label>
               <input
-               className="registration-modal-input"
+                className="registration-modal-input"
                 type="text"
-                name="Register_pincode"
-                // value={formData.clinic_pincode}
-                // onChange={handleInputChange}
                 placeholder="Enter Pincode"
-                required
+                name="pincode"
+                value={formData.pincode}
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -155,37 +230,54 @@ const RegistrationModal = ({
             <div className="d-flex flex-column mb-4">
               <label className="registration-modal-label">Enter Landmark</label>
               <input
-               className="registration-modal-input"
-                name="register_location"
-                // value={formData.clinic_location}
-                // onChange={handleInputChange}
+                className="registration-modal-input"
                 placeholder="Enter Location"
-                required
+                value={formData.pincode}
+                name="pincode"
+                onChange={handleInputChange}
               ></input>
             </div>
           </div>
           <div className="col">
-          <div className="d-flex flex-column gap-3">
-            <div className="d-flex flex-column">
-              <lable className="registration-modal-label">Marital Status</lable>
-              <input className="registration-modal-input" type="text"></input>
+            <div className="d-flex flex-column gap-3">
+              <div className="d-flex flex-column">
+                <lable className="registration-modal-label">
+                  Marital Status
+                </lable>
+                <input
+                  className="registration-modal-input"
+                  type="text"
+                  name="marital_status"
+                  value={formData.marital_status}
+                  onChange={handleInputChange}
+                ></input>
+              </div>
             </div>
           </div>
-        </div>
         </div>
 
         <div className="d-flex">
           <div className="d-flex ">
-            <input type="radio"></input>
+            <input
+              type="radio"
+              name="insurance"
+              value="yes"
+              checked={formData.insurance === "yes"}
+              onChange={handleInputChange}
+            ></input>
             <lable className="registration-modal-label me-3">Insurance</lable>
           </div>
           <div className="d-flex ">
-            <input type="radio"></input>
+            <input
+              type="radio"
+              name="insurance"
+              value="no"
+              checked={formData.insurance === "no"}
+              onChange={handleInputChange}
+            ></input>
             <lable className="registration-modal-label">No Insurance</lable>
           </div>
         </div>
-
-      
 
         <div className="d-flex justify-content-end basicdetail-button-div">
           <button

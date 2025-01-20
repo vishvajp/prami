@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import DatePicker from "react-datepicker";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 import axios from "axios";
 import { FaCalendarAlt } from "react-icons/fa";
 import "./Appointment.css";
@@ -22,16 +22,16 @@ const Appointment = () => {
   const [clinicData, setClinicData] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState("All");
   const [selectTreatment, setSelectTreatment] = useState("All Treatment");
-  const [searchpatient,setSearchPatient]=useState("")
+  const [searchpatient, setSearchPatient] = useState("");
   const [doctorData, setDoctorData] = useState(null);
   const [chooseDays, setChooseDays] = useState("Appointment List");
 
   const [clinicName, setClinicName] = useState("");
   const [singleDocName, setSingleDocName] = useState("");
-  const user = "physiotherapy"
+  const user = "physiotherapy";
   const [walkinModalOpen, setWalkinModalOpen] = useState(false);
-  const { apiBaseUrl,setRefreshAppointments } = useContext(UserDataContext);
-   
+  const { apiBaseUrl, setRefreshAppointments } = useContext(UserDataContext);
+
   const currentDayDate = new Date();
   currentDayDate.setHours(0, 0, 0, 0);
 
@@ -65,8 +65,6 @@ const Appointment = () => {
     setIsModalOpen(false);
   };
 
-
-
   const showModalPayment = () => {
     setIsModalOpenPayment(true);
   };
@@ -89,10 +87,11 @@ const Appointment = () => {
     setWalkinModalOpen(false);
   };
 
-
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
-    const formattedDate = value ? format(new Date(value), "dd/MM/yyyy") : "DD/MM/YYYY";
-    
+    const formattedDate = value
+      ? format(new Date(value), "dd/MM/yyyy")
+      : "DD/MM/YYYY";
+
     return (
       <button
         ref={ref}
@@ -149,7 +148,6 @@ const Appointment = () => {
   };
 
   const handleDoctorChange = (event) => {
- 
     const specDocName = event.target.value;
     setSingleDocName(specDocName);
     const getDocId = doctorData?.find(
@@ -183,7 +181,7 @@ const Appointment = () => {
               <span
                 onClick={() => {
                   const day = new Date(currentDayDate);
-    day.setDate(day.getDate() + 1); 
+                  day.setDate(day.getDate());
                   setChooseDays("Day");
                   setStartDate(currentDayDate);
                   setToDate(day);
@@ -245,7 +243,6 @@ const Appointment = () => {
               setStartDate(date);
             }}
             customInput={<CustomInput />}
-            
           />
         </div>
         <div className="d-flex flex-column col ">
@@ -256,54 +253,50 @@ const Appointment = () => {
             customInput={<CustomInput />}
           />
         </div>
-       
-  <div className="d-flex flex-column col">
-                      <label className="patientbooking-input-label">
-                        Select Clinic
-                      </label>
-                      <select
-                        required
-                        value={clinicName}
-                        onChange={handleCliniChange}
-                        name="man"
-                        id="doctors"
-                      >
-                        <option value="">Select Clinic</option>
-                        {clinicData ? (
-                          clinicData.map((nameOfClinc) => (
-                            <option key={nameOfClinc.clinic_name}>
-                              {nameOfClinc.clinic_name}
-                            </option>
-                          ))
-                        ) : (
-                          <option disabled>Loading...</option>
-                        )}
-                      </select>
-                    </div>
-                    <div className="d-flex flex-column col">
-                      <label className="patientbooking-input-label ms-3">
-                        Choose Doctor
-                      </label>
-                      <select
-                        name="doctor"
-                        value={singleDocName}
-                        id="doctors"
-                        onChange={handleDoctorChange}
-                        required
-                      >
-                        <option value="">Select doctor</option>
-                        {doctorData && clinic ? (
-                          doctorData.map((docname) => (
-                            <option key={docname.doc_name}>
-                              {docname.doc_name}
-                            </option>
-                          ))
-                        ) : (
-                          <option disabled>Loading...</option>
-                        )}
-                        {clinicName && <option>{user}</option>}
-                      </select>
-                    </div>
+
+        <div className="d-flex flex-column col">
+          <label className="patientbooking-input-label">Select Clinic</label>
+          <select
+            required
+            value={clinicName}
+            onChange={handleCliniChange}
+            name="man"
+            id="doctors"
+          >
+            <option value="">Select Clinic</option>
+            {clinicData ? (
+              clinicData.map((nameOfClinc) => (
+                <option key={nameOfClinc.clinic_name}>
+                  {nameOfClinc.clinic_name}
+                </option>
+              ))
+            ) : (
+              <option disabled>Loading...</option>
+            )}
+          </select>
+        </div>
+        <div className="d-flex flex-column col">
+          <label className="patientbooking-input-label ms-3">
+            Choose Doctor
+          </label>
+          <select
+            name="doctor"
+            value={singleDocName}
+            id="doctors"
+            onChange={handleDoctorChange}
+            required
+          >
+            <option value="">Select doctor</option>
+            {doctorData && clinic ? (
+              doctorData.map((docname) => (
+                <option key={docname.doc_name}>{docname.doc_name}</option>
+              ))
+            ) : (
+              <option disabled>Loading...</option>
+            )}
+            {clinicName && <option>{user}</option>}
+          </select>
+        </div>
         <div className="d-flex flex-column col ">
           <label className="docdetail-input-label" for="Education">
             Treatment Type
@@ -341,7 +334,9 @@ const Appointment = () => {
                 type="text"
                 className="appointment-search-input"
                 value={searchpatient}
-                onChange={(e)=>{setSearchPatient(e.target.value)}}
+                onChange={(e) => {
+                  setSearchPatient(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -354,8 +349,8 @@ const Appointment = () => {
           showModalPayment={showModalPayment}
           toDate={toDate}
           setSelectedDoctor={setSelectedDoctor}
-          searchpatient = {searchpatient}
-          selectClinic = {clinicName}
+          searchpatient={searchpatient}
+          selectClinic={clinicName}
         ></AppointmentTable>
       </div>
       <ParameterModal
@@ -363,17 +358,17 @@ const Appointment = () => {
         handleOk={handleOk}
         handleCancel={handleCancel}
       ></ParameterModal>
-   
+
       <Paymentmodal
         isModalOpenPayment={isModalOpenPayment}
         paymenthandleOk={paymenthandleOk}
         paymenthandleCancel={paymenthandleCancel}
       />
       <WalkInConsult
-      walkinModalOpen ={walkinModalOpen}
-      walkInHandleOk ={walkInHandleOk}
-      walkinHandleCancel={walkinHandleCancel}
-      setWalkinModalOpen ={setWalkinModalOpen}
+        walkinModalOpen={walkinModalOpen}
+        walkInHandleOk={walkInHandleOk}
+        walkinHandleCancel={walkinHandleCancel}
+        setWalkinModalOpen={setWalkinModalOpen}
       ></WalkInConsult>
     </div>
   );
