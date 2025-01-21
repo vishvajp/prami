@@ -27,7 +27,7 @@ const AddPhysiotherapy = ({ setAddPhysio }) => {
     </button>
   ));
   const [docName, setDocName] = useState("");
-  const [docExp, setDocExp] = useState("");
+  const [docExp, setDocExp] = useState(0);
   const [docSpl, setDocSpl] = useState("");
   const [docEmail, setDocEmail] = useState("");
   const [docReg, setDocReg] = useState("");
@@ -156,16 +156,23 @@ console.log(specClinic)
             value={docName}
             type="text"
             placeholder="Enter Name"
+            onInput={(e) => {
+              e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+            }}
             required
           />
         </div>
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Experience</label>
           <input
-            onChange={(e) => setDocExp(e.target.value)}
+        
+            onChange={(e) => {
+              const value = Math.max(0, Number(e.target.value));
+              setDocExp(value);
+            }}
             className="docdetail-input"
             value={docExp}
-            type="num"
+            type="number"
             placeholder="Enter Experience"
             required
           />
@@ -197,7 +204,10 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Location</label>
           <input
-            onChange={(e) => setDocLocation(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, ""); // Allow only letters, numbers, and spaces
+              setDocLocation(value);
+            }}
             value={docLocation}
             className="docdetail-input"
             type="text"
@@ -210,7 +220,11 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Fee</label>
           <input
-            onChange={(e) => setDocFee(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const sanitizedValue = value.replace(/[^0-9]/g, ""); // Remove any non-digit characters
+              setDocFee(sanitizedValue);
+            }}
             value={docFee}
             className="docdetail-input"
             type="number"
@@ -221,7 +235,10 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Achievements</label>
           <input
-            onChange={(e) => setDocAchieve(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^a-zA-Z\s]/g, ""); // Allow only letters and spaces
+              setDocAchieve(value);
+            }}
             value={docAchieve}
             className="docdetail-input"
             type="text"
@@ -232,7 +249,10 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Role</label>
           <input
-            onChange={(e) => setDocRole(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^a-zA-Z\s]/g, ""); // Allow only letters and spaces
+              setDocRole(value);
+            }}
             value={docRole}
             className="docdetail-input"
             type="text"
@@ -269,7 +289,11 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Specialist</label>
           <input
-            onChange={(e) => setDocSpl(e.target.value)}
+       
+           onChange={(e) => setDocSpl(e.target.value)}
+           onInput={(e) => {
+             e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+           }}
             value={docSpl}
             className="docdetail-input"
             type="text"
@@ -282,7 +306,10 @@ console.log(specClinic)
             Medical Registration No
           </label>
           <input
-            onChange={(e) => setDocReg(e.target.value)}
+           onChange={(e) => {
+            const value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, ""); // Allow only letters, numbers, and spaces
+            setDocReg(value);
+          }}
             className="docdetail-input"
             value={docReg}
             type="text"
@@ -348,6 +375,9 @@ console.log(specClinic)
           <input
             value={docEdu}
             onChange={(e) => setDocEdu(e.target.value)}
+            onInput={(e) => {
+              e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
+            }}
             name="Education"
             className="docdetail-input"
             placeholder="Enter Education"
@@ -377,7 +407,10 @@ console.log(specClinic)
         <div className="d-flex flex-column ">
           <label className="docdetail-input-label">Group</label>
           <input
-            onChange={(e) => setDocGroup(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^a-zA-Z\s]/g, ""); // Allow only letters and spaces
+              setDocGroup(value);
+            }}
             value={docGroup}
             className="docdetail-input"
             type="text"

@@ -114,7 +114,7 @@ export function AppointmentTable({
         item.treatment_type?.toLowerCase() === selectTreatment.toLowerCase());
 
     const searchPatientName = searchpatient
-      ? item.patient_name?.toLowerCase().includes(searchpatient)
+      ? item.patient_name?.toLowerCase().includes(searchpatient.toLowerCase())
       : true;
 
     const choosedClinic = selectClinic

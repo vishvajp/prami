@@ -99,7 +99,7 @@ const PastPatientRecReg = () => {
     for (const key in formData) {
       if (key == "doc_prescription") {
         formData[key].forEach((img, index) => {
-          data.append(key[index], img);
+          data.append(`doc_prescription[${index}]`, img);
         });
       } else {
         data.append(key, formData[key]);
