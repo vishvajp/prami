@@ -25,139 +25,134 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
 
 
   
-  const tableHeader = [
-    {
-      name: "Reg_No",
-    },
-    {
-      name: "Reg_Date",
-    },
-    {
-      name: "Name",
-    },
-    {
-      name: "Address",
-    },
-    {
-      name: "Mobile",
-    },
-    {
-      name: "Marital_Status",
-    },
-    {
-      name: "Gender",
-    },
-    {
-      name: "Age",
-    },
-    {
-      name: "Action",
-    },
-  ];
+ 
 
   const tableContent = [
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-       email:"monica@gmail.com",
-      occupation:"Business"
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-       email:"monica@gmail.com",
-      occupation:"Business"
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-       email:"monica@gmail.com",
-      occupation:"Business"
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-       email:"monica@gmail.com",
-      occupation:"Business"
- 
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-       email:"monica@gmail.com",
-      occupation:"Business"
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
     {
-      reg_No: "Ih475",
-      reg_Date: "08-30-24",
-      name: "Kathir",
-      reg_Address: "Chennai",
-      reg_city:"Chennai",
-      reg_state:"Tamil Nadu",
-      reg_country:"India",
-      pincode:"600001",
-      landmark:"Near Bus Stand",
-      mobile: "8564153458",
-      marital_status: "Married",
-      gender: "male",
-      age: "28",
-      email:"monica@gmail.com",
-      occupation:"Business"
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
+    },
+    {
+      patientRegistrationDate: ["08-30-24"],
+    patientDOB: "08-30-24",
+    patientName: "Kathir",
+    patientMobile: "8564153458",
+    // email: "",
+    patientOccupation: "Business",
+    patientLocation: "Chennai Tamilnadu",
+    doctor_id:["doc1"],
+    maritalStatus: "married",
+    patientInssured: "Yes",
+    patientGender: "male",
+    patientBloodGroup: "O+",
+    patientHeight: "185",
+    patientWeight: "60",
+    doctorPrescription: [[]],
+    patientPhoto: null,
     },
   ];
 
@@ -174,11 +169,11 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
   };
 
   const filteredItem = tableContent.filter((tab) => {
-    const searchTerm = tab.mobile && tab.mobile.includes(searchInput);
+    const searchTerm = tab.patientMobile && tab.patientMobile.includes(searchInput);
     const nameSearchTerm =
-      tab.name &&
+      tab.patientName &&
       searchInput &&
-      tab.name.toLowerCase().includes(searchInput.toLowerCase());
+      tab.patientName.toLowerCase().includes(searchInput.toLowerCase());
 
     return searchTerm || nameSearchTerm;
   });
@@ -194,7 +189,7 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
           placeholder="Enter Name / Number"
         ></input>
         <p
-          onClick={basicshowModal}
+          onClick={()=>{navToRegisterMore("/home/patient/registration")}}
           className="mb-0 appointment-1stdiv-register me-5"
         >
           REGISTER
@@ -207,10 +202,10 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
         {filteredItem &&
             filteredItem.length > 0 &&
             Object.keys(filteredItem[0]).map((key, index) =>
-              key !== "reg_city" &&
-              key !== "reg_state" &&
-              key !== "reg_country" &&
-              key !== "pincode" &&
+              key !== "doctorPrescription" &&
+              key !== "patientPhoto" &&
+              key !== "doctor_id" &&
+              key !== "patientRegistrationDate" &&
               key !== "landmark" &&
               key !== "occupation" &&
               key !== "email"
@@ -238,10 +233,10 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
             <tr className="patienttable-body-row-container">
             {Object.keys(element).map((rowData, cellIndex) => {
               if (
-                rowData === "reg_city" ||
-                rowData === "reg_state" ||
-                rowData === "reg_country" ||
-                rowData === "pincode" ||
+                rowData === "doctorPrescription" ||
+                rowData === "patientPhoto" ||
+                rowData === "doctor_id" ||
+                rowData === "patientRegistrationDate" ||
                 rowData === "landmark" ||
                 rowData === "occupation" ||
                 rowData === "email"

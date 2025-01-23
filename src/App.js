@@ -644,7 +644,7 @@ function App() {
                 }
               ></Route>
                <Route
-                path="home/pastpatient"
+                path="/home/patient/registration"
                 element={
                   <AppLayout>
                    <PastPatientRecReg></PastPatientRecReg>

@@ -1,40 +1,84 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
 import UserDataContext from "./Context/UserDataContext";
 import axios from "axios";
+import imageCompression from "browser-image-compression";
+import { useNavigate } from "react-router-dom";
 
 const PastPatientRecReg = () => {
   const { apiBaseUrl } = useContext(UserDataContext);
   const [loading, setLoading] = useState(false);
+    const [clinicData, setClinicData] = useState(null);
+     const [clinic, setClinic] = useState("");
+     const [clinicName, setClinicName] = useState("");
+      const [doctorData, setDoctorData] = useState(null);
+      const [singleDocName, setSingleDocName] = useState("");
+      const navigate = useNavigate()
+ 
+  const user = "physiotherapy";
+      
   const [formData, setFormData] = useState({
-    register_date: "",
-    dob: "",
-    patient_name: "",
-    mobile: "",
-    email: "",
-    patient_occupation: "",
-    location: "",
-
-    marital_status: "",
-    insurance: "",
-    gender: "",
-    blood: "",
-    height: "",
-    weight: "",
-    doc_prescription: [],
-    patient_photo: null,
+    patientRegistrationDate: "",
+    patientDOB: "",
+    patientName: "",
+    patientMobile: "",
+    // email: "",
+    patientOccupation: "",
+    patientLocation: "",
+    doctor_id:[],
+    maritalStatus: "",
+    patientInssured: "",
+    patientGender: "",
+    patientBloodGroup: "",
+    patientHeight: "",
+    patientWeight: "",
+    doctorPrescription: [],
+    patientPhoto: null,
   });
 
-  const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setFormData({ ...formData, [name]: type === "file" ? files[0] : value });
-    console.log(formData);
+// Input change function
+
+  const handleInputChange = async (e) => {
+    const { name, type, files, value } = e.target;
+
+    if (type === "file" && files.length > 0) {
+      // Compress the image
+      // const compressedFile = await compressImage(files[0]);
+      // setFormData({ ...formData, [name]: compressedFile });
+      setFormData({ ...formData, [name]: e.target.files[0] })
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+// Image Compression Functions
+
+  const compressImage = async (file) => {
+    const options = {
+      maxSizeMB: 0.2, // 200KB
+      maxWidthOrHeight: 1920, // Adjust as needed
+      useWebWorker: true,
+    };
+
+    try {
+      const compressedFile = await imageCompression(file, options);
+      console.log(
+        `Original file size: ${file.size / 1024} KB, Compressed file size: ${
+          compressedFile.size / 1024
+        } KB`
+      );
+      return compressedFile;
+    } catch (error) {
+      console.error("Image compression failed:", error);
+      return file; // Return the original file if compression fails
+    }
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
-    const formattedDate = value
+    const formattedDate =
+    value && !isNaN(new Date(value))
       ? format(new Date(value), "dd/MM/yyyy")
       : "DD/MM/YYYY";
 
@@ -51,76 +95,200 @@ const PastPatientRecReg = () => {
   });
 
   const handleAddDateChange = (specDate, date) => {
+    if (isNaN(new Date(date))) return; // Ignore invalid dates
+  
     const selectedDate = new Date(date);
-
+  
     const formatDate = selectedDate.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
     });
-    // Generate slots for the selected date
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [specDate]: formatDate,
+      [specDate]: specDate === "patientRegistrationDate"
+        ? [...(prevFormData[specDate] || []), formatDate]
+        : formatDate,
     }));
   };
+  
 
   const handleEmpty = () => {
     setFormData({
-      register_date: "",
-      dob: "",
-      patient_name: "",
-      mobile: "",
-      email: "",
-      patient_occupation: "",
-      location: "",
-
-      marital_status: "",
-      insurance: "",
-      gender: "",
-      blood: "",
-      height: "",
-      weight: "",
-      doc_prescription: [],
-      patient_photo: null,
+      patientRegistrationDate: "",
+      patientDOB: "",
+      patientName: "",
+      patientMobile: "",
+      // email: "",
+      patientOccupation: "",
+      patientLocation: "",
+      doctor_id:[],
+      maritalStatus: "",
+      patientInssured: "",
+      patientGender: "",
+      patientBloodGroup: "",
+      patientHeight: "",
+      patientWeight: "",
+      doctorPrescription: [],
+      patientPhoto: null,
     });
   };
 
+  useEffect(() => {
+    const getClinicData = async () => {
+      try {
+        const response = await axios.post(`${apiBaseUrl}get_clinic_list`);
+        if (response.data) {
+          setClinicData(response.data.data);
+          console.log(clinicData);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getClinicData();
+  }, [apiBaseUrl]);
+
+  useEffect(() => {
+    if (clinic) {
+      const getDocData = async () => {
+        try {
+          const response = await axios.post(
+            `${apiBaseUrl}get_doctor/${clinic}`
+          );
+          if (response.data) {
+            setDoctorData(response.data.data);
+            console.log(response.data);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getDocData();
+    }
+  }, [clinic]);
+
+  // Clinic Change Function
+
+  const handleCliniChange = (e) => {
+    const singleClinicName = e.target.value;
+    setClinicName(singleClinicName);
+    const selectedClinic = clinicData?.find(
+      (clinic) => clinic.clinic_name === singleClinicName
+    );
+    setClinic(selectedClinic?.clinic_id);
+  };
+
+
+  // Doctor Id Choosing function
+
+  const handleDoctorChange = (event) => {
+
+    const specDocName = event.target.value;
+    setSingleDocName(specDocName);
+    const getDocId = doctorData?.find(
+      (docname) => docname.doc_name === specDocName
+    );
+const docId = getDocId?.doctor_id
+    // console.log(docId)
+    setFormData((prevData)=>(
+      {...prevData,doctor_id : [docId]}
+    ))
+    // setSelectedDoctor(getDocId?.doctor_id);
+    console.log(formData)
+  };
+
+
+// Form Submit function
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     if (loading) return;
     setLoading(true);
 
-    if (!formData.dob) {
+    if (!formData.patientDOB) {
       alert("Please select a date of birth");
+      return; // Stop further executio
     }
 
     const data = new FormData();
     for (const key in formData) {
-      if (key == "doc_prescription") {
+      if (key == "doctorPrescription") {
         formData[key].forEach((img, index) => {
-          data.append(`doc_prescription[${index}]`, img);
+          img.forEach((sinImg,SinIndex)=>{
+            data.append(`doctorPrescription[${index}][${SinIndex}]`, sinImg);
+          }
+        )
         });
-      } else {
+      } else if (key == "patientRegistrationDate") {
+        formData[key].forEach((RegDate, index) => {
+          data.append(`patientRegistrationDate[${index}]`, RegDate);
+        });
+      } else if (key == "doctor_id") {
+        formData[key].forEach((doc, index) => {
+          data.append(`doctor_id[${index}]`, doc);
+        })}else{
         data.append(key, formData[key]);
       }
     }
-    // try {
-    //     const response = await axios.post(`${apiBaseUrl}`,data)
-    //     if(response.data){
-    //       alert(response.data.message)
-    //  handleEmpty()
 
-    //     }
-    //   } catch (error) {
-    //   alert("Error submitting form:", error);
-    //   }
-    console.log(formData);
+  
+    try {
+      for (let pair of data.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+        const response = await axios.post("https://saaluvar.com/Backend/prami/public/api/patientRegister",data)
+        if(response.data){
+          alert(response.data.message)
+     handleEmpty()
+     navigate("/home/registration")
+        }
+      } catch (error) {
+      alert( error.response.data.message);
+      console.log(error.response.data.message)
+      }finally {
+        setLoading(false);
+      }
+
+    console.log(formData)
+    
   };
+
+
+  // docprescription image function
+
+  // const handlePresImage = async (e) => {
+  //   const files = Array.from(e.target.files);
+  //   const compressedFiles = [];
+  
+  //   for (const file of files) {
+  //     console.log(`Original file: ${file.name}, size: ${(file.size / 1024).toFixed(2)} KB`);
+  //     try {
+  //       const options = {
+  //         maxSizeMB: 0.2, // Maximum size in MB (200 KB = 0.2 MB)
+  //         maxWidthOrHeight: 1920, // Keep the resolution reasonable
+  //         useWebWorker: true,
+  //       };
+  
+  //       const compressedFile = await imageCompression(file, options);
+  //       console.log(`Compressed file: ${compressedFile.name}, size: ${(compressedFile.size / 1024).toFixed(2)} KB`);
+  //       compressedFiles.push(compressedFile);
+  //     } catch (error) {
+  //       console.error("Image compression error:", error);
+  //     }
+  //   }
+  
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     doctorPrescription: compressedFiles,
+  //   }));
+  // };
 
   const handlePresImage = (e) => {
     const reader = Array.from(e.target.files);
-    setFormData((prevData) => ({ ...prevData, doc_prescription: reader }));
+    setFormData((prevData) => ({ ...prevData, doctorPrescription: [reader] }));
   };
 
   return (
@@ -133,8 +301,12 @@ const PastPatientRecReg = () => {
                 Registration Date
               </label>
               <DatePicker
-                selected={formData.register_date}
-                onChange={(date) => handleAddDateChange("register_date", date)}
+               selected={
+                formData.patientRegistrationDate
+                  ? new Date(formData.patientRegistrationDate)
+                  : null
+              }
+                onChange={(date) => handleAddDateChange("patientRegistrationDate", date)}
                 customInput={<CustomInput />}
                 showYearDropdown
                 scrollableYearDropdown
@@ -142,13 +314,14 @@ const PastPatientRecReg = () => {
                 scrollableMonthYearDropdown
               />
             </div>
+           
           </div>
           <div className="col">
             <div className="d-flex flex-column">
               <lable className="registration-modal-label">Date Of Birth</lable>
               <DatePicker
-                selected={formData.dob}
-                onChange={(date) => handleAddDateChange("dob", date)}
+                selected={formData.patientDOB}
+                onChange={(date) => handleAddDateChange("patientDOB", date)}
                 customInput={<CustomInput />}
                 showYearDropdown
                 scrollableYearDropdown
@@ -165,8 +338,8 @@ const PastPatientRecReg = () => {
               <input
                 className="registration-modal-input"
                 type="text"
-                value={formData.patient_name}
-                name="patient_name"
+                value={formData.patientName}
+                name="patientName"
                 onChange={handleInputChange}
                 onInput={(e) => {
                   e.target.value = e.target.value.replace(/\d/g, ""); // Remove numeric characters
@@ -181,25 +354,26 @@ const PastPatientRecReg = () => {
               <input
                 className="registration-modal-input"
                 type="tel"
-                value={formData.mobile}
-                name="mobile"
+                value={formData.patientMobile}
+                name="patientMobile"
                 onChange={(e) => {
                   const { value } = e.target;
                   if (/^\d*$/.test(value)) {
                     setFormData((prevData) => ({
                       ...prevData,
-                      mobile: value,
+                      patientMobile: value,
                     }));
                   }
                 }}
                 required
+                maxLength={10}
               ></input>
             </div>
           </div>
         </div>
         <div className="row mt-3">
           <div className="col">
-            <div className="d-flex flex-column">
+            {/* <div className="d-flex flex-column">
               <label className="registration-modal-label">Email</label>
               <input
                 className="registration-modal-input"
@@ -208,22 +382,48 @@ const PastPatientRecReg = () => {
                 name="email"
                 onChange={handleInputChange}
               ></input>
-            </div>
-          </div>
-          <div className="col">
-          <div className="d-flex flex-column">
+            </div> */}
+             <div className="d-flex flex-column">
               <label className="registration-modal-label">Gender</label>
               <select
                 className="registration-modal-input"
-                value={formData.gender}
-                name="gender"
+                value={formData.patientGender}
+                name="patientGender"
                 onChange={handleInputChange}
                 required
               >
                 <option value="">Select Gender</option>
-                <option>Male</option>
-                <option>Female</option>
+                <option>male</option>
+                <option>female</option>
               </select>
+            </div>
+          </div>
+          <div className="col">
+          {/* <div className="d-flex flex-column">
+              <label className="registration-modal-label">Gender</label>
+              <select
+                className="registration-modal-input"
+                value={formData.patientGender}
+                name="patientGender"
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option>male</option>
+                <option>female</option>
+              </select>
+            </div> */}
+            <div className="d-flex flex-column">
+              <lable className="registration-modal-label">
+                Patient Occupation
+              </lable>
+              <input
+                className="registration-modal-input"
+                type="text"
+                value={formData.patientOccupation}
+                name="patientOccupation"
+                onChange={handleInputChange}
+              ></input>
             </div>
           </div>
         </div>
@@ -235,8 +435,8 @@ const PastPatientRecReg = () => {
                 className="registration-modal-input"
              
             
-                value={formData.marital_status}
-                name="marital_status"
+                value={formData.maritalStatus}
+                name="maritalStatus"
                 onChange={handleInputChange}
               >
                 <option value="">Select Marital Status</option>
@@ -248,11 +448,11 @@ const PastPatientRecReg = () => {
           </div>
           <div className="col">
             <div className="d-flex flex-column">
-              <lable className="registration-modal-label">Blood Group</lable>
+              <lable className="registration-modal-label">BloodGroup </lable>
               <select
                 className="registration-modal-input"
-                value={formData.blood}
-                name="blood"
+                value={formData.patientBloodGroup}
+                name="patientBloodGroup"
                 onChange={handleInputChange}
               >
                 <option value="">Select Blood</option>
@@ -268,8 +468,8 @@ const PastPatientRecReg = () => {
               <label className="registration-modal-label">Height</label>
               <input
                 className="registration-modal-input"
-                value={formData.height}
-                name="height"
+                value={formData.patientHeight}
+                name="patientHeight"
                 onChange={handleInputChange}
               ></input>
             </div>
@@ -280,8 +480,8 @@ const PastPatientRecReg = () => {
               <input
                 className="registration-modal-input"
                 type="text"
-                value={formData.weight}
-                name="weight"
+                value={formData.patientWeight}
+                name="patientWeight"
                 onChange={handleInputChange}
               ></input>
             </div>
@@ -296,8 +496,8 @@ const PastPatientRecReg = () => {
                 className="registration-modal-input"
                 type="text"
                 placeholder="Enter Address"
-                value={formData.location}
-                name="location"
+                value={formData.patientLocation}
+                name="patientLocation"
                 onChange={handleInputChange}
               />
             </div>
@@ -386,9 +586,9 @@ const PastPatientRecReg = () => {
               <div className="d-flex ">
                 <input
                   type="radio"
-                  name="insurance"
+                  name="patientInssured"
                   value="yes"
-                  checked={formData.insurance === "yes"}
+                  checked={formData.patientInssured === "yes"}
                   onChange={handleInputChange}
                 ></input>
                 <lable className="registration-modal-label me-3">
@@ -398,9 +598,9 @@ const PastPatientRecReg = () => {
               <div className="d-flex ">
                 <input
                   type="radio"
-                  name="insurance"
+                  name="patientInssured"
                   value="no"
-                  checked={formData.insurance === "no"}
+                  checked={formData.patientInssured === "no"}
                   onChange={handleInputChange}
                 ></input>
                 <lable className="registration-modal-label">No Insurance</lable>
@@ -408,19 +608,71 @@ const PastPatientRecReg = () => {
             </div>
           </div>
           <div className="col">
-          <div className="d-flex flex-column">
+          {/* <div className="d-flex flex-column">
               <lable className="registration-modal-label">
                 Patient Occupation
               </lable>
               <input
                 className="registration-modal-input"
                 type="text"
-                value={formData.patient_occupation}
-                name="patient_occupation"
+                value={formData.patientOccupation}
+                name="patientOccupation"
                 onChange={handleInputChange}
               ></input>
-            </div>
+            </div> */}
             
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col">
+          <div className="d-flex flex-column">
+                      <label className="patientbooking-input-label">
+                        Select Clinic
+                      </label>
+                      <select
+                        required
+                        value={clinicName}
+                        onChange={handleCliniChange}
+                        className="patientbooking-patient-input"
+                      >
+                        <option value="">Select Clinic</option>
+                        {clinicData ? (
+                          clinicData.map((nameOfClinc,index) => (
+                            <option key={index}>
+                              {nameOfClinc.clinic_name}
+                            </option>
+                          ))
+                        ) : (
+                          <option disabled>Loading...</option>
+                        )}
+                      </select>
+                    </div>
+          </div>
+          <div className="col">
+          <div className="d-flex flex-column">
+                      <label className="patientbooking-input-label ms-3">
+                        Choose Doctor
+                      </label>
+                      <select
+                        name="doctor"
+                        value={singleDocName}
+                        className="patientbooking-patient-input"
+                        onChange={handleDoctorChange}
+                        required
+                      >
+                        <option value="">Select doctor</option>
+                        {doctorData && clinic ? (
+                          doctorData.map((docname) => (
+                            <option key={docname.doc_name}>
+                              {docname.doc_name}
+                            </option>
+                          ))
+                        ) : (
+                          <option disabled>Loading...</option>
+                        )}
+                        {clinicName && <option>{user}</option>}
+                      </select>
+                    </div>
           </div>
         </div>
 
@@ -433,7 +685,7 @@ const PastPatientRecReg = () => {
               <input
                 className="registration-modal-input p-0"
                 type="file"
-                name="doc_prescription"
+                name="doctorPrescription"
                 onChange={handlePresImage}
                 accept=".png, .jpg, .jpeg"
                 multiple
@@ -446,8 +698,9 @@ const PastPatientRecReg = () => {
               <input
                 className="registration-modal-input p-0"
                 type="file"
-                name="patient_photo"
+                name="patientPhoto"
                 onChange={handleInputChange}
+                 accept=".png, .jpg, .jpeg"
               ></input>
             </div>
           </div>
@@ -457,11 +710,12 @@ const PastPatientRecReg = () => {
           <button
             className="basicdetail-cancel-button"
             type="button"
-            // onClick={basichandleCancel}
+            onClick={()=>navigate("/home/registration")}
           >
             CANCEL
           </button>
-          <button className=" basicdetail-register-button">SUBMIT</button>
+          <button className=" basicdetail-register-button"   type="submit"
+                    disabled={loading}> {loading ? "SUBMITING..." : "SUBMIT"}</button>
         </div>
       </form>
     </div>
