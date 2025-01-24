@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import RegistrationModal from "./RegistrationModal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import UserDataContext from "./Context/UserDataContext";
+import docimg from "./img/Doc.png"
 const RegistrationPage = () => {
   const [basicisModalOpen, basicsetIsModalOpen] = useState(false);
-
+  const [tableContent, setTableContent] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [elementInput, setElementInput]=useState()
+  const { apiBaseUrl } = useContext(UserDataContext);
   const navToRegisterMore = useNavigate()
 
 const handleNavToSpecPat = (element)=>{
@@ -24,137 +28,151 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
   };
 
 
-  
+  useEffect(() => {
+    const getPastPatientRec = async () => {
+      try {
+        const response = await axios.post(`https://saaluvar.com/Backend/prami/public/api/getActivePatientDetails`);
+        if (response.data) {
+          setTableContent(response.data.data);
+          console.log(response.data.data);
+        }
+      } catch (err) {
+        console.log("Error fetching data: ", err);
+      }
+    };
+
+    getPastPatientRec();
+  }, [apiBaseUrl]);
  
 
-  const tableContent = [
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-    {
-      patientRegistrationDate: ["08-30-24"],
-    patientDOB: "08-30-24",
-    patientName: "Kathir",
-    patientMobile: "8564153458",
-    // email: "",
-    patientOccupation: "Business",
-    patientLocation: "Chennai Tamilnadu",
-    doctor_id:["doc1"],
-    maritalStatus: "married",
-    patientInssured: "Yes",
-    patientGender: "male",
-    patientBloodGroup: "O+",
-    patientHeight: "185",
-    patientWeight: "60",
-    doctorPrescription: [[]],
-    patientPhoto: null,
-    },
-  ];
+  // const tableContent = [
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Kathir",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  //   {
+  //     patientRegistrationDate: ["08-30-24"],
+  //   patientDOB: "08-30-24",
+  //   patientName: "Manikkam",
+  //   patientMobile: "8564153458",
+  //   // email: "",
+  //   patientOccupation: "Business",
+  //   patientLocation: "Chennai Tamilnadu",
+  //   doctor_id:["doc1"],
+  //   maritalStatus: "married",
+  //   patientInssured: "Yes",
+  //   patientGender: "male",
+  //   patientBloodGroup: "O+",
+  //   patientHeight: "185",
+  //   patientWeight: "60",
+  //   doctorPrescription: [[docimg,docimg]],
+  //   patientPhoto: docimg,
+  //   },
+  // ];
 
   const RefreshIcons = ({ user }) => {
     return (
@@ -168,15 +186,19 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
     );
   };
 
-  const filteredItem = tableContent.filter((tab) => {
-    const searchTerm = tab.patientMobile && tab.patientMobile.includes(searchInput);
+  // console.log(tableContent)
+  const filteredItem = tableContent?.filter((tab) => {
+    const searchTerm =
+      tab.patient_mobile &&
+      String(tab.patient_mobile).includes(searchInput); // Convert to string
     const nameSearchTerm =
-      tab.patientName &&
+      tab.patient_name &&
       searchInput &&
-      tab.patientName.toLowerCase().includes(searchInput.toLowerCase());
-
+      tab.patient_name.toLowerCase().includes(searchInput.toLowerCase());
+  
     return searchTerm || nameSearchTerm;
   });
+  
 
   return (
     <div>
@@ -201,9 +223,9 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
         <tr>
         {filteredItem &&
             filteredItem.length > 0 &&
-            Object.keys(filteredItem[0]).map((key, index) =>
-              key !== "doctorPrescription" &&
-              key !== "patientPhoto" &&
+            Object.keys(filteredItem[0])?.map((key, index) =>
+              key !== "prescriptions" &&
+              key !== "patient_photo" &&
               key !== "doctor_id" &&
               key !== "patientRegistrationDate" &&
               key !== "landmark" &&
@@ -228,13 +250,13 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
         </tr>
       </thead>
       <tbody>
-        {filteredItem.map((element) => {
+        {filteredItem?.map((element) => {
           return (
             <tr className="patienttable-body-row-container">
             {Object.keys(element).map((rowData, cellIndex) => {
               if (
-                rowData === "doctorPrescription" ||
-                rowData === "patientPhoto" ||
+                rowData === "prescriptions" ||
+                rowData === "patient_photo" ||
                 rowData === "doctor_id" ||
                 rowData === "patientRegistrationDate" ||
                 rowData === "landmark" ||

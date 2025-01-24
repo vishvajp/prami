@@ -104,11 +104,13 @@ const PastPatientRecReg = () => {
       month: "short",
       year: "numeric",
     });
+
+  
   
     setFormData((prevFormData) => ({
       ...prevFormData,
       [specDate]: specDate === "patientRegistrationDate"
-        ? [...(prevFormData[specDate] || []), formatDate]
+        ? [formatDate]
         : formatDate,
     }));
   };
@@ -213,6 +215,11 @@ const docId = getDocId?.doctor_id
       return; // Stop further executio
     }
 
+    if(!formData.patientRegistrationDate){
+      alert("Please select a registration date");
+      return;
+    }
+
     const data = new FormData();
     for (const key in formData) {
       if (key == "doctorPrescription") {
@@ -233,7 +240,9 @@ const docId = getDocId?.doctor_id
         data.append(key, formData[key]);
       }
     }
-
+    for (let pair of data.entries()) {
+      console.log(pair[0], pair[1]);
+    }
   
     try {
       for (let pair of data.entries()) {

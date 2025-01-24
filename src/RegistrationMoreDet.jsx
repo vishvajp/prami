@@ -1,7 +1,7 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import docimg from "./img/Doc.png"
-import "./RegistrationMoreDet.css"
+import docimg from "./img/Doc.png";
+import "./RegistrationMoreDet.css";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -10,104 +10,98 @@ import axios from "axios";
 
 const RegistrationMoreDet = () => {
   const { apiBaseUrl } = useContext(UserDataContext);
-    const navToRegistrationEdit = useNavigate()
+  const navToRegistrationEdit = useNavigate();
   const location = useLocation();
   const singlePatient = location.state;
-  const images = [docimg,docimg,docimg,docimg,docimg]
-const singleData = singlePatient.element
-const [docTrue,setDocTrue]=useState(false)
-const [clinicData, setClinicData] = useState(null);
-     const [clinic, setClinic] = useState("");
-     const [clinicName, setClinicName] = useState("");
-      const [doctorData, setDoctorData] = useState(null);
-      const [singleDocName, setSingleDocName] = useState("");
-      const user = "physiotherapy";
-// console.log(singleData);
-const [addRegDate,setAddRegDate]=useState(null)
-const [addDocPresc,setAddDocPresc] =useState(
-  {
-    patientRegistrationDate:singleData.patientRegistrationDate,
-    doctor_id :singleData.doctor_id,
-    doctorPrescription:singleData.doctorPrescription
-  
-  }
-)
-console.log(addDocPresc)
-const handleCliniChange = (e) => {
-  const singleClinicName = e.target.value;
-  setClinicName(singleClinicName);
-  const selectedClinic = clinicData?.find(
-    (clinic) => clinic.clinic_name === singleClinicName
-  );
-  setClinic(selectedClinic?.clinic_id);
-};
-
-useEffect(() => {
-  const getClinicData = async () => {
-    try {
-      const response = await axios.post(`${apiBaseUrl}get_clinic_list`);
-      if (response.data) {
-        setClinicData(response.data.data);
-        console.log(clinicData);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  const images = [docimg, docimg, docimg, docimg];
+  const singleData = singlePatient?.element;
+  const [docTrue, setDocTrue] = useState(false);
+  const [clinicData, setClinicData] = useState(null);
+  const [clinic, setClinic] = useState("");
+  const [clinicName, setClinicName] = useState("");
+  const [doctorData, setDoctorData] = useState(null);
+  const [singleDocName, setSingleDocName] = useState("");
+  const user = "physiotherapy";
+  const navigate = useNavigate()
+  const [addRegDate, setAddRegDate] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [addDocPresc, setAddDocPresc] = useState({
+    patientRegistrationDate: singleData.patientRegistrationDate,
+    doctor_id: singleData.doctor_id,
+    doctorPrescription: singleData.doctorPrescription,
+  });
+  console.log(singleData)
+  console.log(addDocPresc);
+  const handleCliniChange = (e) => {
+    const singleClinicName = e.target.value;
+    setClinicName(singleClinicName);
+    const selectedClinic = clinicData?.find(
+      (clinic) => clinic.clinic_name === singleClinicName
+    );
+    setClinic(selectedClinic?.clinic_id);
   };
-  getClinicData();
-}, [apiBaseUrl]);
 
-useEffect(() => {
-  if (clinic) {
-    const getDocData = async () => {
+  useEffect(() => {
+    const getClinicData = async () => {
       try {
-        const response = await axios.post(
-          `${apiBaseUrl}get_doctor/${clinic}`
-        );
+        const response = await axios.post(`${apiBaseUrl}get_clinic_list`);
         if (response.data) {
-          setDoctorData(response.data.data);
-          console.log(response.data);
+          setClinicData(response.data.data);
+          console.log(clinicData);
         }
       } catch (err) {
         console.log(err);
       }
     };
-    getDocData();
-  }
-}, [clinic]);
+    getClinicData();
+  }, [apiBaseUrl]);
 
-// Doctor Id Choosing function
+  useEffect(() => {
+    if (clinic) {
+      const getDocData = async () => {
+        try {
+          const response = await axios.post(
+            `${apiBaseUrl}get_doctor/${clinic}`
+          );
+          if (response.data) {
+            setDoctorData(response.data.data);
+            console.log(response.data);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getDocData();
+    }
+  }, [clinic]);
 
-const handleDoctorChange = (event) => {
+  // Doctor Id Choosing function
 
-  const specDocName = event.target.value;
-  setSingleDocName(specDocName);
-  const getDocId = doctorData?.find(
-    (docname) => docname.doc_name === specDocName
-  );
-const docId = getDocId?.doctor_id
-const idLength = singleData.doctor_id.length
-  // console.log(docId)
-  setAddDocPresc((prevData)=>{
-    const updatedDocId =  [...prevData.doctor_id];
-    updatedDocId[idLength] = docId;
-    return {
-            ...prevData,
-            doctor_id: updatedDocId, // Return the new state with updated doctor_id
-          };
-  }
+  const handleDoctorChange = (event) => {
+    const specDocName = event.target.value;
+    setSingleDocName(specDocName);
+    const getDocId = doctorData?.find(
+      (docname) => docname.doc_name === specDocName
+    );
+    const docId = getDocId?.doctor_id;
+    const idLength = singleData.doctor_id.length;
+    // console.log(docId)
+    setAddDocPresc((prevData) => {
+      const updatedDocId = [...prevData.doctor_id];
+      updatedDocId[idLength] = docId;
+      return {
+        ...prevData,
+        doctor_id: updatedDocId, // Return the new state with updated doctor_id
+      };
+    });
+    console.log(addDocPresc);
+  };
 
-  )
-  console.log(addDocPresc)
-};
-
-
-
- const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     const formattedDate =
-    value && !isNaN(new Date(value))
-      ? format(new Date(value), "dd/MM/yyyy")
-      : "DD/MM/YYYY";
+      value && !isNaN(new Date(value))
+        ? format(new Date(value), "dd/MM/yyyy")
+        : "DD/MM/YYYY";
 
     return (
       <button
@@ -123,28 +117,28 @@ const idLength = singleData.doctor_id.length
 
   const handleAddDateChange = (specDate, date) => {
     if (isNaN(new Date(date))) return; // Ignore invalid dates
-  
+
     const selectedDate = new Date(date);
-  
+
     const formatDate = selectedDate.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
     });
 
-    setAddRegDate(formatDate)
+    setAddRegDate(formatDate);
 
-    const newRegDate = formatDate
+    const newRegDate = formatDate;
 
-    const DateLength = singleData.patientRegistrationDate.length
-  
+    const DateLength = singleData.patientRegistrationDate.length;
+
     setAddDocPresc((prevFormData) => {
-      const updatedDate = [...prevFormData.patientRegistrationDate]
+      const updatedDate = [...prevFormData.patientRegistrationDate];
       updatedDate[DateLength] = newRegDate;
-      return{
+      return {
         ...prevFormData,
-        patientRegistrationDate: updatedDate
-      }
+        patientRegistrationDate: updatedDate,
+      };
       // ...prevFormData,
       // [specDate]: specDate === "patientRegistrationDate"
       //   ? [...(prevFormData[specDate] || []), formatDate]
@@ -152,263 +146,352 @@ const idLength = singleData.doctor_id.length
     });
   };
 
-
   const handlePresImage = (e) => {
     const reader = Array.from(e.target.files);
-    setAddDocPresc((prevData) => ({ ...prevData, doctorPrescription: [...reader] }));
+    const imgLength = singleData.doctorPrescription.length;
+    setAddDocPresc((prevData) => {
+      const updatedImg = [...prevData.doctorPrescription];
+      updatedImg[imgLength] = reader;
+      return {
+        ...prevData,
+        doctorPrescription: updatedImg,
+      };
+    });
+    //  ({ ...prevData, doctorPrescription: reader}));
   };
 
+  const handleSub = async(e) => {
+    e.preventDefault();
+    console.log(addDocPresc);
+    if (loading) return;
+    setLoading(true);
 
-  const handleSub =()=>{
-    console.log(addDocPresc)
-  }
+    if (!addDocPresc.patientRegistrationDate) {
+      alert("Please select a registration date");
+      return;
+    }
 
-  const handleNavToRegistrationEdit = ()=>{
-    console.log("game")
-navToRegistrationEdit("/home/register/edit",{state:{singleData}})
-  }
+    const data = new FormData();
+    for (const key in addDocPresc) {
+      if (key == "doctorPrescription") {
+        addDocPresc[key].forEach((img, index) => {
+          img.forEach((sinImg, SinIndex) => {
+            data.append(`doctorPrescription[${index}][${SinIndex}]`, sinImg);
+          });
+        });
+      } else if (key == "patientRegistrationDate") {
+        addDocPresc[key].forEach((RegDate, index) => {
+          data.append(`patientRegistrationDate[${index}]`, RegDate);
+        });
+      } else if (key == "doctor_id") {
+        addDocPresc[key].forEach((doc, index) => {
+          data.append(`doctor_id[${index}]`, doc);
+        });
+      } else {
+        data.append(key, addDocPresc[key]);
+      }
+    }
+    for (let pair of data.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+    // try {
+    
+    //     const response = await axios.post("https://saaluvar.com/Backend/prami/public/api/patientRegister",data)
+    //     if(response.data){
+    //       alert(response.data.message)
+    
+    //  navigate("/home/registration")
+    //     }
+    //   } catch (error) {
+    //   alert( error.response.data.message);
+    //   console.log(error.response.data.message)
+    //   }finally {
+    //     setLoading(false);
+    //   }
+
+    console.log(addDocPresc);
+  };
+
+  const handleAddPrescritption = () => {
+    setDocTrue(!docTrue);
+    if (!docTrue) {
+      setAddDocPresc({
+        patientRegistrationDate: singleData.patientRegistrationDate,
+        doctor_id: singleData.doctor_id,
+        doctorPrescription: singleData.doctorPrescription,
+      });
+      setClinic("");
+      setClinicName("");
+      setAddRegDate(null);
+    }
+  };
+
+  const handleNavToRegistrationEdit = () => {
+    console.log("game");
+    navToRegistrationEdit("/home/register/edit", { state: { singleData } });
+  };
   return (
     <div>
       <div className="doc-page-table">
         <div className="row">
-            <div className="col d-flex justify-content-end"> <span className="doctor-profile text-end" >Registration More Detail</span></div>
-            <div className="col text-end"> <button onClick={handleNavToRegistrationEdit} className="profile-edit-button me-4">Edit</button></div>
+          <div className="col text-end">
+            {" "}
+            <button
+              onClick={handleNavToRegistrationEdit}
+              className="profile-edit-button me-4"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+        <div className="row mb-3">
+          <div className=" d-flex justify-content-center">
+            {" "}
+            <span className="doctor-more-det-title">
+              Registration More Detail
+            </span>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center mb-3">
+          <img
+            className="moredet-patient-photo"
+            src={singleData.patient_photo}
+          ></img>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Registration Date</lable>
+            <p className="medicalhistory-records-para">
+              {/* {singleData.prescriptions} */}
+            </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> DOB</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_dob}
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Name</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_name}
+            </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Mobile</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_mobile}
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Gender</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_gender}
+            </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Occupation</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_occupation}
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Marital Status</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_martial}
+            </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Blood Group</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_bloodGroup}
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Height</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_height}
+            </p>
+          </div>
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Weight</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_weight}
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col-6">
+            <lable className="medichistory-lable"> Location</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_location}
+            </p>
+          </div>
+          <div className="d-flex flex-column col-6">
+            {/* <lable className="medichistory-lable"> Marital Status</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.maritalStatus}
+            </p> */}
+             <lable className="medichistory-lable"> Insurance</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patiient_insurred}
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-column col">
+            <lable className="medichistory-lable"> Doctor</lable>
+            <p className="medicalhistory-records-para">{singleData.doctor}</p>
+          </div>
+          <div className="d-flex flex-column col">
            
-        </div>
-      < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-     Registration Date
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientRegistrationDate}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        <lable className="medichistory-lable">
-                  {" "}
-               DOB
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientDOB}</p>
-        </div>   
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-                 Name
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientName}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        <lable className="medichistory-lable">
-                  {" "}
-                 Mobile
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientMobile}</p>
-        </div>   
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-               Gender
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientGender}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        <lable className="medichistory-lable">
-                  {" "}
-               Occupation
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientOccupation}</p>
-        </div>   
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-                Marital Status
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.maritalStatus}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        <lable className="medichistory-lable">
-                  {" "}
-                 Blood Group
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientBloodGroup}</p>
-        </div>   
-        </div> 
-       
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-                Height
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientHeight}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        <lable className="medichistory-lable">
-                  {" "}
-              Weight
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientWeight}</p>
-        </div>   
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col-6">
-        <lable className="medichistory-lable">
-                  {" "}
-                  Location
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientLocation}</p>
-        </div>
-         
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-                 Insurance
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.patientInssured}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-        {/* <lable className="medichistory-lable">
-                  {" "}
-               Marital Status
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.element.marital_status}</p> */}
-        </div>   
-        </div> 
-        < div className='row'>
-        <div className="d-flex flex-column col">
-        <lable className="medichistory-lable">
-                  {" "}
-              Doctor
-                </lable>
-                <p className='medicalhistory-records-para'>{singleData.doctor}</p>
-        </div>
-        <div className="d-flex flex-column col">
-        
-       
-        </div>   
-        <div className="row">
-       {images.map((sinImg,index)=>(
-        <div key={index} className="col-3">
-          <img  className="registerImg" src={sinImg}></img>
-          </div>
-       ))}
-       
-        
-        </div>
-        </div> 
-        <div className="d-flex">
-          <button onClick={()=>setDocTrue(!docTrue)}>ADD PRESCRIPTION</button>
-        </div>
-        {docTrue &&
-        <form onSubmit={handleSub}>
-        <div className="row">
-          <div className="col">
-            <div className="d-flex flex-column">
-                          <label className="registration-modal-label">
-                            Registration Date
-                          </label>
-                          <DatePicker
-                           selected={
-                            addDocPresc.patientRegistrationDate
-                              ? new Date(addRegDate)
-                              : null
-                          }
-                            onChange={(date) => handleAddDateChange("patientRegistrationDate", date)}
-                            customInput={<CustomInput />}
-                            showYearDropdown
-                            scrollableYearDropdown
-                            yearDropdownItemNumber={80}
-                            scrollableMonthYearDropdown
-                          />
-                        </div>
-          </div>
-          <div className="col">
-          <div className="d-flex flex-column">
-                      <label className="patientbooking-input-label">
-                        Select Clinic
-                      </label>
-                      <select
-                        required
-                        value={clinicName}
-                        onChange={handleCliniChange}
-                        className="patientbooking-patient-input"
-                      >
-                        <option value="">Select Clinic</option>
-                        {clinicData ? (
-                          clinicData.map((nameOfClinc,index) => (
-                            <option key={index}>
-                              {nameOfClinc.clinic_name}
-                            </option>
-                          ))
-                        ) : (
-                          <option disabled>Loading...</option>
-                        )}
-                      </select>
-                    </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-          <div className="d-flex flex-column">
-                      <label className="patientbooking-input-label ms-3">
-                        Choose Doctor
-                      </label>
-                      <select
-                        name="doctor"
-                        value={singleDocName}
-                        className="patientbooking-patient-input"
-                        onChange={handleDoctorChange}
-                        required
-                      >
-                        <option value="">Select doctor</option>
-                        {doctorData && clinic ? (
-                          doctorData.map((docname) => (
-                            <option key={docname.doc_name}>
-                              {docname.doc_name}
-                            </option>
-                          ))
-                        ) : (
-                          <option disabled>Loading...</option>
-                        )}
-                        {clinicName && <option>{user}</option>}
-                      </select>
-                    </div>
-          </div>
-          <div className="col">
-          <div className="d-flex flex-column">
-              <label className="registration-modal-label">
-                Doctor Prescription
-              </label>
-              <input
-                className="registration-modal-input p-0"
-                type="file"
-                name="doctorPrescription"
-                onChange={handlePresImage}
-                accept=".png, .jpg, .jpeg"
-                multiple
-              ></input>
-            </div>
           </div>
         </div>
         <div>
-          <button type="submit">UPDATE</button>
+        <div className="medicalhistory-records-para">
+  {Object.keys(singleData.prescriptions).map((docKey) => {
+    const doctor = singleData.prescriptions[docKey];
+    return (
+      <div key={docKey}>
+        <h5>{doctor.doctor_name} game</h5>
+        {doctor.prescriptions?.map((prescription, index) => (
+          <div key={index} style={{ marginBottom: "1rem" }}>
+            <p>
+              Date: {prescription.date}
+            </p>
+            <img
+              src={prescription.prescription_path}
+              alt={`Prescription from ${doctor.doctor_name}`}
+              style={{ width: "200px", height: "auto" }}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  })}
+</div>
+
         </div>
-        </form> }
-        
+
+        <div className="d-flex">
+          <button
+            onClick={handleAddPrescritption}
+            className="moredet-addpresc-button mb-3 mt-3"
+          >
+            ADD PRESCRIPTION
+          </button>
+        </div>
+        {docTrue && (
+          <form onSubmit={handleSub}>
+            <div className="row">
+              <div className="col">
+                <div className="d-flex flex-column">
+                  <label className="registration-modal-label">
+                    Registration Date
+                  </label>
+                  <DatePicker
+                    selected={
+                      addDocPresc.patientRegistrationDate
+                        ? new Date(addRegDate)
+                        : null
+                    }
+                    onChange={(date) =>
+                      handleAddDateChange("patientRegistrationDate", date)
+                    }
+                    customInput={<CustomInput />}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={80}
+                    scrollableMonthYearDropdown
+                  />
+                </div>
+              </div>
+              <div className="col">
+                <div className="d-flex flex-column">
+                  <label className="patientbooking-input-label">
+                    Select Clinic
+                  </label>
+                  <select
+                    required
+                    value={clinicName}
+                    onChange={handleCliniChange}
+                    className="patientbooking-patient-input"
+                  >
+                    <option value="">Select Clinic</option>
+                    {clinicData ? (
+                      clinicData.map((nameOfClinc, index) => (
+                        <option key={index}>{nameOfClinc.clinic_name}</option>
+                      ))
+                    ) : (
+                      <option disabled>Loading...</option>
+                    )}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="row mt-3">
+              <div className="col">
+                <div className="d-flex flex-column">
+                  <label className="patientbooking-input-label ms-3">
+                    Choose Doctor
+                  </label>
+                  <select
+                    name="doctor"
+                    value={singleDocName}
+                    className="patientbooking-patient-input"
+                    onChange={handleDoctorChange}
+                    required
+                  >
+                    <option value="">Select doctor</option>
+                    {doctorData && clinic ? (
+                      doctorData.map((docname) => (
+                        <option key={docname.doc_name}>
+                          {docname.doc_name}
+                        </option>
+                      ))
+                    ) : (
+                      <option disabled>Loading...</option>
+                    )}
+                    {clinicName && <option>{user}</option>}
+                  </select>
+                </div>
+              </div>
+              <div className="col">
+                <div className="d-flex flex-column">
+                  <label className="registration-modal-label">
+                    Doctor Prescription
+                  </label>
+                  <input
+                    className="registration-modal-input p-0"
+                    type="file"
+                    name="doctorPrescription"
+                    onChange={handlePresImage}
+                    accept=".png, .jpg, .jpeg"
+                    multiple
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <button
+                className="moredet-update-button mt-3 "
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "UPDATING..." : "UPDATE"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
