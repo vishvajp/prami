@@ -17,27 +17,27 @@ const Login = ({ introData, onLogin }) => {
 
   // For live
 
-  // const handleSignIn = function (e) {
-  //   e.preventDefault();
-  //   if (userName === "Karthick" && password === "Karthick@123") {
-  //     onLogin()
-  //     homeNavigate("/home/dashboard");
-  //   } else {
-  //     alert("Invalid Credentials");
-  //   }
-  // };
-
-  // For development
-
   const handleSignIn = function (e) {
     e.preventDefault();
-    if (userName === "TSIT" && password === "Admin@tsit") {
-      onLogin();
+    if (userName === "Karthick" && password === "Karthick@123") {
+      onLogin()
       homeNavigate("/home/dashboard");
     } else {
       alert("Invalid Credentials");
     }
   };
+
+  // For development
+
+  // const handleSignIn = function (e) {
+  //   e.preventDefault();
+  //   if (userName === "TSIT" && password === "Admin@tsit") {
+  //     onLogin();
+  //     homeNavigate("/home/dashboard");
+  //   } else {
+  //     alert("Invalid Credentials");
+  //   }
+  // };
 
   return (
     <div className="login-full-div" style={{ height: "100vh" }}>

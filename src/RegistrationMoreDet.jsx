@@ -197,10 +197,12 @@ const RegistrationMoreDet = () => {
       console.log(pair[0], pair[1]);
     }
     try {
-      const response = await axios.post(
-        `https://saaluvar.com/Backend/prami/public/api/updatePatientPrescription/${patientId}`,
-        data
-      );
+      // const response = await axios.post(
+      //   `https://saaluvar.com/Backend/prami/public/api/updatePatientPrescription/${patientId}`,
+      //   data
+      // );
+
+       const response = await axios.post(`${apiBaseUrl}updatePatientPrescription/${patientId}`,data)
       if (response.data) {
         alert(response.data.message);
         navigate("/home/registration");
@@ -251,7 +253,7 @@ const RegistrationMoreDet = () => {
           <div className=" d-flex justify-content-center">
             {" "}
             <span className="doctor-more-det-title">
-              Registration More Detail
+              Patient Details
             </span>
           </div>
         </div>

@@ -31,7 +31,8 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
   useEffect(() => {
     const getPastPatientRec = async () => {
       try {
-        const response = await axios.post(`https://saaluvar.com/Backend/prami/public/api/getActivePatientDetails`);
+        // const response = await axios.post(`https://saaluvar.com/Backend/prami/public/api/getActivePatientDetails`);
+         const response = await axios.post(`${apiBaseUrl}getActivePatientDetails`)
         if (response.data) {
           setTableContent(response.data.data);
           console.log(response.data.data);

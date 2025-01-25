@@ -248,7 +248,8 @@ const docId = getDocId?.doctor_id
       for (let pair of data.entries()) {
         console.log(pair[0], pair[1]);
       }
-        const response = await axios.post("https://saaluvar.com/Backend/prami/public/api/patientRegister",data)
+        // const response = await axios.post("https://saaluvar.com/Backend/prami/public/api/patientRegister",data)
+        const response = await axios.post(`${apiBaseUrl}patientRegister`,data)
         if(response.data){
           alert(response.data.message)
      handleEmpty()
@@ -463,6 +464,7 @@ const docId = getDocId?.doctor_id
                 value={formData.patientBloodGroup}
                 name="patientBloodGroup"
                 onChange={handleInputChange}
+                required
               >
                 <option value="">Select Blood</option>
                 <option value="A+">A+</option>
