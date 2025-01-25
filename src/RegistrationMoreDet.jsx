@@ -22,16 +22,17 @@ const RegistrationMoreDet = () => {
   const [doctorData, setDoctorData] = useState(null);
   const [singleDocName, setSingleDocName] = useState("");
   const user = "physiotherapy";
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [addRegDate, setAddRegDate] = useState(null);
+  const patientId = singleData.patient_id;
   const [loading, setLoading] = useState(false);
   const [addDocPresc, setAddDocPresc] = useState({
-    patientRegistrationDate: singleData.patientRegistrationDate,
-    doctor_id: singleData.doctor_id,
-    doctorPrescription: singleData.doctorPrescription,
+    patientRegistrationDate: "",
+    doctor_id: [],
+    doctorPrescription: [],
   });
-  console.log(singleData)
-  console.log(addDocPresc);
+
+  // console.log(addDocPresc);
   const handleCliniChange = (e) => {
     const singleClinicName = e.target.value;
     setClinicName(singleClinicName);
@@ -84,16 +85,9 @@ const RegistrationMoreDet = () => {
       (docname) => docname.doc_name === specDocName
     );
     const docId = getDocId?.doctor_id;
-    const idLength = singleData.doctor_id.length;
+    // const idLength = singleData.doctor_id.length;
     // console.log(docId)
-    setAddDocPresc((prevData) => {
-      const updatedDocId = [...prevData.doctor_id];
-      updatedDocId[idLength] = docId;
-      return {
-        ...prevData,
-        doctor_id: updatedDocId, // Return the new state with updated doctor_id
-      };
-    });
+    setAddDocPresc((prevData) => ({ ...prevData, doctor_id: [docId] }));
     console.log(addDocPresc);
   };
 
@@ -126,41 +120,49 @@ const RegistrationMoreDet = () => {
       year: "numeric",
     });
 
-    setAddRegDate(formatDate);
+    // setAddRegDate(formatDate);
 
-    const newRegDate = formatDate;
+    // const newRegDate = formatDate;
 
-    const DateLength = singleData.patientRegistrationDate.length;
+    // const DateLength = singleData.patientRegistrationDate.length;
 
-    setAddDocPresc((prevFormData) => {
-      const updatedDate = [...prevFormData.patientRegistrationDate];
-      updatedDate[DateLength] = newRegDate;
-      return {
-        ...prevFormData,
-        patientRegistrationDate: updatedDate,
-      };
+    setAddDocPresc((prevFormData) => ({
+      ...prevFormData,
+      [specDate]:
+        specDate === "patientRegistrationDate" ? [formatDate] : formatDate,
+
+      // const updatedDate = [...prevFormData.patientRegistrationDate];
+      // updatedDate[DateLength] = newRegDate;
+      // return {
+      //   ...prevFormData,
+      //   patientRegistrationDate: updatedDate,
+      // };3
       // ...prevFormData,
       // [specDate]: specDate === "patientRegistrationDate"
       //   ? [...(prevFormData[specDate] || []), formatDate]
       //   : formatDate,
-    });
+    }));
   };
 
   const handlePresImage = (e) => {
     const reader = Array.from(e.target.files);
-    const imgLength = singleData.doctorPrescription.length;
-    setAddDocPresc((prevData) => {
-      const updatedImg = [...prevData.doctorPrescription];
-      updatedImg[imgLength] = reader;
-      return {
-        ...prevData,
-        doctorPrescription: updatedImg,
-      };
-    });
+    // const imgLength = singleData.doctorPrescription.length;
+    // setAddDocPresc((prevData) => {
+    //   const updatedImg = [...prevData.doctorPrescription];
+    //   updatedImg[imgLength] = reader;
+    //   return {
+    //     ...prevData,
+    //     doctorPrescription: updatedImg,
+    //   };
+    // });
     //  ({ ...prevData, doctorPrescription: reader}));
+    setAddDocPresc((prevData) => ({
+      ...prevData,
+      doctorPrescription: [reader],
+    }));
   };
 
-  const handleSub = async(e) => {
+  const handleSub = async (e) => {
     e.preventDefault();
     console.log(addDocPresc);
     if (loading) return;
@@ -194,20 +196,21 @@ const RegistrationMoreDet = () => {
     for (let pair of data.entries()) {
       console.log(pair[0], pair[1]);
     }
-    // try {
-    
-    //     const response = await axios.post("https://saaluvar.com/Backend/prami/public/api/patientRegister",data)
-    //     if(response.data){
-    //       alert(response.data.message)
-    
-    //  navigate("/home/registration")
-    //     }
-    //   } catch (error) {
-    //   alert( error.response.data.message);
-    //   console.log(error.response.data.message)
-    //   }finally {
-    //     setLoading(false);
-    //   }
+    try {
+      const response = await axios.post(
+        `https://saaluvar.com/Backend/prami/public/api/updatePatientPrescription/${patientId}`,
+        data
+      );
+      if (response.data) {
+        alert(response.data.message);
+        navigate("/home/registration");
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+      console.log(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
 
     console.log(addDocPresc);
   };
@@ -341,7 +344,7 @@ const RegistrationMoreDet = () => {
             <p className="medicalhistory-records-para">
               {singleData.maritalStatus}
             </p> */}
-             <lable className="medichistory-lable"> Insurance</lable>
+            <lable className="medichistory-lable"> Insurance</lable>
             <p className="medicalhistory-records-para">
               {singleData.patiient_insurred}
             </p>
@@ -352,34 +355,31 @@ const RegistrationMoreDet = () => {
             <lable className="medichistory-lable"> Doctor</lable>
             <p className="medicalhistory-records-para">{singleData.doctor}</p>
           </div>
-          <div className="d-flex flex-column col">
-           
-          </div>
+          <div className="d-flex flex-column col"></div>
         </div>
         <div>
-        <div className="medicalhistory-records-para">
-  {Object.keys(singleData.prescriptions).map((docKey) => {
-    const doctor = singleData.prescriptions[docKey];
-    return (
-      <div key={docKey}>
-        <h5>{doctor.doctor_name} game</h5>
-        {doctor.prescriptions?.map((prescription, index) => (
-          <div key={index} style={{ marginBottom: "1rem" }}>
-            <p>
-              Date: {prescription.date}
-            </p>
-            <img
-              src={prescription.prescription_path}
-              alt={`Prescription from ${doctor.doctor_name}`}
-              style={{ width: "200px", height: "auto" }}
-            />
+          <div className="medicalhistory-records-para">
+            {Object.keys(singleData.prescriptions).map((docKey) => {
+              const doctor = singleData.prescriptions[docKey];
+              return (
+                <div key={docKey}>
+                  <h5 className="moredet-docname">{doctor.doctor_name}</h5>
+                  <div className="row">
+                    {doctor.prescriptions?.map((prescription, index) => (
+                      <div key={index} className="col-3 mb-3">
+                        <h6>Date: {prescription.date}</h6>
+                        <img
+                          src={prescription.prescription_path}
+                          alt={`Prescription from ${doctor.doctor_name}`}
+                          className="registerImg"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        ))}
-      </div>
-    );
-  })}
-</div>
-
         </div>
 
         <div className="d-flex">
@@ -401,7 +401,7 @@ const RegistrationMoreDet = () => {
                   <DatePicker
                     selected={
                       addDocPresc.patientRegistrationDate
-                        ? new Date(addRegDate)
+                        ? new Date(addDocPresc.patientRegistrationDate)
                         : null
                     }
                     onChange={(date) =>
