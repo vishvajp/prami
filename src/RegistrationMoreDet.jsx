@@ -21,7 +21,7 @@ const RegistrationMoreDet = () => {
   const [clinicName, setClinicName] = useState("");
   const [doctorData, setDoctorData] = useState(null);
   const [singleDocName, setSingleDocName] = useState("");
-  const user = "physiotherapy";
+  // const user = "physiotherapy";
   const navigate = useNavigate();
   const [addRegDate, setAddRegDate] = useState(null);
   const patientId = singleData.patient_id;
@@ -263,24 +263,32 @@ const RegistrationMoreDet = () => {
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
-            <lable className="medichistory-lable"> Registration Date</lable>
+            {/* <lable className="medichistory-lable"> Registration Date</lable>
             <p className="medicalhistory-records-para">
-              {/* {singleData.prescriptions} */}
+              {singleData.prescriptions}
+            </p> */}
+             <lable className="medichistory-lable"> Name</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_name}
             </p>
           </div>
           <div className="d-flex flex-column col">
-            <lable className="medichistory-lable"> DOB</lable>
+            {/* <lable className="medichistory-lable"> DOB</lable>
             <p className="medicalhistory-records-para">
               {singleData.patient_dob}
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="row">
           <div className="d-flex flex-column col">
-            <lable className="medichistory-lable"> Name</lable>
+          <lable className="medichistory-lable"> DOB</lable>
+            <p className="medicalhistory-records-para">
+              {singleData.patient_dob}
+            </p>
+            {/* <lable className="medichistory-lable"> Name</lable>
             <p className="medicalhistory-records-para">
               {singleData.patient_name}
-            </p>
+            </p> */}
           </div>
           <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Mobile</lable>
@@ -351,10 +359,10 @@ const RegistrationMoreDet = () => {
           </div>
         </div>
         <div className="row">
-          <div className="d-flex flex-column col">
+          {/* <div className="d-flex flex-column col">
             <lable className="medichistory-lable"> Doctor</lable>
             <p className="medicalhistory-records-para">{singleData.doctor}</p>
-          </div>
+          </div> */}
           <div className="d-flex flex-column col"></div>
         </div>
         <div>
@@ -363,11 +371,11 @@ const RegistrationMoreDet = () => {
               const doctor = singleData.prescriptions[docKey];
               return (
                 <div key={docKey}>
-                  <h5 className="moredet-docname">{doctor.doctor_name}</h5>
-                  <div className="row">
+                  <div className="mb-2 mt-1 d-flex justify-content-center" ><span className="moredet-docname">{doctor.doctor_name}</span></div>
+                  <div className="row moredet-prescription-row">
                     {doctor.prescriptions?.map((prescription, index) => (
-                      <div key={index} className="col-3 mb-3">
-                        <h6>Date: {prescription.date}</h6>
+                      <div key={index} className="col-3 mb-3 moredet-prescription-col">
+                        <h6 className="moreder-date-heading">Date: {prescription.date}</h6>
                         <img
                           src={prescription.prescription_path}
                           alt={`Prescription from ${doctor.doctor_name}`}
@@ -461,7 +469,7 @@ const RegistrationMoreDet = () => {
                     ) : (
                       <option disabled>Loading...</option>
                     )}
-                    {clinicName && <option>{user}</option>}
+                    {/* {clinicName && <option>{user}</option>} */}
                   </select>
                 </div>
               </div>

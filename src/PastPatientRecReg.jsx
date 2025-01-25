@@ -17,7 +17,7 @@ const PastPatientRecReg = () => {
       const [singleDocName, setSingleDocName] = useState("");
       const navigate = useNavigate()
  
-  const user = "physiotherapy";
+  // const user = "physiotherapy";
       
   const [formData, setFormData] = useState({
     patientRegistrationDate: "",
@@ -465,8 +465,14 @@ const docId = getDocId?.doctor_id
                 onChange={handleInputChange}
               >
                 <option value="">Select Blood</option>
-                <option>O+</option>
-                <option>O-</option>
+                <option value="A+">A+</option>
+      <option >A-</option>
+      <option >B+</option>
+      <option >B-</option>
+      <option >AB+</option>
+      <option >AB-</option>
+      <option>O+</option>
+      <option >O-</option>
               </select>
             </div>
           </div>
@@ -679,7 +685,7 @@ const docId = getDocId?.doctor_id
                         ) : (
                           <option disabled>Loading...</option>
                         )}
-                        {clinicName && <option>{user}</option>}
+                        {/* {clinicName && <option>{user}</option>} */}
                       </select>
                     </div>
           </div>
