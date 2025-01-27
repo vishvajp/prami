@@ -210,15 +210,15 @@ const docId = getDocId?.doctor_id
     if (loading) return;
     setLoading(true);
 
-    if (!formData.patientDOB) {
-      alert("Please select a date of birth");
-      return; // Stop further executio
-    }
+    // if (!formData.patientDOB) {
+    //   alert("Please select a date of birth");
+    //   return; 
+    // }
 
-    if(!formData.patientRegistrationDate){
-      alert("Please select a registration date");
-      return;
-    }
+    // if(!formData.patientRegistrationDate){
+    //   alert("Please select a registration date");
+    //   return;
+    // }
 
     const data = new FormData();
     for (const key in formData) {
@@ -256,7 +256,7 @@ const docId = getDocId?.doctor_id
      navigate("/home/registration")
         }
       } catch (error) {
-      alert( error.response.data.message);
+      alert( error.response?.data?.message);
       console.log(error.response.data.message)
       }finally {
         setLoading(false);
@@ -400,7 +400,7 @@ const docId = getDocId?.doctor_id
                 value={formData.patientGender}
                 name="patientGender"
                 onChange={handleInputChange}
-                required
+                // required
               >
                 <option value="">Select Gender</option>
                 <option>male</option>
@@ -464,10 +464,10 @@ const docId = getDocId?.doctor_id
                 value={formData.patientBloodGroup}
                 name="patientBloodGroup"
                 onChange={handleInputChange}
-                required
+                
               >
                 <option value="">Select Blood</option>
-                <option value="A+">A+</option>
+                <option>A+</option>
       <option >A-</option>
       <option >B+</option>
       <option >B-</option>
@@ -475,6 +475,7 @@ const docId = getDocId?.doctor_id
       <option >AB-</option>
       <option>O+</option>
       <option >O-</option>
+      {/* <option>None</option> */}
               </select>
             </div>
           </div>

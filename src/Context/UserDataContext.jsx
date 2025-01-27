@@ -71,10 +71,10 @@ export const DataProvider = ({ children }) => {
     setMediFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const apiBaseUrl =
-  //   "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";
+  const apiBaseUrl =
+    "https://cvmvreddystrust.com/App/tsitClient2024/prami/public/api/";
 
-  const apiBaseUrl = "https://saaluvar.com/Backend/prami/public/api/"
+  // const apiBaseUrl = "https://saaluvar.com/Backend/prami/public/api/"
 
   // To get clinic name
 
