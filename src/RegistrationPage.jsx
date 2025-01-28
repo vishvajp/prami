@@ -11,6 +11,7 @@ const RegistrationPage = () => {
   const [searchInput, setSearchInput] = useState("");
   const [elementInput, setElementInput]=useState()
   const { apiBaseUrl } = useContext(UserDataContext);
+  const [totalCount, setTotalCount]= useState("")
   const navToRegisterMore = useNavigate()
 
 const handleNavToSpecPat = (element)=>{
@@ -35,6 +36,7 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
          const response = await axios.post(`${apiBaseUrl}getActivePatientDetails`)
         if (response.data) {
           setTableContent(response.data.data);
+          setTotalCount(response.data.totalPatient)
           console.log(response.data.data);
         }
       } catch (err) {
@@ -204,22 +206,31 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
   return (
     <div>
         <div >
-      <div className="d-flex align-items-center appointment-input-register">
-        <input
-          onChange={(e) => setSearchInput(e.target.value)}
-          className="appointment-1stdiv-input"
-          type="search"
-          placeholder="Enter Name / Number"
-        ></input>
-        <p
-          onClick={()=>{navToRegisterMore("/home/patient/registration")}}
-          className="mb-0 appointment-1stdiv-register me-5"
-        >
-          REGISTER
-        </p>
-      </div>
+          <div className="row appointment-input-register">
+            <div className="col d-flex align-items-center" >
+              <div><span style={{fontWeight:"600", fontSize:"larger"}}>Total Count - {totalCount}</span></div>
+            </div>
+            <div className="col">
+            <div className="d-flex align-items-center ">
+      
+      <input
+        onChange={(e) => setSearchInput(e.target.value)}
+        className="appointment-1stdiv-input"
+        type="search"
+        placeholder="Enter Name / Number"
+      ></input>
+      <p
+        onClick={()=>{navToRegisterMore("/home/patient/registration")}}
+        className="mb-0 appointment-1stdiv-register me-5"
+      >
+        REGISTER
+      </p>
+    </div>
+            </div>
+          </div>
+      
       <div className="registerPatient-table-div">
-        <Table responsive>
+        <Table responsive >
         <thead className="patienttable-head-container">
         <tr>
         {filteredItem &&
@@ -231,9 +242,7 @@ navToRegisterMore("/home/register/moredetail" , {state:{element}})
               key !== "patientRegistrationDate" &&
               key !== "landmark" &&
               key !== "occupation" &&
-              key !== "email"
-             
-            
+              key !== "email"           
              ? (
                 // Filter out unwanted columns
                 <th className="table-header-col" key={index}>
